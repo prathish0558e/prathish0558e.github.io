@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
     <style>
-               :root {
+        :root {
             --primary: #00eaff;
             --accent: #ffb400;
             --dark-bg: #181c24;
@@ -65,11 +65,6 @@
             gap: 28px;
             margin: 0;
             padding: 0;
-        }
-        nav ul li {
-            padding: 0;
-            background: none;
-            box-shadow: none;
         }
         nav ul li a {
             display: block;
@@ -207,7 +202,6 @@
             color: var(--accent);
         }
 
-        /* Flying background animation */
         .fly-bg {
             position: fixed;
             top: 0; left: 0;
@@ -253,6 +247,29 @@
                 display: block;
             }
         }
+
+        /* Mobile responsiveness fixes */
+        @media(max-width: 600px) {
+            .gallery {
+                gap: 12px;
+            }
+            .gallery img {
+                max-width: 100%;
+                height: auto;
+                margin: 0;
+            }
+            .card div[style*="display: flex"] {
+                flex-direction: column;
+                gap: 1em !important;
+                text-align: center;
+            }
+            .typing-text {
+                font-size: 1.5em;
+            }
+            nav .logo {
+                font-size: 1.3em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -270,7 +287,8 @@
     <div class="section">
         <h1 class="typing-text" id="typed"></h1>
         <div class="card">
-        <p style="text-align: center;"><b>Here are some of my notable achievements:</b></p></div>
+            <p style="text-align: center;"><b>Here are some of my notable achievements:</b></p>
+        </div>
         <div class="gallery">
            <a href="images/kkE9HyeNcw6rwCRGw_pmnMSL4QiQ9JCgE3W_4PLqGQ6WFtKmZcWuR_1751401987568_completion_certificate.pdf"><img src="images/kkE9HyeNcw6rwCRGw_pmnMSL4QiQ9JCgE3W_4PLqGQ6WFtKmZcWuR_1751401987568_completion_certificate_page-0001.jpg" alt="Achievement 1"></a>
            <a href="images/MyXvBcppsW2FkNYCX_ifobHAoMjQs9s6bKS_4PLqGQ6WFtKmZcWuR_1751443770899_completion_certificate.pdf"><img src="images/MyXvBcppsW2FkNYCX_ifobHAoMjQs9s6bKS_4PLqGQ6WFtKmZcWuR_1751443770899_completion_certificate_page-0001.jpg" alt="Achievement 2"></a>
@@ -285,24 +303,24 @@
         </button>
     </div>
     <div class="card">
-    <h2 style="text-align: center;"><i> Projects </i></h2>
-    <div class="gallery">
-        <a href="https://github.com/prathish0558e/Alfido-Tech-Internship/blob/main/JS%20Event%20(%20Color%20change%20).html"><img src="images/Screenshot (2).png" alt="Project 1"></a>
-        <a href="https://github.com/prathish0558e/Alfido-Tech-Internship/blob/main/Responsive%20Navbar.html"><img src="images/Screenshot (3).png" alt="Project 2"></a>
-        <a href="https://github.com/prathish0558e/Alfido-Tech-Internship/blob/main/Simple%20Webpage.html"><img src="images/Screenshot (4).png" alt="Project 3"></a>
-        <a href="https://github.com/prathish0558e/Alfido-Tech-Internship/blob/main/Simple%20Webpage.html"><img src="images/Screenshot (5).png" alt="Project 4"></a>
-    </div>
+        <h2 style="text-align: center;"><i> Projects </i></h2>
+        <div class="gallery">
+            <a href="https://github.com/prathish0558e/Alfido-Tech-Internship/blob/main/JS%20Event%20(%20Color%20change%20).html"><img src="images/Screenshot (2).png" alt="Project 1"></a>
+            <a href="https://github.com/prathish0558e/Alfido-Tech-Internship/blob/main/Responsive%20Navbar.html"><img src="images/Screenshot (3).png" alt="Project 2"></a>
+            <a href="https://github.com/prathish0558e/Alfido-Tech-Internship/blob/main/Simple%20Webpage.html"><img src="images/Screenshot (4).png" alt="Project 3"></a>
+            <a href="https://github.com/prathish0558e/Alfido-Tech-Internship/blob/main/Simple%20Webpage.html"><img src="images/Screenshot (5).png" alt="Project 4"></a>
+        </div>
     </div>
     <div class="container">
-     <h2 style="text-align: center; font-size: 2em;"><i>Skills</i></h2>
-     <div class="card"><strong>
-        <div style="display: flex; justify-content: center; align-items: center; gap: 4em;">
-            <span><i class="fab fa-html5" style="color:#e34c26;"></i> HTML5</span>
-            <span><i class="fab fa-css3-alt" style="color:#2965f1;"></i> CSS3</span>
-            <span><i class="fab fa-node-js" style="color:#68a063;"></i> NodeJS</span>
-            <span><i class="fab fa-react" style="color:#61dafb;"></i> ReactJS</span>
-        </div>
-     </strong></div>
+        <h2 style="text-align: center; font-size: 2em;"><i>Skills</i></h2>
+        <div class="card"><strong>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 4em;">
+                <span><i class="fab fa-html5" style="color:#e34c26;"></i> HTML5</span>
+                <span><i class="fab fa-css3-alt" style="color:#2965f1;"></i> CSS3</span>
+                <span><i class="fab fa-node-js" style="color:#68a063;"></i> NodeJS</span>
+                <span><i class="fab fa-react" style="color:#61dafb;"></i> ReactJS</span>
+            </div>
+        </strong></div>
     </div>
     <footer>
         <p>&copy; 2025 Prathish Kumar. All rights reserved.</p>
@@ -334,7 +352,6 @@
             document.querySelector('.hamburger').classList.toggle('active');
         }
 
-        // Active link highlight based on current page
         window.addEventListener('DOMContentLoaded', () => {
             const links = document.querySelectorAll('nav ul li a');
             links.forEach(link => {
@@ -358,7 +375,6 @@
             loop: true
         });
 
-        // Flying animated background dots
         function createFlyDots() {
             const flyBg = document.getElementById('flyBg');
             flyBg.innerHTML = '';
@@ -379,5 +395,4 @@
         window.addEventListener('resize', createFlyDots);
     </script>
 </body>
-
 </html>
