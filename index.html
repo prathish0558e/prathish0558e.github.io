@@ -1,317 +1,264 @@
+<!--
+Prathi Hades - Single-file homepage (index.html)
+INSTRUCTIONS:
+1) Save this file as `index.html` and put it in the root of your GitHub Pages repo
+   (repository name: prathish0558e.github.io).
+2) Create a file named `CNAME` (no extension) in the repo root containing exactly:
+   prathihades.me
+   This ensures GitHub Pages serves your custom domain.
+3) Commit & push. Wait a few minutes and refresh https://prathihades.me
+
+Notes about audio: modern browsers block autoplay with sound. This page will attempt to autoplay muted; user can tap the audio button to unmute and play music.
+
+Customize: replace SOCIAL links, change music (music.mp3) or link, edit text.
+-->
+
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Bhavani 🎉</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-<style>
-    body {
-        margin: 0;
-        background: radial-gradient(ellipse at center, #222 0%, #000 100%);
-        overflow: hidden;
-        font-family: 'Poppins', sans-serif;
-        height: 100vh;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Prathi Hades</title>
+  <meta name="description" content="Welcome to Prathi Hades — gaming, streams & more" />
+  <link rel="icon" href="data:;base64,iVBORw0KGgo="> <!-- tiny blank favicon, replace with your icon -->
+  <style>
+    :root{
+      --bg:#050206;
+      --panel: rgba(255,255,255,0.04);
+      --accent:#9b59ff;
+      --accent2:#00e6a8;
+      --glass: rgba(255,255,255,0.04);
+      --glow: 0 0 18px rgba(155,89,255,0.14), 0 0 50px rgba(0,230,168,0.04);
+      --text: #e9eefb;
     }
-    #title, #subtext, #fireworks {
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.8s;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: radial-gradient(1000px 600px at 10% 10%, rgba(155,89,255,0.06), transparent),
+                  radial-gradient(800px 500px at 90% 90%, rgba(0,230,168,0.03), transparent),
+                  var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow:hidden;
     }
-    .show-animations #title,
-    .show-animations #subtext,
-    .show-animations #fireworks {
-        opacity: 1;
-        pointer-events: auto;
+
+    /* canvas covers full background for particles */
+    #bgCanvas{position:fixed; inset:0; z-index:0; display:block}
+
+    .wrap{position:relative; z-index:2; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:40px}
+
+    .card{
+      width:min(980px,96%);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:18px; padding:36px; box-shadow:var(--glow);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.04);
+      display:flex; gap:28px; align-items:center;
     }
-    #title {
-        position: absolute;
-        top: 34%;
-        width: 100%;
-        text-align: center;
-        font-size: 3.2em;
-        font-weight: bold;
-        color: gold;
-        letter-spacing: 2px;
-        text-shadow: 0 0 30px #FFD700, 0 0 40px #FF6347, 0 0 10px #fff;
-        opacity: 0;
-        transform: scale(0.5);
-        animation: popIn 2s cubic-bezier(.68,-0.55,.27,1.55) forwards 1s;
-        z-index: 2;
-        user-select: none;
+
+    .left{flex:1; min-width:240px}
+    .brand{
+      font-size: clamp(22px, 3vw, 42px);
+      font-weight:800; letter-spacing:1px; line-height:1;
+      background: linear-gradient(90deg,var(--accent), var(--accent2));
+      -webkit-background-clip: text; color:transparent;
+      text-shadow: 0 6px 28px rgba(0,0,0,0.6);
     }
-    @keyframes popIn {
-        to { opacity: 1; transform: scale(1); }
+    .subtitle{color:rgba(233,238,251,0.75); margin-top:8px}
+
+    .tagline{margin-top:16px; font-size:16px}
+
+    .buttons{margin-top:20px; display:flex; gap:12px; flex-wrap:wrap}
+    .btn{padding:10px 16px; border-radius:10px; font-weight:600; text-decoration:none; display:inline-flex; gap:10px; align-items:center}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent2)); color:#041017}
+    .btn.ghost{background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--text)}
+
+    .right{width:260px; text-align:center}
+    .avatar{
+      width:160px; height:160px; border-radius:12px; margin:auto; display:block; object-fit:cover; border:1px solid rgba(255,255,255,0.06)
     }
-    #subtext {
-        position: absolute;
-        top: 48%;
-        width: 100%;
-        text-align: center;
-        color: #fff;
-        font-size: 1.6em;
-        opacity: 0;
-        text-shadow: 0 0 10px #ffb6c1, 0 0 20px #fff;
-        animation: fadeIn 2s ease forwards 3s;
-        z-index: 2;
-        user-select: none;
+    .socials{margin-top:16px; display:flex; gap:10px; justify-content:center}
+    .icon{width:44px; height:44px; display:inline-grid; place-items:center; border-radius:9px; background:var(--panel); border:1px solid rgba(255,255,255,0.03)}
+
+    footer{position:fixed; left:18px; bottom:18px; z-index:3; color:rgba(233,238,251,0.6); font-size:13px}
+
+    /* audio button */
+    #audioBtn{position:fixed; right:18px; bottom:18px; z-index:3; background:linear-gradient(90deg,var(--accent),var(--accent2)); border:none; color:#041017; padding:10px 12px; border-radius:12px; font-weight:700}
+
+    /* small screens */
+    @media (max-width:720px){
+      .card{flex-direction:column; padding:20px}
+      .right{width:100%}
+      .avatar{width:120px;height:120px}
     }
-    @keyframes fadeIn {
-        to { opacity: 1; }
-    }
-    #music-controls {
-        position: absolute;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 10;
-        background: rgba(0,0,0,0.7);
-        border-radius: 30px;
-        padding: 14px 38px;
-        display: flex;
-        align-items: center;
-        gap: 18px;
-        box-shadow: 0 0 16px #FFD700;
-        font-size: 1.25em;
-        color: #FFD700;
-        user-select: none;
-        transition: background 0.3s;
-        cursor: pointer;
-    }
-    #music-controls .icon {
-        font-size: 2em;
-        margin-right: 10px;
-        vertical-align: middle;
-        animation: pulse 1.5s infinite;
-    }
-    @keyframes pulse {
-        0% { text-shadow: 0 0 10px #FFD700; }
-        50% { text-shadow: 0 0 30px #FFD700, 0 0 10px #fff; }
-        100% { text-shadow: 0 0 10px #FFD700; }
-    }
-    #music-status {
-        font-weight: bold;
-        letter-spacing: 1px;
-    }
-    canvas { display: block; position: fixed; top: 0; left: 0; z-index: 0; }
-    /* Responsive */
-    @media (max-width: 600px) {
-        #title { font-size: 2em; }
-        #subtext { font-size: 1em; }
-        #music-controls { font-size: 1em; padding: 10px 18px; }
-    }
-</style>
+
+    /* subtle entrance animation */
+    .card{transform:translateY(8px); opacity:0; animation:pop 900ms cubic-bezier(.2,.9,.3,1) forwards}
+    @keyframes pop{to{transform:none;opacity:1}}
+
+    /* tiny sparkles */
+    .spark{position:absolute; width:8px; height:8px; border-radius:50%; filter:blur(6px); opacity:0.7}
+  </style>
 </head>
 <body>
+  <canvas id="bgCanvas"></canvas>
 
-<div id="title">🎉 Happy Birthday Bhavani 🎉</div>
-<div id="subtext"><b>Dear Friend:</b><br>🎂 Happy Birthday Pa 🎂<br>
-Intha year la un life la neriya santhosham, success, and sweet memories varanum 🎉<br>
-Always keep smiling, coz un smile romba special ❤️</div>
+  <div class="wrap">
+    <div class="card">
+      <div class="left">
+        <div class="brand">Welcome to <span style="font-family:inherit;">Prathi Hades</span></div>
+        <div class="subtitle">Gaming • Streams • Highlights</div>
+        <div class="tagline">Dark cinematic vibes — clips, streams, and behind-the-scenes. Join the raid.</div>
 
-<div id="music-controls">
-    <span class="icon">&#127925;</span>
-    <span id="music-status">Tap to start music &amp; show surprise!</span>
-</div>
-<audio id="song" src="https://www.boomplay.com/songs/130290254?srModel=COPYLINK&srList=WEB" preload="auto" loop></audio>
-<!-- Royalty-free happy birthday music from Pixabay -->
+        <div class="buttons">
+          <a class="btn primary" href="https://www.youtube.com/" target="_blank" rel="noopener" id="ytBtn">YouTube</a>
+          <a class="btn ghost" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+          <a class="btn ghost" href="#contact" id="discordBtn">Discord</a>
+        </div>
 
-<canvas id="fireworks"></canvas>
+        <div style="margin-top:22px; color:rgba(233,238,251,0.7)">Latest: <strong id="latest">Coming soon — highlight reel</strong></div>
+      </div>
 
-<script>
-const canvas = document.getElementById('fireworks');
-const ctx = canvas.getContext('2d');
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
+      <div class="right">
+        <img class="avatar" src="https://avatars.githubusercontent.com/u/" alt="avatar" id="avatarImg">
+        <div style="margin-top:12px; font-weight:700">Prathish Kumar S</div>
+        <div style="margin-top:6px; color:rgba(233,238,251,0.6)">@prathish0558e</div>
 
-let fireworks = [];
-let hearts = [];
-let sparkles = [];
-let animationStarted = false;
+        <div class="socials">
+          <a class="icon" href="https://www.youtube.com/" target="_blank" rel="noopener">YT</a>
+          <a class="icon" href="https://www.instagram.com/" target="_blank" rel="noopener">IG</a>
+          <a class="icon" href="#" id="shareBtn">SH</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-function random(min, max) {
-    return Math.random() * (max - min) + min;
-}
+  <button id="audioBtn" aria-label="Music">Play Music</button>
 
-// Firework class
-class Firework {
-    constructor(x, y, color) {
-        this.x = x;
-        this.y = y;
-        this.color = color;
-        this.particles = [];
-        for (let i = 0; i < 60; i++) {
-            this.particles.push({
-                x: x, y: y,
-                angle: random(0, Math.PI * 2),
-                speed: random(2, 7),
-                radius: random(2, 4),
-                alpha: 1,
-                decay: random(0.015, 0.025)
-            });
+  <footer>© Prathi Hades — prathihades.me</footer>
+
+  <!-- Background audio: replace with your own file or remote link -->
+  <audio id="bgAudio" loop preload="auto">
+    <source src="/music.mp3" type="audio/mpeg">
+    <!-- If you want to use an external hosted file, replace src above with full URL -->
+  </audio>
+
+  <script>
+    /* --- Particle background (lightweight) --- */
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+    let w = canvas.width = innerWidth;
+    let h = canvas.height = innerHeight;
+
+    const particles = [];
+    const PARTICLE_COUNT = Math.round((w*h)/60000); // scale with screen
+
+    function rand(min,max){return Math.random()*(max-min)+min}
+
+    function create(){
+      for(let i=0;i<PARTICLE_COUNT;i++){
+        particles.push({
+          x:Math.random()*w,
+          y:Math.random()*h,
+          r:rand(0.6,2.3),
+          vx:rand(-0.2,0.6),
+          vy:rand(-0.15,0.15),
+          hue: Math.random()*360,
+          alpha: rand(0.06,0.25)
+        })
+      }
+    }
+    create();
+
+    function resize(){
+      w=canvas.width=innerWidth; h=canvas.height=innerHeight;
+    }
+    addEventListener('resize', resize);
+
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      // subtle gradient overlay
+      const g = ctx.createLinearGradient(0,0,w,h);
+      g.addColorStop(0, 'rgba(10,6,12,0.08)');
+      g.addColorStop(1, 'rgba(4,2,6,0.08)');
+      ctx.fillStyle = g; ctx.fillRect(0,0,w,h);
+
+      for(let p of particles){
+        p.x += p.vx; p.y += p.vy;
+        if(p.x> w+20) p.x=-20; if(p.x<-20) p.x=w+20;
+        if(p.y> h+20) p.y=-20; if(p.y<-20) p.y=h+20;
+
+        ctx.beginPath();
+        ctx.fillStyle = `hsla(${p.hue}, 70%, 65%, ${p.alpha})`;
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fill();
+      }
+
+      // connecting lines between nearby particles (sparse)
+      for(let i=0;i<particles.length;i++){
+        for(let j=i+1;j<particles.length;j++){
+          const a=particles[i], b=particles[j];
+          const dx=a.x-b.x, dy=a.y-b.y, d=dx*dx+dy*dy;
+          if(d<9000){
+            ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
+            ctx.strokeStyle = 'rgba(155,89,255,0.03)'; ctx.lineWidth=0.6; ctx.stroke();
+          }
         }
+      }
+      requestAnimationFrame(draw);
     }
-    update() {
-        this.particles.forEach(p => {
-            p.x += Math.cos(p.angle) * p.speed;
-            p.y += Math.sin(p.angle) * p.speed + 0.5;
-            p.speed *= 0.97;
-            p.alpha -= p.decay;
-        });
-    }
-    draw() {
-        this.particles.forEach(p => {
-            ctx.globalAlpha = Math.max(p.alpha, 0);
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            ctx.fillStyle = this.color;
-            ctx.shadowColor = this.color;
-            ctx.shadowBlur = 15;
-            ctx.fill();
-            ctx.shadowBlur = 0;
-        });
-        ctx.globalAlpha = 1;
-    }
-}
+    requestAnimationFrame(draw);
 
-// Heart class
-class Heart {
-    constructor() {
-        this.x = random(0, canvas.width);
-        this.y = canvas.height + 30;
-        this.size = random(16, 36);
-        this.speed = random(1.2, 2.2);
-        this.alpha = 1;
-        this.color = `hsl(${random(320, 360)}, 80%, 70%)`;
-        this.swing = random(0.8, 1.5);
-        this.swingPhase = random(0, Math.PI * 2);
-    }
-    update() {
-        this.y -= this.speed;
-        this.x += Math.sin(Date.now() * 0.002 + this.swingPhase) * this.swing;
-        this.alpha -= 0.002;
-    }
-    draw() {
-        ctx.save();
-        ctx.globalAlpha = Math.max(this.alpha, 0);
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.moveTo(this.x, this.y);
-        ctx.bezierCurveTo(this.x - this.size/2, this.y - this.size/2, 
-                          this.x - this.size, this.y + this.size/3, 
-                          this.x, this.y + this.size);
-        ctx.bezierCurveTo(this.x + this.size, this.y + this.size/3, 
-                          this.x + this.size/2, this.y - this.size/2, 
-                          this.x, this.y);
-        ctx.fill();
-        ctx.restore();
-    }
-}
+    /* --- Avatar from GitHub --- */
+    const avatarImg = document.getElementById('avatarImg');
+    const ghUser = 'prathish0558e';
+    avatarImg.src = `https://github.com/${ghUser}.png`;
 
-// Sparkle class for extra effect
-class Sparkle {
-    constructor() {
-        this.x = random(0, canvas.width);
-        this.y = random(0, canvas.height * 0.7);
-        this.radius = random(0.5, 2.5);
-        this.alpha = random(0.2, 0.7);
-        this.color = `hsl(${random(40, 60)}, 100%, 80%)`;
-        this.twinkle = random(0.01, 0.03);
-    }
-    update() {
-        this.alpha += this.twinkle * (Math.random() > 0.5 ? 1 : -1);
-        if (this.alpha < 0.15) this.alpha = 0.15;
-        if (this.alpha > 0.8) this.alpha = 0.8;
-    }
-    draw() {
-        ctx.save();
-        ctx.globalAlpha = this.alpha;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
-        ctx.shadowColor = "#fff";
-        ctx.shadowBlur = 8;
-        ctx.fill();
-        ctx.restore();
-    }
-}
+    /* --- Audio controls + autoplay handling --- */
+    const audio = document.getElementById('bgAudio');
+    const audioBtn = document.getElementById('audioBtn');
+    let audioPlaying = false;
 
-// Populate sparkles
-for (let i = 0; i < 120; i++) {
-    sparkles.push(new Sparkle());
-}
-
-function loop() {
-    if (!animationStarted) return;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Draw sparkles
-    sparkles.forEach(s => { s.update(); s.draw(); });
-
-    // Fireworks
-    if (Math.random() < 0.045) {
-        fireworks.push(new Firework(
-            random(canvas.width * 0.1, canvas.width * 0.9),
-            random(canvas.height * 0.1, canvas.height * 0.5),
-            `hsl(${random(0,360)},100%,60%)`
-        ));
-    }
-    // Hearts
-    if (Math.random() < 0.025) {
-        hearts.push(new Heart());
+    function updateAudioBtn(){
+      audioBtn.textContent = audioPlaying? 'Pause Music' : 'Play Music';
     }
 
-    // Update and draw fireworks
-    for (let i = fireworks.length - 1; i >= 0; i--) {
-        fireworks[i].update();
-        fireworks[i].draw();
-        if (fireworks[i].particles[0].alpha <= 0) fireworks.splice(i, 1);
-    }
-    // Update and draw hearts
-    for (let i = hearts.length - 1; i >= 0; i--) {
-        hearts[i].update();
-        hearts[i].draw();
-        if (hearts[i].alpha <= 0) hearts.splice(i, 1);
-    }
+    // Try to autoplay muted for visual effect; user can unmute via button
+    audio.muted = true; // many browsers allow muted autoplay
+    audio.play().then(()=>{
+      audioPlaying = true; updateAudioBtn();
+      setTimeout(()=>{ audio.muted = true; }, 1500);
+    }).catch(()=>{ audioPlaying=false; updateAudioBtn(); });
 
-    requestAnimationFrame(loop);
-}
-
-// Music controls (auto play)
-const audio = document.getElementById('song');
-const musicStatus = document.getElementById('music-status');
-const musicControls = document.getElementById('music-controls');
-
-// Only start everything on user tap
-function startShow() {
-    if (animationStarted) return;
-    audio.play().then(() => {
-        musicStatus.textContent = "Music: On 🎶";
-    }).catch(() => {
-        musicStatus.textContent = "Music: Off";
+    audioBtn.addEventListener('click', ()=>{
+      if(!audioPlaying){
+        audio.muted = false; audio.play().then(()=>{ audioPlaying=true; updateAudioBtn(); }).catch(()=>{});
+      } else { audio.pause(); audioPlaying=false; updateAudioBtn(); }
     });
-    document.body.classList.add('show-animations');
-    animationStarted = true;
-    loop();
-    // Remove tap handler after first tap
-    musicControls.removeEventListener('pointerdown', startShow);
-    window.removeEventListener('pointerdown', startShow);
-}
-musicControls.addEventListener('pointerdown', startShow);
-window.addEventListener('pointerdown', startShow);
 
-audio.addEventListener('playing', () => {
-    musicStatus.textContent = "Music: On 🎶";
-});
-audio.addEventListener('pause', () => {
-    musicStatus.textContent = "Music: Off";
-});
-audio.addEventListener('ended', () => {
-    musicStatus.textContent = "Music: Off";
-});
-</script>
+    /* --- Buttons quick hooks --- */
+    document.getElementById('ytBtn').href = 'https://www.youtube.com/@prathish0558e';
+    document.querySelectorAll('.icon')[0].href = 'https://www.youtube.com/@prathish0558e';
+    document.querySelectorAll('.icon')[1].href = 'https://www.instagram.com/';
+
+    // Simple share — copies site URL
+    document.getElementById('shareBtn').addEventListener('click', async ()=>{
+      try{
+        await navigator.clipboard.writeText(location.href);
+        const old = document.getElementById('latest');
+        old.textContent = 'Link copied to clipboard!';
+        setTimeout(()=> old.textContent = 'Coming soon — highlight reel', 2200);
+      }catch(e){ alert('Copy failed — share manually.'); }
+    });
+
+    /* --- small floating sparkles for flavor --- */
+    for(let i=0;i<6;i++){ const s=document.createElement('div'); s.className='spark'; s.style.left=rand(10,90)+'%'; s.style.top=rand(8,92)+'%'; s.style.background='radial-gradient(circle, rgba(155,89,255,0.95), transparent)'; s.style.opacity=rand(0.06,0.24); s.style.transform=`scale(${rand(0.6,1.6)})`; document.body.appendChild(s); }
+
+    /* --- Accessibility: keyboard play/pause (Space) --- */
+    window.addEventListener('keydown', e=>{ if(e.code==='Space'){ e.preventDefault(); audioBtn.click(); } });
+  </script>
 </body>
 </html>
