@@ -1,264 +1,374 @@
-<!--
-Prathi Hades - Single-file homepage (index.html)
-INSTRUCTIONS:
-1) Save this file as `index.html` and put it in the root of your GitHub Pages repo
-   (repository name: prathish0558e.github.io).
-2) Create a file named `CNAME` (no extension) in the repo root containing exactly:
-   prathihades.me
-   This ensures GitHub Pages serves your custom domain.
-3) Commit & push. Wait a few minutes and refresh https://prathihades.me
-
-Notes about audio: modern browsers block autoplay with sound. This page will attempt to autoplay muted; user can tap the audio button to unmute and play music.
-
-Customize: replace SOCIAL links, change music (music.mp3) or link, edit text.
--->
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Prathi Hades</title>
-  <meta name="description" content="Welcome to Prathi Hades — gaming, streams & more" />
-  <link rel="icon" href="data:;base64,iVBORw0KGgo="> <!-- tiny blank favicon, replace with your icon -->
-  <style>
-    :root{
-      --bg:#050206;
-      --panel: rgba(255,255,255,0.04);
-      --accent:#9b59ff;
-      --accent2:#00e6a8;
-      --glass: rgba(255,255,255,0.04);
-      --glow: 0 0 18px rgba(155,89,255,0.14), 0 0 50px rgba(0,230,168,0.04);
-      --text: #e9eefb;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      background: radial-gradient(1000px 600px at 10% 10%, rgba(155,89,255,0.06), transparent),
-                  radial-gradient(800px 500px at 90% 90%, rgba(0,230,168,0.03), transparent),
-                  var(--bg);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      overflow:hidden;
-    }
+    <meta charset="UTF-8">
+    <title>About Page</title>
+       <style>
+        :root {
+            --primary: #00eaff;
+            --accent: #ffb400;
+            --dark-bg: #181c24;
+            --light-bg: #f7f9fa;
+            --text-dark: #eaf6fb;
+            --text-light: #222;
+            --shadow: 0 4px 24px rgba(0,0,0,0.12);
+            --nav-gradient: linear-gradient(90deg, #00eaff 0%, #ffb400 100%);
+        }
 
-    /* canvas covers full background for particles */
-    #bgCanvas{position:fixed; inset:0; z-index:0; display:block}
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-dark);
+            margin: 0;
+            transition: background 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+        body.light-mode {
+            background: var(--light-bg);
+            color: var(--text-light);
+        }
 
-    .wrap{position:relative; z-index:2; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:40px}
+        nav {
+            background: var(--nav-gradient);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            box-shadow: var(--shadow);
+            animation: navFlyIn 1s cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        @keyframes navFlyIn {
+            0% { transform: translateY(-100px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        nav .logo {
+            font-size: 1.7em;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 8px #00eaff88;
+            animation: logoFly 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        @keyframes logoFly {
+            0% { transform: scale(0.5) rotate(-30deg); opacity: 0; }
+            100% { transform: scale(1) rotate(0); opacity: 1; }
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            padding: 0;
+            background: none;
+            box-shadow: none;
+        }
+        nav ul li a {
+            display: block;
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 1.1em;
+            transition: 0.3s;
+            position: relative;
+            text-decoration: none;
+            z-index: 1;
+        }
+        nav ul li a.active,
+        nav ul li a:hover {
+            background: var(--accent);
+            color: #222;
+            box-shadow: 0 2px 12px #ffb40044;
+        }
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background: var(--primary);
+            opacity: 0.15;
+            z-index: 0;
+            transition: opacity 0.3s;
+            border-radius: 20px;
+        }
+        .hamburger {
+            display: none;
+            font-size: 2em;
+            cursor: pointer;
+            color: #fff;
+            margin-left: 18px;
+            transition: transform 0.3s;
+        }
+        .hamburger.active {
+            transform: rotate(90deg);
+        }
 
-    .card{
-      width:min(980px,96%);
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:18px; padding:36px; box-shadow:var(--glow);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.04);
-      display:flex; gap:28px; align-items:center;
-    }
+        .section {
+            max-width: 960px;
+            margin: 64px auto;
+            padding: 24px;
+            background: rgba(24,28,36,0.85);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            animation: sectionFly 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        @keyframes sectionFly {
+            0% { transform: translateY(60px) scale(0.95); opacity: 0; }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+        .typing-text {
+            font-size: 2em;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+            animation: flyText 1.5s cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        @keyframes flyText {
+            0% { transform: translateY(40px) scale(0.8); opacity: 0; }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+        .mode-toggle, .top-button {
+            position: fixed;
+            right: 24px;
+            background: var(--primary);
+            color: #000;
+            padding: 14px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: var(--shadow);
+            transition: background 0.3s;
+        }
+        .mode-toggle { top: 24px; }
+        .top-button {
+            bottom: 24px;
+            display: none;
+        }
+        .mode-toggle:hover, .top-button:hover {
+            background: var(--accent);
+        }
 
-    .left{flex:1; min-width:240px}
-    .brand{
-      font-size: clamp(22px, 3vw, 42px);
-      font-weight:800; letter-spacing:1px; line-height:1;
-      background: linear-gradient(90deg,var(--accent), var(--accent2));
-      -webkit-background-clip: text; color:transparent;
-      text-shadow: 0 6px 28px rgba(0,0,0,0.6);
-    }
-    .subtitle{color:rgba(233,238,251,0.75); margin-top:8px}
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+        }
+        .gallery img {
+            width: 100%;
+            max-width: 220px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 14px;
+            margin: 8px;
+            transition: 0.4s;
+            box-shadow: 0 2px 12px #00eaff33;
+            animation: imgFly 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        @keyframes imgFly {
+            0% { transform: scale(0.7) rotate(-10deg); opacity: 0; }
+            100% { transform: scale(1) rotate(0); opacity: 1; }
+        }
+        .gallery img:hover {
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: 0 4px 24px #ffb40055;
+        }
 
-    .tagline{margin-top:16px; font-size:16px}
+        footer {
+            text-align: center;
+            padding: 32px;
+            background: var(--nav-gradient);
+            color: #fff;
+            font-size: 1.1em;
+            letter-spacing: 1px;
+            box-shadow: var(--shadow);
+            margin-top: 48px;
+            border-radius: 0 0 20px 20px;
+            animation: navFlyIn 1s cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        footer a {
+            color: #fff;
+            margin-left: 12px;
+            font-size: 1.5em;
+            transition: color 0.3s;
+        }
+        footer a:hover {
+            color: var(--accent);
+        }
 
-    .buttons{margin-top:20px; display:flex; gap:12px; flex-wrap:wrap}
-    .btn{padding:10px 16px; border-radius:10px; font-weight:600; text-decoration:none; display:inline-flex; gap:10px; align-items:center}
-    .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent2)); color:#041017}
-    .btn.ghost{background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--text)}
+        /* Flying background animation */
+        .fly-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .fly-dot {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.18;
+            animation: flyDot 12s linear infinite;
+        }
+        @keyframes flyDot {
+            0% { transform: translateY(0) scale(1); opacity: 0.18;}
+            50% { opacity: 0.32;}
+            100% { transform: translateY(100vh) scale(1.2); opacity: 0.18;}
+        }
 
-    .right{width:260px; text-align:center}
-    .avatar{
-      width:160px; height:160px; border-radius:12px; margin:auto; display:block; object-fit:cover; border:1px solid rgba(255,255,255,0.06)
-    }
-    .socials{margin-top:16px; display:flex; gap:10px; justify-content:center}
-    .icon{width:44px; height:44px; display:inline-grid; place-items:center; border-radius:9px; background:var(--panel); border:1px solid rgba(255,255,255,0.03)}
-
-    footer{position:fixed; left:18px; bottom:18px; z-index:3; color:rgba(233,238,251,0.6); font-size:13px}
-
-    /* audio button */
-    #audioBtn{position:fixed; right:18px; bottom:18px; z-index:3; background:linear-gradient(90deg,var(--accent),var(--accent2)); border:none; color:#041017; padding:10px 12px; border-radius:12px; font-weight:700}
-
-    /* small screens */
-    @media (max-width:720px){
-      .card{flex-direction:column; padding:20px}
-      .right{width:100%}
-      .avatar{width:120px;height:120px}
-    }
-
-    /* subtle entrance animation */
-    .card{transform:translateY(8px); opacity:0; animation:pop 900ms cubic-bezier(.2,.9,.3,1) forwards}
-    @keyframes pop{to{transform:none;opacity:1}}
-
-    /* tiny sparkles */
-    .spark{position:absolute; width:8px; height:8px; border-radius:50%; filter:blur(6px); opacity:0.7}
-  </style>
+        @media(max-width: 900px) {
+            .section { max-width: 98vw; }
+            .gallery img { max-width: 160px; height: 100px; }
+        }
+        @media(max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                background: #181c24;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                width: 220px;
+                display: none;
+                padding: 18px;
+                box-shadow: var(--shadow);
+                border-radius: 0 0 20px 20px;
+                animation: navFlyIn 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+            }
+            nav ul.show {
+                display: flex;
+            }
+            .hamburger {
+                display: block;
+            }
+        }
+    </style>
 </head>
 <body>
-  <canvas id="bgCanvas"></canvas>
+   <!-- Flying animated background -->
+    <div class="fly-bg" id="flyBg"></div>
 
-  <div class="wrap">
-    <div class="card">
-      <div class="left">
-        <div class="brand">Welcome to <span style="font-family:inherit;">Prathi Hades</span></div>
-        <div class="subtitle">Gaming • Streams • Highlights</div>
-        <div class="tagline">Dark cinematic vibes — clips, streams, and behind-the-scenes. Join the raid.</div>
+    <button class="mode-toggle" onclick="toggleMode()"><i class="fas fa-moon"></i></button>
+    <button class="top-button" onclick="scrollToTop()"><i class="fas fa-chevron-up"></i></button>
 
-        <div class="buttons">
-          <a class="btn primary" href="https://www.youtube.com/" target="_blank" rel="noopener" id="ytBtn">YouTube</a>
-          <a class="btn ghost" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
-          <a class="btn ghost" href="#contact" id="discordBtn">Discord</a>
-        </div>
+    <nav>
+        <div class="logo">About Me</div>
+        <i class="fas fa-bars hamburger" onclick="toggleMenu()"></i>
+        <ul id="navLinks">
+            <li><a href="prathi.html" class="active"><i class="fas fa-house"></i> Home</a></li>
+            <li><a href="achievements.html"><i class="fas fa-trophy"></i> Achievements</a></li>
+            <li><a href="about.html"><i class="fas fa-user"></i> About</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+    </nav>
 
-        <div style="margin-top:22px; color:rgba(233,238,251,0.7)">Latest: <strong id="latest">Coming soon — highlight reel</strong></div>
-      </div>
-
-      <div class="right">
-        <img class="avatar" src="https://avatars.githubusercontent.com/u/" alt="avatar" id="avatarImg">
-        <div style="margin-top:12px; font-weight:700">Prathish Kumar S</div>
-        <div style="margin-top:6px; color:rgba(233,238,251,0.6)">@prathish0558e</div>
-
-        <div class="socials">
-          <a class="icon" href="https://www.youtube.com/" target="_blank" rel="noopener">YT</a>
-          <a class="icon" href="https://www.instagram.com/" target="_blank" rel="noopener">IG</a>
-          <a class="icon" href="#" id="shareBtn">SH</a>
-        </div>
-      </div>
+    <section id="home" class="section" data-aos="fade-up">
+        <h1 style="text-align:center; font-size:2.5em; margin-bottom:0.2em;">
+            Hi, I'm <strong style="color:var(--primary);"> Prathish Kumar</strong>
+        </h1>
+    <div style="display:flex; flex-direction:column; align-items:center;">
+        <div class="typing-text" id="typed"></div>
+        <p style="text-align:center; font-size:1.2em;"><b> Welcome to my portfolio !</b></p>
     </div>
-  </div>
-
-  <button id="audioBtn" aria-label="Music">Play Music</button>
-
-  <footer>© Prathi Hades — prathihades.me</footer>
-
-  <!-- Background audio: replace with your own file or remote link -->
-  <audio id="bgAudio" loop preload="auto">
-    <source src="/music.mp3" type="audio/mpeg">
-    <!-- If you want to use an external hosted file, replace src above with full URL -->
-  </audio>
-
-  <script>
-    /* --- Particle background (lightweight) --- */
-    const canvas = document.getElementById('bgCanvas');
-    const ctx = canvas.getContext('2d');
-    let w = canvas.width = innerWidth;
-    let h = canvas.height = innerHeight;
-
-    const particles = [];
-    const PARTICLE_COUNT = Math.round((w*h)/60000); // scale with screen
-
-    function rand(min,max){return Math.random()*(max-min)+min}
-
-    function create(){
-      for(let i=0;i<PARTICLE_COUNT;i++){
-        particles.push({
-          x:Math.random()*w,
-          y:Math.random()*h,
-          r:rand(0.6,2.3),
-          vx:rand(-0.2,0.6),
-          vy:rand(-0.15,0.15),
-          hue: Math.random()*360,
-          alpha: rand(0.06,0.25)
-        })
-      }
+    <style>
+    @keyframes profileFly {
+        0% { transform: scale(0.7) rotate(-10deg); opacity: 0; }
+        100% { transform: scale(1) rotate(0); opacity: 1; }
     }
-    create();
+     </style>
+     <div class="container">
+        <h2 style="text-align: center;">About Me</h2>
+        <div class="card">
+         <p style="text-align: center;"><strong><b>PSN ENGINEERING COLLEGE</b><br>
+            Melathediyoor ,Tirunalveli ,Tamilnadu ,India<br>
+            B.tech Information Technology <br> 
+            Final Year Student <br>
+            Reg No : 952322205038 <br>
+                    <p style="text-align:center; font-size:1.15em;">
+            Passionate frontend developer who loves building responsive and interactive experiences.<br>
+            Skilled in <span style="color:var(--primary);">HTML</span>, <span style="color:var(--accent);">CSS</span>, <span style="color:var(--primary);">JavaScript</span>, and <span style="color:var(--accent);">React</span>.
+        </p>
+        </strong>
+        </div>
+     </div>
 
-    function resize(){
-      w=canvas.width=innerWidth; h=canvas.height=innerHeight;
-    }
-    addEventListener('resize', resize);
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
 
-    function draw(){
-      ctx.clearRect(0,0,w,h);
-      // subtle gradient overlay
-      const g = ctx.createLinearGradient(0,0,w,h);
-      g.addColorStop(0, 'rgba(10,6,12,0.08)');
-      g.addColorStop(1, 'rgba(4,2,6,0.08)');
-      ctx.fillStyle = g; ctx.fillRect(0,0,w,h);
-
-      for(let p of particles){
-        p.x += p.vx; p.y += p.vy;
-        if(p.x> w+20) p.x=-20; if(p.x<-20) p.x=w+20;
-        if(p.y> h+20) p.y=-20; if(p.y<-20) p.y=h+20;
-
-        ctx.beginPath();
-        ctx.fillStyle = `hsla(${p.hue}, 70%, 65%, ${p.alpha})`;
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-        ctx.fill();
-      }
-
-      // connecting lines between nearby particles (sparse)
-      for(let i=0;i<particles.length;i++){
-        for(let j=i+1;j<particles.length;j++){
-          const a=particles[i], b=particles[j];
-          const dx=a.x-b.x, dy=a.y-b.y, d=dx*dx+dy*dy;
-          if(d<9000){
-            ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
-            ctx.strokeStyle = 'rgba(155,89,255,0.03)'; ctx.lineWidth=0.6; ctx.stroke();
-          }
+        function toggleMode() {
+            document.body.classList.toggle('light-mode');
+            const icon = document.querySelector('.mode-toggle i');
+            icon.classList.toggle('fa-moon');
+            icon.classList.toggle('fa-sun');
         }
-      }
-      requestAnimationFrame(draw);
-    }
-    requestAnimationFrame(draw);
 
-    /* --- Avatar from GitHub --- */
-    const avatarImg = document.getElementById('avatarImg');
-    const ghUser = 'prathish0558e';
-    avatarImg.src = `https://github.com/${ghUser}.png`;
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-    /* --- Audio controls + autoplay handling --- */
-    const audio = document.getElementById('bgAudio');
-    const audioBtn = document.getElementById('audioBtn');
-    let audioPlaying = false;
+        window.onscroll = () => {
+            document.querySelector('.top-button').style.display = window.scrollY > 200 ? 'block' : 'none';
+        }
 
-    function updateAudioBtn(){
-      audioBtn.textContent = audioPlaying? 'Pause Music' : 'Play Music';
-    }
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('show');
+            document.querySelector('.hamburger').classList.toggle('active');
+        }
 
-    // Try to autoplay muted for visual effect; user can unmute via button
-    audio.muted = true; // many browsers allow muted autoplay
-    audio.play().then(()=>{
-      audioPlaying = true; updateAudioBtn();
-      setTimeout(()=>{ audio.muted = true; }, 1500);
-    }).catch(()=>{ audioPlaying=false; updateAudioBtn(); });
+        // Active link highlight based on current page
+        window.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('nav ul li a');
+            links.forEach(link => {
+                if (window.location.pathname.endsWith(link.getAttribute('href'))) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
 
-    audioBtn.addEventListener('click', ()=>{
-      if(!audioPlaying){
-        audio.muted = false; audio.play().then(()=>{ audioPlaying=true; updateAudioBtn(); }).catch(()=>{});
-      } else { audio.pause(); audioPlaying=false; updateAudioBtn(); }
-    });
+        new Typed("#typed", {
+            strings: [
+                "Front-end Developer 🚀",
+                "UI/UX Designer ✨",
+                "React Enthusiast 💡",
+                "Web Animation Lover 🎬",
+                "Quick Learner "
+            ],
+            typeSpeed: 60,
+            backSpeed: 40,
+            loop: true
+        });
 
-    /* --- Buttons quick hooks --- */
-    document.getElementById('ytBtn').href = 'https://www.youtube.com/@prathish0558e';
-    document.querySelectorAll('.icon')[0].href = 'https://www.youtube.com/@prathish0558e';
-    document.querySelectorAll('.icon')[1].href = 'https://www.instagram.com/';
-
-    // Simple share — copies site URL
-    document.getElementById('shareBtn').addEventListener('click', async ()=>{
-      try{
-        await navigator.clipboard.writeText(location.href);
-        const old = document.getElementById('latest');
-        old.textContent = 'Link copied to clipboard!';
-        setTimeout(()=> old.textContent = 'Coming soon — highlight reel', 2200);
-      }catch(e){ alert('Copy failed — share manually.'); }
-    });
-
-    /* --- small floating sparkles for flavor --- */
-    for(let i=0;i<6;i++){ const s=document.createElement('div'); s.className='spark'; s.style.left=rand(10,90)+'%'; s.style.top=rand(8,92)+'%'; s.style.background='radial-gradient(circle, rgba(155,89,255,0.95), transparent)'; s.style.opacity=rand(0.06,0.24); s.style.transform=`scale(${rand(0.6,1.6)})`; document.body.appendChild(s); }
-
-    /* --- Accessibility: keyboard play/pause (Space) --- */
-    window.addEventListener('keydown', e=>{ if(e.code==='Space'){ e.preventDefault(); audioBtn.click(); } });
-  </script>
+        // Flying animated background dots
+        function createFlyDots() {
+            const flyBg = document.getElementById('flyBg');
+            flyBg.innerHTML = '';
+            const colors = ['#00eaff', '#ffb400', '#fff', '#00eaff99', '#ffb40099'];
+            for(let i=0; i<18; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'fly-dot';
+                dot.style.width = dot.style.height = (24 + Math.random()*36) + 'px';
+                dot.style.left = (Math.random()*98) + 'vw';
+                dot.style.top = (-Math.random()*100) + 'px';
+                dot.style.background = colors[Math.floor(Math.random()*colors.length)];
+                dot.style.animationDuration = (8 + Math.random()*8) + 's';
+                dot.style.animationDelay = (-Math.random()*12) + 's';
+                flyBg.appendChild(dot);
+            }
+        }
+        createFlyDots();
+        window.addEventListener('resize', createFlyDots);
+    </script>
 </body>
 </html>
