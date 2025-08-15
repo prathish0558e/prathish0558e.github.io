@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ta">
 <head>
     <meta charset="UTF-8">
-    <title>About Page</title>
-       <style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prathish Kumar | Ultimate Portfolio</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <style>
         :root {
             --primary: #00eaff;
             --accent: #ffb400;
@@ -253,14 +257,14 @@
     </style>
 </head>
 <body>
-   <!-- Flying animated background -->
+    <!-- Flying animated background -->
     <div class="fly-bg" id="flyBg"></div>
 
     <button class="mode-toggle" onclick="toggleMode()"><i class="fas fa-moon"></i></button>
     <button class="top-button" onclick="scrollToTop()"><i class="fas fa-chevron-up"></i></button>
 
     <nav>
-        <div class="logo">About Me</div>
+        <div class="logo">Prathish Kumar S</div>
         <i class="fas fa-bars hamburger" onclick="toggleMenu()"></i>
         <ul id="navLinks">
             <li><a href="prathi.html" class="active"><i class="fas fa-house"></i> Home</a></li>
@@ -272,11 +276,16 @@
 
     <section id="home" class="section" data-aos="fade-up">
         <h1 style="text-align:center; font-size:2.5em; margin-bottom:0.2em;">
-            Hi, I'm <strong style="color:var(--primary);"> Prathish Kumar</strong>
+            Hi, I'm <strong style="color:var(--primary);">Prathish Kumar</strong>
         </h1>
     <div style="display:flex; flex-direction:column; align-items:center;">
+        <img class="profile-photo" src="images/IMG-20250626-WA0001.jpg"
+            style="width:160px; height:160px; border-radius:50%; box-shadow:0 4px 24px #00eaff88, 0 0 0 8px #ffb40033; margin-bottom:18px; object-fit:cover; animation: profileFly 1.2s cubic-bezier(.68,-0.55,.27,1.55); transition:transform 0.4s, box-shadow 0.4s;"
+            onmouseover="this.style.transform='scale(1.08) rotate(2deg)'; this.style.boxShadow='0 8px 32px #ffb40088, 0 0 0 12px #00eaff33';"
+            onmouseout="this.style.transform='scale(1) rotate(0)'; this.style.boxShadow='0 4px 24px #00eaff88, 0 0 0 8px #ffb40033';"
+        >
         <div class="typing-text" id="typed"></div>
-        <p style="text-align:center; font-size:1.2em;"><b> Welcome to my portfolio !</b></p>
+        <p style="text-align:center; font-size:1.2em;">Welcome to my portfolio!</p>
     </div>
     <style>
     @keyframes profileFly {
@@ -284,21 +293,36 @@
         100% { transform: scale(1) rotate(0); opacity: 1; }
     }
      </style>
-     <div class="container">
-        <h2 style="text-align: center;">About Me</h2>
-        <div class="card">
-         <p style="text-align: center;"><strong><b>PSN ENGINEERING COLLEGE</b><br>
-            Melathediyoor ,Tirunalveli ,Tamilnadu ,India<br>
-            B.tech Information Technology <br> 
-            Final Year Student <br>
-            Reg No : 952322205038 <br>
-                    <p style="text-align:center; font-size:1.15em;">
+
+    <section id="achievements" class="section" data-aos="fade-up">
+        <h2 style="text-align:center; font-size:2em;">Study Details</h2>
+        <p style="position: static; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align: center;"><strong >PSN ENGINEERING COLLEGE</strong>
+        <br>Final Year Student<br>
+        B.Tech Information Technology</p>
+        </div>
+    </section>
+
+    <section id="about" class="section" data-aos="fade-up">
+        <h2 style="text-align:center; font-size:2em;">About Me</h2>
+        <p style="text-align:center; font-size:1.15em;">
             Passionate frontend developer who loves building responsive and interactive experiences.<br>
             Skilled in <span style="color:var(--primary);">HTML</span>, <span style="color:var(--accent);">CSS</span>, <span style="color:var(--primary);">JavaScript</span>, and <span style="color:var(--accent);">React</span>.
         </p>
-        </strong>
+    </section>
+
+    <section id="contact" class="section" data-aos="fade-up">
+        <h2 style="text-align:center; font-size:2em;">Contact</h2>
+        <p style="text-align:center; font-size:1.15em;">
+            Email: <a href="mailto:prathish0558e@email.com" style="color:var(--accent);">prathish0558e@email.com</a>
+        </p>
         </div>
-     </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Prathish Kumar</p>
+        <a href="https://github.com/prathish0558e" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://wa.me/6383129892" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
