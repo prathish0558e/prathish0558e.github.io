@@ -2,8 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>About Page</title>
-       <style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Prathish Kumar</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <style>
         :root {
             --primary: #00eaff;
             --accent: #ffb400;
@@ -260,46 +264,41 @@
     <button class="top-button" onclick="scrollToTop()"><i class="fas fa-chevron-up"></i></button>
 
     <nav>
-        <div class="logo">About Me</div>
+        <div class="logo">Prathish Kumar S</div>
         <i class="fas fa-bars hamburger" onclick="toggleMenu()"></i>
         <ul id="navLinks">
-            <li><a href="index.html" class="active"><i class="fas fa-house"></i> Home</a></li>
+            <li><a href="index.html"><i class="fas fa-house"></i> Home</a></li>
             <li><a href="achievements.html"><i class="fas fa-trophy"></i> Achievements</a></li>
-            <li><a href="about.html"><i class="fas fa-user"></i> About</a></li>
+            <li><a href="about.html" class="active"><i class="fas fa-user"></i> About</a></li>
             <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-                <li><a href="bhava.html"><i class-"fas fa-cake"></i>Birthday</a></li>
         </ul>
     </nav>
 
-    <section id="home" class="section" data-aos="fade-up">
+    <section id="about" class="section" data-aos="fade-up">
         <h1 style="text-align:center; font-size:2.5em; margin-bottom:0.2em;">
-            Hi, I'm <strong style="color:var(--primary);"> Prathish Kumar</strong>
+            About Me
         </h1>
-    <div style="display:flex; flex-direction:column; align-items:center;">
         <div class="typing-text" id="typed"></div>
-        <p style="text-align:center; font-size:1.2em;"><b> Welcome to my portfolio !</b></p>
-    </div>
-    <style>
-    @keyframes profileFly {
-        0% { transform: scale(0.7) rotate(-10deg); opacity: 0; }
-        100% { transform: scale(1) rotate(0); opacity: 1; }
-    }
-     </style>
-     <div class="container">
-        <h2 style="text-align: center;">About Me</h2>
-        <div class="card">
-         <p style="text-align: center;"><strong><b>PSN ENGINEERING COLLEGE</b><br>
-            Melathediyoor ,Tirunalveli ,Tamilnadu ,India<br>
-            B.tech Information Technology <br> 
-            Final Year Student <br>
-            Reg No : 952322205038 <br>
-                    <p style="text-align:center; font-size:1.15em;">
-            Passionate frontend developer who loves building responsive and interactive experiences.<br>
-            Skilled in <span style="color:var(--primary);">HTML</span>, <span style="color:var(--accent);">CSS</span>, <span style="color:var(--primary);">JavaScript</span>, and <span style="color:var(--accent);">React</span>.
-        </p>
-        </strong>
+        <div style="text-align: center;">
+            <p style="font-size:1.2em;"><b>Welcome to my portfolio!</b></p>
+            <p><strong><b>PSN ENGINEERING COLLEGE</b><br>
+                Melathediyoor ,Tirunalveli ,Tamilnadu ,India<br>
+                B.tech Information Technology <br> 
+                Final Year Student <br>
+                Reg No : 952322205038 <br>
+            </p>
+            <p style="font-size:1.15em;">
+                Passionate frontend developer who loves building responsive and interactive experiences.<br>
+                Skilled in <span style="color:var(--primary);">HTML</span>, <span style="color:var(--accent);">CSS</span>, <span style="color:var(--primary);">JavaScript</span>, and <span style="color:var(--accent);">React</span>.
+            </p>
         </div>
-     </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Prathish Kumar</p>
+        <a href="https://github.com/prathish0558e" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://wa.me/6383129892" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -329,11 +328,11 @@
         // Active link highlight based on current page
         window.addEventListener('DOMContentLoaded', () => {
             const links = document.querySelectorAll('nav ul li a');
+            const currentPath = window.location.pathname.split('/').pop();
             links.forEach(link => {
-                if (window.location.pathname.endsWith(link.getAttribute('href'))) {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === currentPath) {
                     link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
                 }
             });
         });
@@ -372,6 +371,4 @@
         window.addEventListener('resize', createFlyDots);
     </script>
 </body>
-
 </html>
-
