@@ -13,6 +13,70 @@
         font-family: 'Poppins', sans-serif;
         height: 100vh;
     }
+            nav {
+            background: var(--nav-gradient);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            box-shadow: var(--shadow);
+            animation: navFlyIn 1s cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        @keyframes navFlyIn {
+            0% { transform: translateY(-100px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        nav .logo {
+            font-size: 1.7em;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 8px #00eaff88;
+            animation: logoFly 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        @keyframes logoFly {
+            0% { transform: scale(0.5) rotate(-30deg); opacity: 0; }
+            100% { transform: scale(1) rotate(0); opacity: 1; }
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li a {
+            display: block;
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 1.1em;
+            transition: 0.3s;
+            position: relative;
+            text-decoration: none;
+            z-index: 1;
+        }
+        nav ul li a.active,
+        nav ul li a:hover {
+            background: var(--accent);
+            color: #222;
+            box-shadow: 0 2px 12px #ffb40044;
+        }
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background: var(--primary);
+            opacity: 0.15;
+            z-index: 0;
+            transition: opacity 0.3s;
+            border-radius: 20px;
+        }
     #title, #subtext, #fireworks {
         opacity: 0;
         pointer-events: none;
@@ -107,11 +171,11 @@
         <div class="logo">About Me</div>
         <i class="fas fa-bars hamburger" onclick="toggleMenu()"></i>
         <ul id="navLinks">
-            <li><a href="index.html" class="active"><i class="fas fa-house"></i> Home</a></li>
+            <li><a href="index.html"><i class="fas fa-house"></i> Home</a></li>
             <li><a href="achievements.html"><i class="fas fa-trophy"></i> Achievements</a></li>
             <li><a href="about.html"><i class="fas fa-user"></i> About</a></li>
             <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-                <li><a href="bhava.html"><i class-"fas fa-cake"></i>Birthday</a></li>
+                <li><a href="bhava.html" class="active"><i class-"fas fa-cake"></i>Birthday</a></li>
         </ul>
     </nav>
 
