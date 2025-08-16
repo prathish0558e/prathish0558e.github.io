@@ -140,7 +140,6 @@
         }
         .mode-toggle, .top-button {
             position: fixed;
-            right: 24px;
             background: var(--primary);
             color: #000;
             padding: 14px;
@@ -151,9 +150,13 @@
             box-shadow: var(--shadow);
             transition: background 0.3s;
         }
-        .mode-toggle { top: 24px; }
+        .mode-toggle {
+            bottom: 24px;
+            left: 24px;
+        }
         .top-button {
             bottom: 24px;
+            right: 24px;
             display: none;
         }
         .mode-toggle:hover, .top-button:hover {
@@ -372,5 +375,3 @@
     </script>
 </body>
 </html>
-
-
