@@ -3,27 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PrathiHades.me | Tech, Fashion & More</title>
+    <title>Prathish Kumar S | Professional Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap');
 
         :root {
-            --bg-dark: #0A0A0A;
-            --primary-dark: #101010;
-            --secondary-dark: #1A1A1A;
-            --accent-color: #00A3FF;
-            --glow-color: rgba(0, 163, 255, 0.75);
+            --accent-color-dark: #00A3FF;
+            --glow-color-dark: rgba(0, 163, 255, 0.75);
+            --aurora-1-dark: #00A3FF;
+            --aurora-2-dark: #8A2BE2;
+            --aurora-3-dark: #FF4500;
+
+            --accent-color-light: #007BFF;
+            --glow-color-light: rgba(0, 123, 255, 0.5);
+        }
+
+        [data-theme='dark'] {
+            --bg-color: #0A0A0A;
+            --primary-bg: #101010;
+            --secondary-bg: #1A1A1A;
             --text-primary: #F5F5F5;
             --text-secondary: #A3A3A3;
             --border-color: #2A2A2A;
-            --aurora-1: #00A3FF;
-            --aurora-2: #8A2BE2;
-            --aurora-3: #FF4500;
+            --accent-color: var(--accent-color-dark);
+            --glow-color: var(--glow-color-dark);
+            --aurora-1: var(--aurora-1-dark);
+            --aurora-2: var(--aurora-2-dark);
+            --aurora-3: var(--aurora-3-dark);
+            --hero-overlay-start: rgba(10, 10, 10, 0.5);
+            --hero-overlay-end: rgba(10, 10, 10, 1);
+            --shadow-color-1: rgba(0, 0, 0, 0.2);
+            --shadow-color-2: rgba(0, 163, 255, 0.2);
+        }
+
+        [data-theme='light'] {
+            --bg-color: #F5F5F7;
+            --primary-bg: #FFFFFF;
+            --secondary-bg: #EAEAEA;
+            --text-primary: #1D1D1F;
+            --text-secondary: #555555;
+            --border-color: #D2D2D7;
+            --accent-color: var(--accent-color-light);
+            --glow-color: var(--glow-color-light);
+            --aurora-1: #007BFF;
+            --aurora-2: #6F00FF;
+            --aurora-3: #FF6B2E;
+            --hero-overlay-start: rgba(245, 245, 247, 0.5);
+            --hero-overlay-end: rgba(245, 245, 247, 1);
+            --shadow-color-1: rgba(0, 0, 0, 0.1);
+            --shadow-color-2: rgba(0, 123, 255, 0.15);
         }
 
         * {
@@ -38,11 +71,12 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
+            background-color: var(--bg-color);
             color: var(--text-primary);
             line-height: 1.7;
             overflow-x: hidden;
             position: relative;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
         
         body::before {
@@ -55,7 +89,7 @@
             background: radial-gradient(circle at 20% 20%, var(--aurora-1), transparent 30%),
                         radial-gradient(circle at 80% 70%, var(--aurora-2), transparent 30%),
                         radial-gradient(circle at 50% 50%, var(--aurora-3), transparent 40%);
-            filter: blur(100px);
+            filter: blur(120px);
             opacity: 0.15;
             z-index: -1;
             animation: aurora-breathe 20s ease-in-out infinite;
@@ -70,7 +104,7 @@
             width: 10px;
         }
         ::-webkit-scrollbar-track {
-            background: var(--primary-dark);
+            background: var(--primary-bg);
         }
         ::-webkit-scrollbar-thumb {
             background: var(--border-color);
@@ -86,9 +120,70 @@
             padding: 0 20px;
         }
 
+        /* Pre-loader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-color);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loader {
+            width: 60px;
+            height: 60px;
+            position: relative;
+            animation: spin 2s linear infinite;
+        }
+        .loader::before, .loader::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: var(--accent-color);
+            box-shadow: 0 0 10px var(--glow-color);
+            border-radius: 4px;
+        }
+        .loader::before {
+            top: 0;
+            left: 0;
+            animation: move-tl 2s ease-in-out infinite;
+        }
+        .loader::after {
+            bottom: 0;
+            right: 0;
+            animation: move-br 2s ease-in-out infinite;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes move-tl {
+            0%, 100% { top: 0; left: 0; }
+            25% { top: 0; left: 35px; }
+            50% { top: 35px; left: 35px; }
+            75% { top: 35px; left: 0; }
+        }
+        @keyframes move-br {
+            0%, 100% { bottom: 0; right: 0; }
+            25% { bottom: 0; right: 35px; }
+            50% { bottom: 35px; right: 35px; }
+            75% { bottom: 35px; right: 0; }
+        }
+
         /* Header */
         .header {
-            background-color: rgba(16, 16, 16, 0.7);
+            background-color: color-mix(in srgb, var(--primary-bg) 70%, transparent);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             padding: 1.5rem 0;
@@ -108,19 +203,22 @@
         .logo {
             font-size: 2rem;
             font-weight: 900;
-            color: var(--text-primary);
+            background: linear-gradient(45deg, var(--accent-color), var(--text-primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-decoration: none;
-            text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color);
-            transition: color 0.3s ease, text-shadow 0.3s ease;
+            text-shadow: 0 0 20px var(--glow-color);
+            transition: filter 0.3s ease;
         }
         .logo:hover {
-            color: var(--accent-color);
-            text-shadow: 0 0 15px var(--glow-color), 0 0 30px var(--glow-color);
+            filter: brightness(1.2);
         }
 
         .nav-links {
             list-style: none;
             display: flex;
+            align-items: center;
         }
 
         .nav-links li {
@@ -159,6 +257,27 @@
         .nav-links a:hover::after, .nav-links a.active::after {
             width: 100%;
         }
+        
+        .theme-toggle-btn {
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .theme-toggle-btn:hover {
+            background: var(--accent-color);
+            color: var(--primary-bg);
+            border-color: var(--accent-color);
+        }
+
 
         /* Hero Section */
         .hero {
@@ -187,7 +306,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(ellipse at center, rgba(10, 10, 10, 0.5) 0%, rgba(10, 10, 10, 1) 100%);
+            background: radial-gradient(ellipse at center, var(--hero-overlay-start) 0%, var(--hero-overlay-end) 100%);
             z-index: -1;
         }
 
@@ -221,20 +340,38 @@
 
         /* Main Content */
         .main-content {
-            display: grid;
-            grid-template-columns: 3fr 1fr;
-            gap: 3rem;
             padding: 4rem 0;
         }
 
-        .blog-posts {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
+        /* Section Base */
+        .section {
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .section:last-of-type {
+            border-bottom: none;
+        }
+        .section-title {
+            font-size: 3rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, var(--accent-color), var(--text-primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .post-card {
-            background-color: var(--primary-dark);
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+        .project-card {
+            background-color: var(--primary-bg);
             border-radius: 16px;
             overflow: hidden;
             transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
@@ -243,242 +380,370 @@
             position: relative;
             border: 1px solid var(--border-color);
         }
-        
-        .post-card::before {
+        .project-card::before {
             content: "";
             position: absolute;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(0, 163, 255, 0.15), transparent 40%);
+            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(0, 163, 255, 0.1), transparent 40%);
             border-radius: inherit;
             opacity: 0;
             transition: opacity 0.5s;
         }
-        
-        .post-card:hover::before {
+        .project-card:hover::before {
             opacity: 1;
         }
-
-        .post-card:hover {
+        .project-card:hover {
             transform: translateY(-12px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 0 30px var(--glow-color);
+            box-shadow: 0 20px 40px var(--shadow-color-1), 0 0 30px var(--glow-color);
             border-color: rgba(0, 163, 255, 0.3);
         }
-
-        .post-image-container {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .post-image {
+        .project-image {
             width: 100%;
-            height: 350px;
+            height: 250px;
             object-fit: cover;
             transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-
-        .post-card:hover .post-image {
+        .project-card:hover .project-image {
             transform: scale(1.08);
         }
-
-        .post-category {
-            position: absolute;
-            top: 1.5rem;
-            left: 1.5rem;
-            background-color: var(--accent-color);
-            color: var(--bg-dark);
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            z-index: 1;
-            box-shadow: 0 0 15px var(--glow-color);
-        }
-
-        .post-content {
-            padding: 2.5rem;
+        .project-content {
+            padding: 2rem;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            background: var(--primary-dark);
-            border-top: 1px solid var(--border-color);
         }
-
-        .post-title {
-            font-size: 2.2rem;
+        .project-title {
+            font-size: 1.8rem;
             margin-bottom: 1rem;
             font-weight: 700;
-        }
-
-        .post-title a {
-            text-decoration: none;
             color: var(--text-primary);
-            transition: color 0.3s ease;
         }
-
-        .post-title a:hover {
-            color: var(--accent-color);
-        }
-
-        .post-meta {
+        .project-description {
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        .project-tags {
             margin-bottom: 1.5rem;
         }
-
-        .post-excerpt {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            flex-grow: 1;
-            font-size: 1.05rem;
-        }
-
-        .read-more-btn {
-            display: inline-block;
-            text-decoration: none;
+        .project-tags span {
+            background-color: var(--secondary-bg);
             color: var(--accent-color);
-            font-weight: 700;
-            align-self: flex-start;
-            position: relative;
-            transition: color 0.3s ease;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-right: 8px;
+            display: inline-block;
+            margin-bottom: 5px;
         }
-        .read-more-btn:hover {
+        .project-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            margin-right: 20px;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+        .project-links a:hover {
             color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+        .project-links i {
+            margin-right: 8px;
         }
 
-        /* Single Post Page */
-        .post-full-content {
-            padding: 4rem 0;
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        .skill-card {
+            background-color: var(--primary-bg);
+            padding: 2rem 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .skill-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px var(--shadow-color-1), 0 0 15px var(--glow-color);
+            border-color: var(--accent-color);
+        }
+        .skill-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        .skill-name {
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+        .about-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent-color);
+            box-shadow: 0 0 30px var(--glow-color);
+        }
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+        .about-text p:first-child {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* Education Section - Timeline */
+        .timeline {
+            position: relative;
             max-width: 800px;
             margin: 0 auto;
         }
-
-        .post-full-title {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 900;
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--border-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
         }
-
-        .post-full-image {
-            width: 100%;
-            border-radius: 16px;
-            margin: 2.5rem 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        .timeline-item {
+            padding: 1rem 3rem;
+            position: relative;
+            width: 50%;
         }
-
-        .post-full-text {
-            font-size: 1.15rem;
-            line-height: 1.9;
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-left: 0;
+            padding-right: 4rem;
+            text-align: right;
         }
-
-        .post-full-text p {
-            margin-bottom: 1.75rem;
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-right: 0;
+            padding-left: 4rem;
         }
-
-        .post-full-text h3 {
-            font-size: 2rem;
-            margin-top: 3rem;
-            margin-bottom: 1.5rem;
+        .timeline-dot {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--bg-color);
+            border: 4px solid var(--accent-color);
+            top: 24px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 10px var(--glow-color);
+        }
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -10px;
+        }
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -10px;
+        }
+        .timeline-content {
+            padding: 1.5rem;
+            background-color: var(--primary-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .timeline-item:hover .timeline-content {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px var(--shadow-color-1);
+            border-color: var(--accent-color);
+        }
+        .timeline-date {
+            font-weight: 600;
             color: var(--accent-color);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .timeline-title {
+            font-size: 1.5rem;
             font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .timeline-institution {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        .timeline-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
         }
 
-        .affiliate-btn, .back-button {
+        /* Certifications Section */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+        .certification-card {
+            background-color: var(--primary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .certification-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px var(--shadow-color-1), 0 0 15px var(--glow-color);
+            border-color: var(--accent-color);
+        }
+        .certification-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            flex-shrink: 0;
+        }
+        .certification-content {
+            flex-grow: 1;
+        }
+        .certification-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        .certification-issuer {
+            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+        }
+        .certification-credential {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .certification-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .certification-link:hover {
+            color: var(--text-primary);
+        }
+        .certification-link i {
+            margin-left: 5px;
+            font-size: 0.8em;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: flex-start;
+        }
+        .contact-info {
+            background-color: var(--primary-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+        .contact-info-item i {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-right: 1.5rem;
+            margin-top: 5px;
+            width: 25px;
+            text-align: center;
+        }
+        .contact-info-item p {
+            margin: 0;
+            line-height: 1.6;
+        }
+        .contact-info-item a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .contact-info-item a:hover {
+            color: var(--accent-color);
+        }
+
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 2rem;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px var(--glow-color);
+        }
+        .submit-btn {
             display: inline-block;
-            padding: 12px 25px;
+            padding: 1rem 2.5rem;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 700;
             transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
             border: none;
             cursor: pointer;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            font-size: 1.1rem;
+            width: 100%;
         }
-        .affiliate-btn:hover, .back-button:hover {
+        .submit-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 163, 255, 0.2);
-        }
-
-        .affiliate-btn {
-            background-color: var(--accent-color);
-            color: var(--bg-dark);
-        }
-
-        .back-button {
-            margin-top: 2rem;
-            background: none;
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
-        }
-        .back-button:hover {
-            background-color: var(--accent-color);
-            color: var(--bg-dark);
-        }
-
-        /* Sidebar */
-        .sidebar {
-            position: sticky;
-            top: 120px;
-            align-self: start;
-        }
-
-        .sidebar-widget {
-            background-color: var(--primary-dark);
-            padding: 2rem;
-            border-radius: 16px;
-            margin-bottom: 2.5rem;
-            border: 1px solid var(--border-color);
-            transition: box-shadow 0.3s ease, border-color 0.3s ease;
-        }
-        .sidebar-widget:hover {
-            border-color: rgba(0, 163, 255, 0.2);
-            box-shadow: 0 0 20px rgba(0, 163, 255, 0.1);
-        }
-
-        .widget-title {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .widget-content ul {
-            list-style: none;
-        }
-
-        .widget-content li {
-            margin-bottom: 1rem;
-        }
-
-        .widget-content a {
-            text-decoration: none;
-            color: var(--text-secondary);
-            transition: color 0.3s ease, padding-left 0.3s ease;
-            position: relative;
-        }
-
-        .widget-content a:hover {
-            color: var(--accent-color);
-            padding-left: 10px;
-        }
-        .widget-content a::before {
-            content: '→';
-            position: absolute;
-            left: -5px;
-            opacity: 0;
-            transition: opacity 0.3s ease, left 0.3s ease;
-            color: var(--accent-color);
-        }
-        .widget-content a:hover::before {
-            opacity: 1;
-            left: -0px;
+            box-shadow: 0 10px 20px var(--shadow-color-2);
         }
 
         /* Footer */
         .footer {
-            background-color: var(--primary-dark);
+            background-color: var(--primary-bg);
             text-align: center;
             padding: 4rem 0;
             margin-top: 4rem;
@@ -506,6 +771,24 @@
             margin-top: 1.5rem;
         }
 
+        .domain-links {
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .domain-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1rem;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .domain-links a:hover {
+            color: var(--accent-color);
+            text-shadow: 0 0 10px var(--glow-color);
+        }
+
         .social-links a {
             color: var(--text-secondary);
             font-size: 2rem;
@@ -518,6 +801,39 @@
             color: var(--accent-color);
             transform: translateY(-5px) scale(1.1);
             text-shadow: 0 0 15px var(--glow-color);
+        }
+
+        /* Scroll-to-top button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 5px 15px var(--shadow-color-2);
+        }
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .scroll-to-top:hover {
+            box-shadow: 0 10px 25px rgba(0, 163, 255, 0.5);
+            transform: translateY(-5px);
         }
 
         /* Responsive Design */
@@ -536,18 +852,24 @@
         }
 
         @media (max-width: 992px) {
-            .main-content {
-                grid-template-columns: 1fr;
+            .about-content {
+                flex-direction: column;
+                text-align: center;
             }
-            .sidebar {
-                position: static;
-                top: auto;
+            .contact-container {
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 768px) {
             .header-content {
                 position: relative;
+            }
+
+            .header-controls {
+                display: flex;
+                align-items: center;
+                gap: 15px;
             }
 
             .nav-links {
@@ -557,7 +879,7 @@
                 width: 80%;
                 max-width: 320px;
                 height: 100%;
-                background-color: rgba(16, 16, 16, 0.9);
+                background-color: color-mix(in srgb, var(--primary-bg) 90%, transparent);
                 backdrop-filter: blur(20px);
                 -webkit-backdrop-filter: blur(20px);
                 flex-direction: column;
@@ -591,9 +913,6 @@
             .nav-links.is-open li:nth-child(3) { transition-delay: 0.2s; }
             .nav-links.is-open li:nth-child(4) { transition-delay: 0.25s; }
             .nav-links.is-open li:nth-child(5) { transition-delay: 0.3s; }
-            .nav-links.is-open li:nth-child(6) { transition-delay: 0.35s; }
-            .nav-links.is-open li:nth-child(7) { transition-delay: 0.4s; }
-            .nav-links.is-open li:nth-child(8) { transition-delay: 0.45s; }
 
             .nav-links a {
                 font-size: 1.5rem;
@@ -603,6 +922,7 @@
             .menu-toggle {
                 display: block;
                 z-index: 1003;
+                order: 2; /* Ensure it's after the theme toggle */
             }
 
             .hero h1 {
@@ -613,49 +933,85 @@
                 font-size: 1.1rem;
             }
 
-            .post-title {
-                font-size: 1.8rem;
+            .section-title {
+                font-size: 2.5rem;
             }
 
-            .post-full-title {
-                font-size: 2.5rem;
+            /* Responsive Timeline */
+            .timeline::after {
+                left: 10px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 40px;
+                padding-right: 15px;
+            }
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                left: 0;
+                text-align: left;
+            }
+            .timeline-dot {
+                left: 0;
+            }
+            .timeline-item:nth-child(odd) .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: 0;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-links a {
+                margin: 0 10px;
             }
         }
     </style>
 </head>
 <body>
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
     <div id="root"></div>
+    <button class="scroll-to-top"><i class="fas fa-arrow-up"></i></button>
+
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script type="text/babel">
-        const Header = ({ onSelectCategory, onShowAbout, onGoHome, pageType }) => {
+        const Header = ({ onLinkClick, activeSection, theme, toggleTheme }) => {
             const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-            const categories = ['Tech', 'Fashion', 'Gadgets', 'Travel', 'Books', 'Fitness'];
-            const isPostOrAbout = pageType === 'post' || pageType === 'about';
+            const navLinks = ['Projects', 'Skills', 'About', 'Education', 'Certifications', 'Contact'];
 
-            const handleLinkClick = (callback) => {
-                callback();
-                setIsMenuOpen(false); // Close menu on navigation
+            const handleLinkClick = (e, section) => {
+                e.preventDefault();
+                onLinkClick(section);
+                setIsMenuOpen(false);
             };
 
             return (
                 <header className="header" data-aos="fade-down">
                     <div className="container header-content">
-                        <a href="#" onClick={(e) => { e.preventDefault(); handleLinkClick(onGoHome); }} className="logo">
-                            {isPostOrAbout ? '← Back to Home' : 'PrathiHades'}
+                        <a href="#" onClick={(e) => handleLinkClick(e, 'hero')} className="logo">
+                            Prathish Kumar S
                         </a>
-                        <button className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                            &#9776;
-                        </button>
+                        <div className="header-controls">
+                             <button onClick={toggleTheme} className="theme-toggle-btn" aria-label="Toggle theme">
+                                <i className={`fas ${theme === 'dark' ? 'fa-sun' : 'fa-moon'}`}></i>
+                            </button>
+                            <button className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                                <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
+                            </button>
+                        </div>
                         <nav>
                             <ul className={`nav-links ${isMenuOpen ? 'is-open' : ''}`}>
-                                <li><a href="#" onClick={(e) => { e.preventDefault(); handleLinkClick(onGoHome); }}>Home</a></li>
-                                {categories.map(cat => (
-                                    <li key={cat}><a href="#" onClick={(e) => { e.preventDefault(); handleLinkClick(() => onSelectCategory(cat)); }}>{cat}</a></li>
+                                {navLinks.map(link => (
+                                    <li key={link}><a href={`#${link.toLowerCase()}`} 
+                                        className={activeSection === link.toLowerCase() ? 'active' : ''}
+                                        onClick={(e) => handleLinkClick(e, link.toLowerCase())}>{link}</a></li>
                                 ))}
-                                <li><a href="#" onClick={(e) => { e.preventDefault(); handleLinkClick(onShowAbout); }}>About</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -663,639 +1019,390 @@
             );
         };
 
-        const BlogListPage = ({ posts, onSelectPost, currentCategory, onSelectCategory, onShowAbout, onGoHome }) => {
-            const filteredPosts = currentCategory === 'All'
-                ? posts
-                : posts.filter(post => post.category === currentCategory);
-            
-            const categories = ['Tech', 'Fashion', 'Gadgets', 'Travel', 'Books', 'Fitness'];
+        const Hero = () => (
+            <section className="hero" id="hero">
+                <video className="hero-video" autoPlay loop muted playsInline>
+                    <source src="https://cdn.pixabay.com/video/2020/02/29/33333-385446711_large.mp4" type="video/mp4" />
+                </video>
+                <div className="hero-overlay"></div>
+                <div className="container" data-aos="zoom-in">
+                    <h1>Prathish Kumar S</h1>
+                    <p>Full Stack Developer | Ethical Hacker | Cybersecurity Enthusiast</p>
+                </div>
+            </section>
+        );
+
+        const Projects = ({ projects }) => {
+            React.useEffect(() => {
+                const cards = document.querySelectorAll('.project-card');
+                cards.forEach(card => {
+                    card.addEventListener('mousemove', e => {
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        card.style.setProperty('--mouse-x', `${x}px`);
+                        card.style.setProperty('--mouse-y', `${y}px`);
+                    });
+                });
+            }, [projects]);
 
             return (
-                <div>
-                    <Header 
-                        onSelectCategory={onSelectCategory} 
-                        onShowAbout={onShowAbout} 
-                        onGoHome={onGoHome}
-                        pageType="home"
-                    />
-
-                    <section className="hero">
-                        <video className="hero-video" autoPlay loop muted playsInline>
-                            <source src="https://cdn.pixabay.com/video/2020/02/29/33333-385446711_large.mp4" type="video/mp4" />
-                        </video>
-                        <div className="hero-overlay"></div>
-                        <div className="container" data-aos="zoom-in">
-                            <h1>{currentCategory === 'All' ? 'Discover the Edge of Innovation' : `${currentCategory} Insights`}</h1>
-                            <p>Your ultimate guide to the latest in tech, fashion, and groundbreaking gadgets. We curate the future, so you can live in it today.</p>
-                        </div>
-                    </section>
-
-                    <div className="container main-content">
-                        <main className="blog-posts">
-                            {filteredPosts.map((post, index) => (
-                                <article className="post-card" key={post.id} data-aos={post.aos} data-aos-delay={index * 100}>
-                                    <div className="post-image-container">
-                                        <span className="post-category">{post.category}</span>
-                                        <img src={post.image} alt={post.title} className="post-image" />
+                <section className="section" id="projects">
+                    <div className="container">
+                        <h2 className="section-title" data-aos="fade-up">Projects</h2>
+                        <div className="projects-grid">
+                            {projects.map((project, index) => (
+                                <div className="project-card" key={project.id} data-aos="fade-up" data-aos-delay={index * 100}>
+                                    <img src={project.image} alt={project.title} className="project-image" />
+                                    <div className="project-content">
+                                        <h3 className="project-title">{project.title}</h3>
+                                        <p className="project-description">{project.description}</p>
+                                        <div className="project-tags">
+                                            {project.tags.map(tag => <span key={tag}>{tag}</span>)}
+                                        </div>
+                                        <div className="project-links">
+                                            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"><i className="fas fa-globe"></i> Live Demo</a>
+                                            <a href={project.repoUrl} target="_blank" rel="noopener noreferrer"><i className="fab fa-github"></i> View Code</a>
+                                        </div>
                                     </div>
-                                    <div className="post-content">
-                                        <h2 className="post-title"><a href="#" onClick={(e) => { e.preventDefault(); onSelectPost(post); }}>{post.title}</a></h2>
-                                        <p className="post-meta">By {post.author} on {post.date}</p>
-                                        <p className="post-excerpt">{post.excerpt}</p>
-                                        <a href="#" onClick={(e) => { e.preventDefault(); onSelectPost(post); }} className="read-more-btn">Read More &rarr;</a>
-                                    </div>
-                                </article>
+                                </div>
                             ))}
-                        </main>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
 
-                        <aside className="sidebar" data-aos="fade-left" data-aos-delay="200">
-                            <div className="sidebar-widget">
-                                <h3 className="widget-title">Categories</h3>
-                                <div className="widget-content">
-                                    <ul>
-                                        {categories.map(cat => (
-                                            <li key={cat}><a href="#" onClick={(e) => { e.preventDefault(); onSelectCategory(cat); }}>{cat}</a></li>
-                                        ))}
-                                    </ul>
+        const Skills = ({ skills }) => (
+            <section className="section" id="skills">
+                <div className="container">
+                    <h2 className="section-title" data-aos="fade-up">Skills</h2>
+                    <div className="skills-grid">
+                        {skills.map((skill, index) => (
+                            <div className="skill-card" key={skill.name} data-aos="fade-up" data-aos-delay={index * 50}>
+                                <i className={`skill-icon ${skill.icon}`}></i>
+                                <span className="skill-name">{skill.name}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        );
+
+        const About = () => (
+            <section className="section" id="about">
+                <div className="container">
+                    <h2 className="section-title" data-aos="fade-up">About Me</h2>
+                    <div className="about-content" data-aos="fade-up" data-aos-delay="100">
+                        <img src="images/IMG-20250626-WA0001.jpg" alt="Prathish Kumar S" className="about-image" />
+                        <div className="about-text">
+                            <p>I'm a multifaceted tech professional, skilled as both a Full Stack Developer and an aspiring Ethical Hacker.</p>
+                            <p>My passion lies in the dual challenge of creating robust, user-friendly web applications and securing them against digital threats. I thrive on the synergy between building and breaking, using my developer's insight to inform my security practices.</p>
+                            <p>I am constantly learning, diving deep into penetration testing methodologies and defensive strategies. When I'm not coding or hunting for vulnerabilities, I'm exploring the latest tech trends and contributing to the open-source community.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Education = ({ education }) => (
+            <section className="section" id="education">
+                <div className="container">
+                    <h2 className="section-title" data-aos="fade-up">Education</h2>
+                    <div className="timeline" data-aos="fade-up" data-aos-delay="100">
+                        {education.map((edu, index) => (
+                            <div className="timeline-item" key={index}>
+                                <div className="timeline-dot"></div>
+                                <div className="timeline-content">
+                                    <h3 className="timeline-title">{edu.degree}</h3>
+                                    <p className="timeline-institution">{edu.institution}</p>
+                                    <span className="timeline-date">{edu.period}</span>
+                                    <p className="timeline-description">{edu.description}</p>
                                 </div>
                             </div>
-                            <div className="sidebar-widget">
-                                <h3 className="widget-title">About PrathiHades</h3>
-                                <div className="widget-content">
-                                    <p>Your daily source for everything cool and trending. We review the latest products so you can make smart choices.</p>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Certifications = ({ certifications }) => (
+            <section className="section" id="certifications">
+                <div className="container">
+                    <h2 className="section-title" data-aos="fade-up">Certifications</h2>
+                    <div className="certifications-grid">
+                        {certifications.map((cert, index) => (
+                            <div className="certification-card" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+                                <div className="certification-icon"><i className={cert.icon}></i></div>
+                                <div className="certification-content">
+                                    <h3 className="certification-title">{cert.title}</h3>
+                                    <p className="certification-issuer">{cert.issuer} &bull; Issued {cert.date}</p>
+                                    <p className="certification-credential">Credential ID: {cert.credentialId}</p>
+                                    <a href={cert.url} target="_blank" rel="noopener noreferrer" className="certification-link">
+                                        Show Credential <i className="fas fa-external-link-alt"></i>
+                                    </a>
                                 </div>
                             </div>
-                        </aside>
+                        ))}
                     </div>
+                </div>
+            </section>
+        );
 
-                    <footer className="footer" data-aos="fade-up">
-                        <div className="container">
-                            <div className="social-links">
-                                <a href="#"><i className="fab fa-twitter"></i></a>
-                                <a href="#"><i className="fab fa-instagram"></i></a>
-                                <a href="https://github.com/prathish0558e"><i className="fab fa-github"></i></a>
+        const Contact = () => (
+            <section className="section" id="contact">
+                <div className="container">
+                    <h2 className="section-title" data-aos="fade-up">Get In Touch</h2>
+                    <div className="contact-container" data-aos="fade-up" data-aos-delay="100">
+                        <div className="contact-info">
+                            <h3>Contact Information</h3>
+                            <div className="contact-info-item">
+                                <i className="fas fa-map-marker-alt"></i>
+                                <p>2/171, Pallivasal Street, Athuvazhi-627760, Sivagiri, Tenkasi, Tamil Nadu, India</p>
                             </div>
-                            <p>&copy; 2025 PrathiHades.me. All Rights Reserved.</p>
+                            <div className="contact-info-item">
+                                <i className="fas fa-phone"></i>
+                                <p><a href="tel:+916383129892">+91 6383129892</a></p>
+                            </div>
+                            <div className="contact-info-item">
+                                <i className="fab fa-whatsapp"></i>
+                                <p><a href="https://wa.me/916383129892" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></p>
+                            </div>
+                             <div className="contact-info-item">
+                                <i className="fas fa-envelope"></i>
+                                <p><a href="mailto:prathish0558e@gmail.com">prathish0558e@gmail.com</a></p>
+                            </div>
                         </div>
-                    </footer>
-                </div>
-            );
-        };
-
-        const BlogPostPage = ({ post, onBack, onSelectCategory, onShowAbout, onGoHome }) => {
-            return (
-                <div>
-                    <Header 
-                        onSelectCategory={onSelectCategory} 
-                        onShowAbout={onShowAbout} 
-                        onGoHome={onGoHome}
-                        pageType="post"
-                    />
-                    <div className="container post-full-content" data-aos="fade-up">
-                        <h1 className="post-full-title">{post.title}</h1>
-                        <p className="post-meta">By {post.author} on {post.date}</p>
-                        <img src={post.image} alt={post.title} className="post-full-image" />
-                        <div className="post-full-text" dangerouslySetInnerHTML={{ __html: post.content }}></div>
-                        <button onClick={onBack} className="back-button"> &larr; Back to All Posts</button>
+                        <form className="contact-form">
+                            <div className="form-group">
+                                <input type="text" name="name" placeholder="Your Name" required />
+                            </div>
+                            <div className="form-group">
+                                <input type="email" name="email" placeholder="Your Email" required />
+                            </div>
+                            <div className="form-group">
+                                <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="submit" className="submit-btn">Send Message</button>
+                        </form>
                     </div>
-                    <footer className="footer">
-                        <div className="container">
-                            <p>&copy; 2025 PrathiHades.me. All Rights Reserved.</p>
-                        </div>
-                    </footer>
                 </div>
-            );
-        };
+            </section>
+        );
 
-        const AboutPage = ({ onBack, onSelectCategory, onShowAbout, onGoHome }) => {
-            return (
-                <div>
-                    <Header 
-                        onSelectCategory={onSelectCategory} 
-                        onShowAbout={onShowAbout} 
-                        onGoHome={onGoHome}
-                        pageType="about"
-                    />
-                    <div className="container post-full-content" data-aos="fade-up">
-                        <h1 className="post-full-title">About PrathiHades.me</h1>
-                        <img src="https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="About Us" className="post-full-image" />
-                        <div className="post-full-text">
-                            <p>Welcome to PrathiHades.me, your number one source for all things tech, fashion, gadgets, and more. We're dedicated to giving you the very best of product reviews and guides, with a focus on dependability, honesty, and uniqueness.</p>
-                            <p>Founded in 2025 by Prathish Kumar, PrathiHades.me has come a long way from its beginnings. When Prathish first started out, his passion for technology and helping others find the best products drove him to do intense research, and gave him the impetus to turn hard work and inspiration into to a booming online blog.</p>
-                            <p>We now serve readers all over the world, and are thrilled to be a part of the ever-growing affiliate marketing industry. We hope you enjoy our content as much as we enjoy offering it to you. If you have any questions or comments, please don't hesitate to contact us.</p>
-                        </div>
-                         <button onClick={onBack} className="back-button"> &larr; Back to All Posts</button>
+        const Footer = () => (
+            <footer className="footer" data-aos="fade-up">
+                <div className="container">
+                    <div className="social-links">
+                        <a href="https://github.com/prathish0558e" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i className="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/prathish-kumar-1989932a2/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i className="fab fa-linkedin"></i></a>
+                        <a href="https://www.facebook.com/prathish.prathish.12382/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i className="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/prathi_hades/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
+                        <a href="tel:+916383129892" aria-label="Call"><i className="fas fa-phone"></i></a>
                     </div>
-                    <footer className="footer">
-                        <div className="container">
-                            <p>&copy; 2025 PrathiHades.me. All Rights Reserved.</p>
-                        </div>
-                    </footer>
+                    <div className="domain-links">
+                        <a href="http://www.prathi.tech" target="_blank" rel="noopener noreferrer">www.prathi.tech</a>
+                        <a href="http://www.prathihades.me" target="_blank" rel="noopener noreferrer">www.prathihades.me</a>
+                    </div>
+                    <p>&copy; 2025 Prathish Kumar S. All Rights Reserved.</p>
                 </div>
-            );
-        };
+            </footer>
+        );
 
         const App = () => {
-            const [selectedPost, setSelectedPost] = React.useState(null);
-            const [currentCategory, setCurrentCategory] = React.useState('All');
-            const [currentPage, setCurrentPage] = React.useState('home'); // 'home', 'post', 'about'
+            const [showScroll, setShowScroll] = React.useState(false);
+            const [activeSection, setActiveSection] = React.useState('hero');
+            const [theme, setTheme] = React.useState('dark');
+
+            const toggleTheme = () => {
+                const newTheme = theme === 'dark' ? 'light' : 'dark';
+                setTheme(newTheme);
+                localStorage.setItem('portfolio-theme', newTheme);
+            };
 
             React.useEffect(() => {
-                AOS.init({
-                    duration: 1000,
-                    once: true,
-                    easing: 'ease-in-out',
-                });
-                // Re-initialize AOS when page changes
-                AOS.refresh();
-            }, [selectedPost, currentPage, currentCategory]);
+                const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
+                setTheme(savedTheme);
+            }, []);
 
-            const handleSelectPost = (post) => {
-                window.scrollTo(0, 0);
-                setSelectedPost(post);
-                setCurrentPage('post');
-            };
+            React.useEffect(() => {
+                document.documentElement.setAttribute('data-theme', theme);
+            }, [theme]);
 
-            const handleGoHome = () => {
-                setSelectedPost(null);
-                setCurrentCategory('All');
-                setCurrentPage('home');
-            };
-            
-            const handleSelectCategory = (category) => {
-                setSelectedPost(null);
-                setCurrentCategory(category);
-                setCurrentPage('home');
-            };
+            const projectsData = [
 
-            const handleShowAbout = () => {
-                setSelectedPost(null);
-                setCurrentPage('about');
-            };
-
-            // Sample data for blog posts
-            const posts = [
                 {
                     id: 1,
-                    category: 'Tech',
-                    title: 'The Best Gaming Laptops of 2025',
-                    author: 'Prathish Kumar',
-                    date: 'August 18, 2025',
-                    excerpt: 'Looking for the ultimate gaming machine? Here are the top gaming laptops you can buy this year, balancing performance, price, and portability.',
-                    image: 'https://images.pexels.com/photos/7915429/pexels-photo-7915429.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                    content: `
-        <p>The world of gaming laptops is constantly evolving, and 2025 is no exception. With the advent of new AI-powered processors and hyper-efficient cooling systems, this year's lineup is more powerful than ever. Whether you're a professional esports player or a casual gamer, there's a perfect machine out there for you. We've tested the best of the best to help you decide.</p>
-        <h3>Key Features to Look for in 2025:</h3>
-        <ul>
-            <li><strong>Next-Gen Graphics Cards:</strong> Look for laptops equipped with NVIDIA's RTX 50-series or AMD's RDNA 4 GPUs for unparalleled performance and real-time ray tracing.</li>
-            <li><strong>AI-Enhanced CPUs:</strong> Processors with dedicated Neural Processing Units (NPUs) can now optimize performance in real-time, giving you smoother frame rates and better battery life.</li>
-            <li><strong>High-Refresh Rate OLED Displays:</strong> Vibrant colors and deep blacks meet buttery-smooth motion with the latest 240Hz OLED screens.</li>
-        </ul>
-        <h3>Top Pick: The "Aura Nebula X"</h3>
-        <p>The Aura Nebula X is an absolute powerhouse, designed for those who demand the best. It features a stunning 17-inch QHD+ OLED display, the latest Intel Core i9 processor with AI acceleration, and an NVIDIA RTX 5080 GPU. Its vapor chamber cooling system keeps it running cool even under extreme load. While the price is steep, the performance is simply unmatched.</p>
-        <a href="https://www.amazon.com/s?k=Aura+Nebula+X+gaming+laptop" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Check Price on Amazon</a>
-        <h3>Best Value: "Vector Blade 15"</h3>
-        <p>For gamers who want incredible performance without breaking the bank, the Vector Blade 15 is our top recommendation. It packs an AMD Ryzen 9 processor, an NVIDIA RTX 5060 GPU, and a fast 165Hz IPS display. It strikes the perfect balance between price, portability, and power, making it a fantastic choice for most gamers.</p>
-        <a href="https://www.amazon.com/s?k=Vector+Blade+15+gaming+laptop" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Check Price on Amazon</a>
-        `,
-                    aos: 'fade-up'
+                    title: 'Project Management Tool',
+                    description: 'A collaborative tool for teams to manage tasks. Built with a focus on secure user authentication and data integrity.',
+                    image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                    tags: ['Vue.js', 'Firebase', 'Auth', 'Data Integrity'],
+                    liveUrl: 'www.prathi.tech',
+                    repoUrl: 'www.github.com/prathish0558e/prathi.tech/index.html'
                 },
                 {
                     id: 2,
-                    category: 'Fashion',
-                    title: 'Top 5 Streetwear Trends to Watch',
-                    author: 'Prathish Kumar',
-                    date: 'August 17, 2025',
-                    excerpt: 'From oversized hoodies to retro sneakers, we break down the essential streetwear trends that are taking over the fashion world.',
-                    image: 'https://images.pexels.com/photos/1036627/pexels-photo-1036627.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                    content: `
-        <p>Streetwear is more than just clothing; it's a cultural statement. This year, the trends are a mix of futuristic tech and nostalgic comfort. Here are the top 5 trends you need to know to keep your style on point.</p>
-        <h3>1. Techwear Integration</h3>
-        <p>Functionality meets fashion with techwear. Think waterproof fabrics, multi-pocket utility vests, and magnetic buckles. Brands are incorporating technical materials into everyday wear, creating a look that's both stylish and practical for the urban environment.</p>
-        <h3>2. The Y2K Revival</h3>
-        <p>The early 2000s are back in a big way. Low-rise jeans, graphic baby tees, and metallic fabrics are making a huge comeback. It's all about playful, bold, and slightly futuristic aesthetics.</p>
-        <h3>3. Sustainable and Conscious Clothing</h3>
-        <p>As consumers become more environmentally aware, brands are responding with sustainable collections. Look for pieces made from recycled materials, organic cotton, and innovative, eco-friendly fabrics. It's cool to care about the planet.</p>
-        <a href="https://www.amazon.com/s?k=sustainable+streetwear+brands" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Shop Sustainable Brands</a>
-        <h3>4. Oversized and Relaxed Silhouettes</h3>
-        <p>Comfort is still king. Baggy jeans, oversized hoodies, and boxy t-shirts continue to dominate the streetwear scene. The key is to play with proportions to create a look that's intentionally relaxed, not sloppy.</p>
-        <h3>5. Bold, Expressive Graphics</h3>
-        <p>T-shirts and hoodies are canvases for expression. Expect to see large, colorful graphics, abstract designs, and thought-provoking statements. It's all about making your clothing speak for you.</p>
-        `,
-                    aos: 'fade-up'
-                },
-                {
-                    id: 3,
-                    category: 'Gadgets',
-                    title: 'Must-Have Gadgets for a Smart Home',
-                    author: 'Prathish Kumar',
-                    date: 'August 16, 2025',
-                    excerpt: 'Transform your living space with these innovative smart home gadgets. From smart lighting to automated assistants, here’s what you need.',
-                    image: 'https://images.pexels.com/photos/3727513/pexels-photo-3727513.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                    content: `
-        <p>Building a smart home doesn't have to be complicated. With a few key gadgets, you can make your home more convenient, secure, and energy-efficient. Here are our top picks for getting started.</p>
-        <h3>1. Smart Lighting System (e.g., Philips Hue)</h3>
-        <p>Smart lights are the perfect entry point into home automation. You can change the color, brightness, and set schedules right from your phone. Create the perfect ambiance for a movie night or wake up gently with a simulated sunrise. It's a game-changer.</p>
-        <a href="https://www.amazon.com/s?k=philips+hue+starter+kit" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Explore Smart Lighting</a>
-        <h3>2. A Capable Smart Speaker (e.g., Amazon Echo or Google Nest)</h3>
-        <p>A smart speaker is the central hub of your smart home. Use your voice to play music, set timers, get weather updates, and control your other smart devices. It's the assistant you never knew you needed.</p>
-        <a href="https://www.amazon.com/s?k=amazon+echo" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Shop Smart Speakers</a>
-        <h3>3. Robotic Vacuum Cleaner (e.g., Roomba)</h3>
-        <p>Imagine never having to vacuum again. A robotic vacuum learns the layout of your home and automatically cleans your floors on a schedule. Newer models can even empty their own dustbins. It's a true time-saver.</p>
-        <a href="https://www.amazon.com/s?k=irobot+roomba" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Find Your Robot Vacuum</a>
-        <h3>4. Smart Security Camera (e.g., Ring or Arlo)</h3>
-        <p>Keep an eye on your home from anywhere in the world. Smart security cameras send alerts to your phone when they detect motion, and offer two-way audio so you can speak to visitors (or scare off intruders). It's peace of mind in a small package.</p>
-        <a href="https://www.amazon.com/s?k=ring+security+camera" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Browse Security Cameras</a>
-        `,
-                    aos: 'fade-up'
-                },
-                {
-                    id: 4,
-                    category: 'Travel',
-                    title: 'The Ultimate Guide to Solo Backpacking in Southeast Asia',
-                    author: 'Prathish Kumar',
-                    date: 'August 15, 2025',
-                    excerpt: 'Dreaming of an adventure? Here’s everything you need to know to plan an unforgettable solo backpacking trip through Southeast Asia.',
-                    image: 'https://images.pexels.com/photos/287240/pexels-photo-287240.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                    content: `
-        <p>Solo backpacking through Southeast Asia is a rite of passage for many travelers, and for good reason. It's a region of incredible diversity, stunning landscapes, and welcoming cultures. Here’s how to plan your trip.</p>
-        <h3>1. Choosing Your Route</h3>
-        <p>The classic route includes Thailand, Laos, Vietnam, and Cambodia. This path is well-trodden, making it easy to meet other travelers and find transport. Don't be afraid to venture off the beaten path to places like the Philippines or Northern Thailand.</p>
-        <a href="https://www.amazon.com/s?k=lonely+planet+southeast+asia" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Get the Travel Guide</a>
-        <h3>2. Budgeting Wisely</h3>
-        <p>Southeast Asia is incredibly affordable. You can comfortably travel on $30-$50 USD per day. Street food is your best friend for delicious, cheap meals. Hostels are plentiful and a great way to save money and meet people.</p>
-        <h3>3. Packing Light</h3>
-        <p>You don't need as much as you think. A 40L backpack is perfect. Pack lightweight clothing, a good pair of walking shoes, a universal power adapter, and a reusable water bottle. You can buy almost anything you need there.</p>
-        <a href="https://www.amazon.com/s?k=osprey+40l+backpack" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Find the Perfect Backpack</a>
-        <h3>4. Staying Safe</h3>
-        <p>The region is generally very safe for solo travelers. Use common sense: be aware of your surroundings, keep your valuables secure, and let someone back home know your itinerary. Most importantly, trust your instincts.</p>
-        `,
-                    aos: 'fade-up'
-                },
-                {
-                    id: 5,
-                    category: 'Books',
-                    title: 'Five Sci-Fi Books That Will Change The Way You Think',
-                    author: 'Prathish Kumar',
-                    date: 'August 14, 2025',
-                    excerpt: 'Beyond spaceships and aliens, these five science fiction novels offer profound insights into humanity, society, and our future.',
-                    image: 'https://images.pexels.com/photos/768474/pexels-photo-768474.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                    content: `
-        <p>Great science fiction challenges our perceptions and explores the question "what if?". These five books are masterpieces of the genre that will stay with you long after you've turned the final page.</p>
-        <h3>1. "Dune" by Frank Herbert</h3>
-        <p>A sprawling epic of politics, religion, and ecology on a desert planet. Its world-building is second to none, creating a complex society that feels utterly real. A true classic for a reason.</p>
-        <a href="https://www.amazon.com/s?k=dune+frank+herbert" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Buy "Dune" on Amazon</a>
-        <h3>2. "Neuromancer" by William Gibson</h3>
-        <p>The book that defined the cyberpunk genre. Gibson's vision of a high-tech, low-life future, with hackers and mega-corporations, was incredibly prescient and has influenced countless works since.</p>
-        <a href="https://www.amazon.com/s?k=neuromancer+william+gibson" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Buy "Neuromancer" on Amazon</a>
-        <h3>3. "The Three-Body Problem" by Cixin Liu</h3>
-        <p>A mind-bending story of humanity's first contact with an alien civilization. It's full of big, bold scientific ideas and a truly epic sense of scale that will make you rethink our place in the universe.</p>
-        <a href="https://www.amazon.com/s?k=the+three+body+problem" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Buy it on Amazon</a>
-        <h3>4. "Exhalation" by Ted Chiang</h3>
-        <p>A collection of short stories that are both intellectually dazzling and deeply emotional. Each story explores a single scientific or philosophical concept with incredible depth and humanity.</p>
-        <a href="https://www.amazon.com/s?k=exhalation+ted+chiang" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Buy "Exhalation" on Amazon</a>
-        <h3>5. "Project Hail Mary" by Andy Weir</h3>
-        <p>From the author of "The Martian," this is a thrilling story of a lone astronaut on a desperate mission to save Earth. It's a love letter to science, problem-solving, and the power of friendship.</p>
-        <a href="https://www.amazon.com/s?k=project+hail+mary+andy+weir" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Buy "Project Hail Mary" on Amazon</a>
-        `,
-                    aos: 'fade-up'
-                },
-                {
-                    id: 6,
-                    category: 'Fitness',
-                    title: 'Building a Home Gym: Essential Equipment for Beginners',
-                    author: 'Prathish Kumar',
-                    date: 'August 12, 2025',
-                    excerpt: 'No time for the gym? No problem. Here is the essential, budget-friendly equipment you need to build an effective gym in your own home.',
-                    image: 'https://images.pexels.com/photos/4162484/pexels-photo-4162484.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                    content: `
-        <p>You don't need a commercial-grade gym to get a great workout. With a few key pieces of equipment, you can build strength, improve your cardio, and achieve your fitness goals from the comfort of your home.</p>
-        <h3>1. Adjustable Dumbbells</h3>
-        <p>These are the cornerstone of a home gym. A single pair can replace an entire rack of dumbbells, saving you space and money. They're perfect for everything from bicep curls to lunges.</p>
-        <a href="https://www.amazon.com/s?k=adjustable+dumbbells" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Shop for Adjustable Dumbbells</a>
-        <h3>2. A Quality Yoga Mat</h3>
-        <p>A mat isn't just for yoga. It provides a comfortable, stable surface for floor exercises like push-ups, planks, and stretching. It protects your joints and your floor.</p>
-        <a href="https://www.amazon.com/s?k=yoga+mat" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Find a Quality Mat</a>
-        <h3>3. Resistance Bands</h3>
-        <p>These are versatile, lightweight, and perfect for all fitness levels. Use them for strength training, stretching, and rehabilitation exercises. They're easy to store and great for travel.</p>
-        <a href="https://www.amazon.com/s?k=resistance+bands+set" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Browse Resistance Bands</a>
-        <h3>4. A Jump Rope</h3>
-        <p>Don't underestimate the jump rope. It's one of the most effective and efficient cardio tools available. Just a few minutes can get your heart rate soaring. Plus, it's incredibly fun.</p>
-        <a href="https://www.amazon.com/s?k=jump+rope" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Shop Jump Ropes</a>
-        <h3>5. A Pull-Up Bar</h3>
-        <p>A doorway pull-up bar is a fantastic tool for building upper body and core strength. It's a challenging but incredibly rewarding piece of equipment that targets multiple muscle groups at once.</p>
-        <a href="https://www.amazon.com/s?k=doorway+pull+up+bar" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Get a Pull-Up Bar</a>
-        `,
-                    aos: 'fade-up'
-                },
-                {
-                    id: 7,
-                    category: 'Tech',
-                    title: 'The Future of AI: Trends to Watch in 2026',
-                    author: 'Prathish Kumar',
-                    date: 'August 20, 2025',
-                    excerpt: 'Artificial Intelligence is evolving at a breakneck pace. We explore the upcoming trends that will shape our world in 2026 and beyond.',
-                    image: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                    content: `
-        <p>Artificial Intelligence (AI) is no longer science fiction; it's a part of our daily lives. But the revolution is just getting started. Here are the key AI trends that experts are watching for 2026.</p>
-        <h3>1. Generative AI Everywhere</h3>
-        <p>From writing emails to creating photorealistic images, generative AI will become even more integrated into the tools we use every day. Expect more powerful and accessible AI assistants that can help with creative and professional tasks.</p>
-        <a href="https://www.amazon.com/s?k=books+on+generative+ai" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Learn about Generative AI</a>
-        <h3>2. AI in Healthcare</h3>
-        <p>AI is set to revolutionize medicine. From diagnosing diseases earlier and more accurately to discovering new drugs, AI algorithms will become an indispensable tool for doctors and researchers, leading to more personalized and effective treatments.</p>
-        <h3>3. Ethical AI and Regulation</h3>
-        <p>As AI becomes more powerful, the conversation around ethics and regulation will intensify. Expect new frameworks and laws designed to ensure that AI is developed and used responsibly, addressing issues of bias, privacy, and accountability.</p>
-        <h3>4. AI-Powered Cybersecurity</h3>
-        <p>In the ongoing battle against cyber threats, AI is a powerful new weapon. AI systems can analyze patterns and detect threats in real-time, helping to protect our data and infrastructure from increasingly sophisticated attacks.</p>
-        `,
-                    aos: 'fade-up'
-                },
-                {
-                    id: 8,
-                    category: 'Fashion',
-                    title: 'How to Build a Capsule Wardrobe: A Minimalist\'s Guide',
-                    author: 'Prathish Kumar',
-                    date: 'August 19, 2025',
-                    excerpt: 'Simplify your life and elevate your style with a capsule wardrobe. Learn how to curate a small collection of versatile pieces you love to wear.',
-                    image: 'https://images.pexels.com/photos/1598508/pexels-photo-1598508.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                    content: `
-        <p>A capsule wardrobe is a collection of essential items that don't go out of style and can be augmented with seasonal pieces. It's about quality over quantity, leading to less decision fatigue and a more sustainable approach to fashion.</p>
-        <h3>1. Start with a Neutral Color Palette</h3>
-        <p>Choose a base of neutral colors like black, white, grey, navy, and beige. These colors all work well together, making it easy to mix and match pieces. You can add pops of color with your seasonal or statement items.</p>
-        <h3>2. Focus on High-Quality Basics</h3>
-        <p>Invest in well-made basics that will last for years. Think a classic white t-shirt, a tailored blazer, a great pair of jeans, and a versatile trench coat. These are the workhorses of your wardrobe.</p>
-        <a href="https://www.amazon.com/s?k=classic+trench+coat+women" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Find a Timeless Trench Coat</a>
-        <h3>3. Identify Your Personal Style</h3>
-        <p>A capsule wardrobe should reflect you. Are you classic, bohemian, edgy, or somewhere in between? Understanding your style will help you choose pieces that you'll feel great in and wear regularly.</p>
-        <h3>4. The 30-for-30 Challenge</h3>
-        <p>A great way to start is the 30-for-30 challenge: choose 30 items and create outfits from only those pieces for 30 days. It's a fun way to discover the versatility of your clothes and identify what you truly need.</p>
-        `,
-                    aos: 'fade-up'
-                },
-                {
-                    id: 9,
-                    category: 'Gadgets',
-                    title: 'Top Drones for Aerial Photography in 2025',
-                    author: 'Prathish Kumar',
-                    date: 'August 21, 2025',
-                    excerpt: 'Capture breathtaking views from the sky with a high-quality camera drone. We review the best options for beginners and pros alike.',
-                    image: 'https://images.pexels.com/photos/1006965/pexels-photo-1006965.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                    content: `
-        <p>Drone technology has made stunning aerial photography accessible to everyone. Whether you're a filmmaker, a travel vlogger, or just a hobbyist, there's a drone out there for you. Here are our top picks for 2025.</p>
-        <h3>Best Overall: DJI Air 3</h3>
-        <p>The DJI Air 3 strikes the perfect balance between portability and power. It features a dual-camera system, long flight time, and advanced obstacle avoidance, making it a fantastic choice for most users. It's easy enough for beginners but has the features that professionals demand.</p>
-        <a href="https://www.amazon.com/s?k=dji+air+3" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Check Price for DJI Air 3</a>
-        <h3>Most Compact: Autel Evo Nano+</h3>
-        <p>If size and weight are your top priorities, the Autel Evo Nano+ is an incredible option. It weighs under 250g, meaning you don't need to register it in many countries. Despite its small size, it packs a powerful camera capable of shooting stunning 4K video.</p>
-        <h3>For the Professional: Sony Airpeak S1</h3>
-        <p>For serious filmmakers, the Sony Airpeak S1 is a dream machine. It's the smallest drone capable of carrying Sony's full-frame Alpha series mirrorless cameras, allowing for unparalleled image quality. It's a serious investment for those who need the absolute best.</p>
-        <a href="https://www.amazon.com/s?k=sony+alpha+camera" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Explore Sony Alpha Cameras</a>
-        `,
-                    aos: 'fade-up'
-                },
-                {
-                    id: 10,
-                    category: 'Travel',
-                    title: 'Hidden Gems: 5 European Cities You Must Visit',
-                    author: 'Prathish Kumar',
-                    date: 'August 22, 2025',
-                    excerpt: 'Tired of the crowds in Paris and Rome? Discover these five incredible, lesser-known European cities that offer history, culture, and charm without the tourist traps.',
-                    image: 'https://images.pexels.com/photos/164336/pexels-photo-164336.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                    content: `
-        <p>While the iconic capitals of Europe are popular for a reason, some of the continent's most rewarding experiences are found off the beaten path. Here are five cities that deserve a spot on your travel list.</p>
-        <h3>1. Ghent, Belgium</h3>
-        <p>Often overshadowed by Brussels and Bruges, Ghent is a vibrant university town with a stunning medieval center, a lively canal-side, and a fantastic food scene. It's like a fairytale come to life, but with a modern, creative edge.</p>
-        <h3>2. Ljubljana, Slovenia</h3>
-        <p>Slovenia's capital is one of Europe's greenest and most livable cities. With a car-free city center, a beautiful river, and a castle perched on a hill, Ljubljana is a picture-perfect destination that feels both relaxed and cosmopolitan.</p>
-        <a href="https://www.amazon.com/s?k=rick+steves+croatia+slovenia" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Get the Slovenia Travel Guide</a>
-        <h3>3. Tbilisi, Georgia</h3>
-        <p>Where Europe meets Asia, Tbilisi is a city of fascinating contrasts. Discover ancient churches, ornate bathhouses, and futuristic architecture. The food and wine scene here is also one of the most exciting in the world.</p>
-        <h3>4. Porto, Portugal</h3>
-        <p>While many flock to Lisbon, Portugal's second city has a unique charm of its own. Famous for its Port wine, colorful riverside houses, and historic trams, Porto is a soulful city that's perfect for wandering.</p>
-        <a href="https://www.amazon.com/s?k=porto+portugal+travel+guide" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Explore Porto Guides</a>
-        <h3>5. Bologna, Italy</h3>
-        <p>Known as Italy's culinary capital, Bologna is a must-visit for any food lover. Home to tagliatelle al ragù and mortadella, the city is a gastronomic paradise. It also boasts a beautiful, portico-lined medieval center and the oldest university in the Western world.</p>
-        `,
-                    aos: 'fade-up'
-                },
-                {
-                    id: 11,
-                    category: 'Books',
-                    title: 'Modern Classics: 5 Novels from the 21st Century You Can\'t Miss',
-                    author: 'Prathish Kumar',
-                    date: 'August 23, 2025',
-                    excerpt: 'Which books from our time will be read for generations to come? We highlight five 21st-century novels that are destined to become modern classics.',
-                    image: 'https://images.pexels.com/photos/2228561/pexels-photo-2228561.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                    content: `
-        <p>The 21st century has already produced a wealth of incredible literature. These five novels stand out for their ambition, originality, and profound insights into the human condition.</p>
-        <h3>1. "Klara and the Sun" by Kazuo Ishiguro</h3>
-        <p>A beautiful and heartbreaking novel told from the perspective of an "Artificial Friend." Ishiguro explores themes of love, humanity, and what it means to be alive in a world of advancing technology. A quiet masterpiece.</p>
-        <a href="https://www.amazon.com/s?k=klara+and+the+sun" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Find it on Amazon</a>
-        <h3>2. "The Goldfinch" by Donna Tartt</h3>
-        <p>A sprawling, Dickensian novel that follows a young man, Theo Decker, in the years after he survives a terrorist attack at an art museum. It's a rich, immersive story about loss, obsession, and the redemptive power of art.</p>
-        <h3>3. "A Visit from the Goon Squad" by Jennifer Egan</h3>
-        <p>This Pulitzer Prize-winner is a dazzlingly inventive novel about the music industry, time, and the connections that bind us. Told in a series of interconnected stories, including one chapter formatted as a PowerPoint presentation, it's a book that pushes the boundaries of fiction.</p>
-        <h3>4. "Wolf Hall" by Hilary Mantel</h3>
-        <p>A stunning work of historical fiction that reimagines the life of Thomas Cromwell, the chief minister to King Henry VIII. Mantel's prose is electric, bringing the Tudor court to life in vivid, intimate detail.</p>
-        <a href="https://www.amazon.com/s?k=wolf+hall+hilary+mantel" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Get "Wolf Hall" on Amazon</a>
-        <h3>5. "Between the World and Me" by Ta-Nehisi Coates</h3>
-        <p>Written as a letter to his teenage son, this is a powerful and essential work of non-fiction that explores the realities of race in America. It's a profound and moving meditation on history, identity, and the body.</p>
-        `,
-                    aos: 'fade-up'
-                },
-                {
-                    id: 12,
-                    category: 'Fitness',
-                    title: 'The Rise of At-Home Fitness: Is It Here to Stay?',
-                    author: 'Prathish Kumar',
-                    date: 'August 24, 2025',
-                    excerpt: 'The fitness landscape has changed dramatically, with more people than ever working out at home. We look at the pros and cons of the home fitness boom.',
-                    image: 'https://images.pexels.com/photos/4752861/pexels-photo-4752861.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                    content: `
-        <p>The convenience of working out at home is undeniable, but does it match the experience and community of a traditional gym? We explore the staying power of the at-home fitness trend.</p>
-        <h3>The Pros: Convenience and Cost</h3>
-        <p>The biggest advantage of at-home fitness is convenience. There's no commute, no waiting for equipment, and you can work out whenever you want. Over time, it can also be more cost-effective than a monthly gym membership, especially with the wealth of free content available online.</p>
-        <a href="https://www.amazon.com/s?k=home+workout+equipment" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Shop Home Workout Gear</a>
-        <h3>The Cons: Motivation and Space</h3>
-        <p>The biggest challenge for many is staying motivated without the structure and social environment of a gym. It can be easy to get distracted or skip a workout. You also need dedicated space for your workouts and equipment, which can be a challenge in smaller homes.</p>
-        <h3>The Hybrid Approach: The Best of Both Worlds?</h3>
-        <p>For many, the future of fitness may be a hybrid model. This could involve using a gym for heavy lifting and specialized equipment, while using at-home workouts for cardio, yoga, and convenience. This approach offers flexibility and variety.</p>
-        <h3>The Verdict</h3>
-        <p>At-home fitness is definitely here to stay. While it may not replace the gym entirely, the convenience and accessibility it offers have fundamentally changed how we think about exercise. The key is to find what works for you and your lifestyle.</p>
-        `,
-                    aos: 'fade-up'
-                },
-                {
-                    id: 13,
-                    category: 'Tech',
-                    title: 'Quantum Computing Explained: The Next Tech Revolution',
-                    author: 'Prathish Kumar',
-                    date: 'August 25, 2025',
-                    excerpt: 'Quantum computers promise to solve problems current computers can\'t even touch. But what are they, and how do they work? We break it down.',
-                    image: 'https://images.pexels.com/photos/5473298/pexels-photo-5473298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                    content: `
-        <p>Quantum computing represents a completely new paradigm in computation. Unlike classical computers that use bits (0s and 1s), quantum computers use qubits, which can exist in multiple states at once (a phenomenon called superposition).</p>
-        <h3>What is a Qubit?</h3>
-        <p>A qubit, or quantum bit, is the basic unit of quantum information. Thanks to superposition, a qubit can be a 0, a 1, or both at the same time. This ability to hold multiple values simultaneously is what gives quantum computers their immense processing power.</p>
-        <h3>Entanglement: Spooky Action at a Distance</h3>
-        <p>Another key concept is entanglement, where two or more qubits become linked in such a way that their fates are intertwined, no matter how far apart they are. This allows for incredibly complex calculations that are impossible for classical computers.</p>
-        <a href="https://www.amazon.com/s?k=quantum+computing+for+beginners" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Read "Quantum Computing for Beginners"</a>
-        <h3>What Can It Be Used For?</h3>
-        <p>The potential applications are staggering. Quantum computers could revolutionize drug discovery, materials science, financial modeling, and artificial intelligence. They could help us design new medicines, create more efficient batteries, and break complex cryptographic codes.</p>
-        <p>While we're still in the early days, the quantum revolution is coming, and it promises to change the world in ways we can only begin to imagine.</p>
-        `,
-                    aos: 'fade-up'
-                },
-                {
-                    id: 14,
-                    category: 'Fashion',
-                    title: 'Accessorizing 101: How to Elevate Any Outfit',
-                    author: 'Prathish Kumar',
-                    date: 'August 24, 2025',
-                    excerpt: 'The right accessories can transform an outfit from simple to stunning. Learn the basic principles of accessorizing with our essential guide.',
-                    image: 'https://images.pexels.com/photos/2849743/pexels-photo-2849743.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                    content: `
-        <p>Accessories are the finishing touches that pull an entire look together. They express your personality and can make even the simplest outfit feel special. Here’s how to master the art of accessorizing.</p>
-        <h3>1. Invest in a Quality Watch</h3>
-        <p>A classic watch is more than just a timepiece; it's a statement of style. Whether you prefer a leather strap or a metal bracelet, a good watch is a versatile accessory that works for both casual and formal occasions.</p>
-        <a href="https://www.amazon.com/s?k=classic+leather+watch" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Shop for a Classic Watch</a>
-        <h3>2. Don't Underestimate the Power of a Belt</h3>
-        <p>A belt can do more than just hold up your pants. It can cinch your waist, add a pop of color, or introduce a different texture to your outfit. A quality leather belt in a neutral color is a must-have.</p>
-        <h3>3. Layer Your Necklaces</h3>
-        <p>Layering delicate necklaces of different lengths is a great way to add a touch of elegance and personality to your look. Mix and match different chains and pendants to create a combination that's uniquely you.</p>
-        <a href="https://www.amazon.com/s?k=layered+necklaces+for+women" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Find Layered Necklaces</a>
-        <h3>4. The Right Bag Makes All the Difference</h3>
-        <p>Your bag is both a functional and a fashion item. Consider having a few key styles: a versatile tote for everyday use, a chic crossbody for weekends, and an elegant clutch for special events.</p>
-        <h3>5. Know When to Stop</h3>
-        <p>The famous advice from Coco Chanel still holds true: "Before you leave the house, look in the mirror and take one thing off." The goal is to look effortlessly chic, not over-accessorized. Let one statement piece be the star of the show.</p>
-        `,
-                    aos: 'fade-up'
-                },
-                {
-                    id: 15,
-                    category: 'Gadgets',
-                    title: 'The Best Portable Projectors for Movie Nights Anywhere',
-                    author: 'Prathish Kumar',
-                    date: 'August 23, 2025',
-                    excerpt: 'Take your movie nights to the next level with a portable projector. We review the top models for brightness, portability, and picture quality.',
-                    image: 'https://images.pexels.com/photos/7045655/pexels-photo-7045655.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                    content: `
-        <p>Turn any wall into a cinema screen with a portable projector. These compact devices are perfect for backyard movie nights, camping trips, or even just upgrading your bedroom setup. Here are the best ones you can buy.</p>
-        <h3>Top Pick: Anker Nebula Capsule 3</h3>
-        <p>The Anker Nebula series is famous for its soda-can-sized projectors, and the Capsule 3 is the best yet. It offers a bright, clear picture, a surprisingly powerful built-in speaker, and runs on the Android TV platform, giving you access to all your favorite streaming apps.</p>
-        <a href="https://www.amazon.com/s?k=anker+nebula+capsule+3" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Check Price on Amazon</a>
-        <h3>Best Picture Quality: Samsung The Freestyle</h3>
-        <p>Samsung's "The Freestyle" is a stylish and innovative projector that delivers excellent picture quality. Its unique cradle stand allows you to project at any angle, even onto the ceiling. It also has smart features like auto-focus and auto-keystone correction, making setup a breeze.</p>
-        <a href="https://www.amazon.com/s?k=samsung+the+freestyle" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Explore The Freestyle</a>
-        <h3>Budget-Friendly Option: Kodak Luma 150</h3>
-        <p>If you're looking for a simple, affordable option, the Kodak Luma 150 is a great choice. It's incredibly small and lightweight, making it easy to take anywhere. While it's not as bright as the more expensive models, it's perfect for dark rooms and casual viewing.</p>
-        <p>No matter your budget, a portable projector is a fantastic gadget for entertainment lovers, allowing you to enjoy your favorite content on a big screen, wherever you are.</p>
-        `,
-                    aos: 'fade-up'
-                },
-                {
-                    id: 16,
-                    category: 'Travel',
-                    title: 'A Food Lover\'s Guide to Tokyo',
-                    author: 'Prathish Kumar',
-                    date: 'August 22, 2025',
-                    excerpt: 'From Michelin-starred sushi to street-side ramen, Tokyo is a paradise for foodies. Here’s our guide to the must-try culinary experiences.',
-                    image: 'https://images.pexels.com/photos/2284166/pexels-photo-2284166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                    content: `
-        <p>Tokyo is arguably one of the greatest food cities in the world. With more Michelin stars than any other city, it's a place where food is taken very, very seriously. Here’s what you can't miss.</p>
-        <h3>1. The Freshest Sushi at Tsukiji Outer Market</h3>
-        <p>While the famous inner market has moved, the Tsukiji Outer Market is still a bustling hub of food stalls and small restaurants. Start your day here with a sushi breakfast. The quality of the fish is unparalleled.</p>
-        <h3>2. A Perfect Bowl of Ramen</h3>
-        <p>Tokyo has thousands of ramen shops, each with its own unique style. Whether you prefer a rich, porky tonkotsu or a lighter shoyu broth, you'll find a bowl that will change your life. Don't be afraid to queue with the locals – it's always worth it.</p>
-        <a href="https://www.amazon.com/s?k=tokyo+ramen+guide" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Find a Tokyo Ramen Guide</a>
-        <h3>3. The Art of Tempura</h3>
-        <p>Perfectly battered and fried seafood and vegetables are a true delicacy. At a high-end tempura restaurant, a chef will fry each piece in front of you and serve it immediately, ensuring it's incredibly light and crispy.</p>
-        <h3>4. Yakitori and Beer in an Izakaya</h3>
-        <p>An izakaya is a Japanese-style pub, and they are the heart of Tokyo's nightlife. Head to a 'yokocho' (alleyway) like Omoide Yokocho in Shinjuku for a lively atmosphere. Order some yakitori (grilled chicken skewers) and a cold beer for an authentic local experience.</p>
-        <a href="https://www.amazon.com/s?k=tokyo+food+guide" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Get a Tokyo Food Guide</a>
-        <h3>5. Convenience Store Wonders</h3>
-        <p>Don't sleep on Japanese convenience stores (konbini). Places like 7-Eleven, FamilyMart, and Lawson offer an incredible array of high-quality and delicious snacks, from onigiri (rice balls) to egg salad sandwiches. It's a must-try experience.</p>
-        `,
-                    aos: 'fade-up'
-                },
-                {
-                    id: 17,
-                    category: 'Books',
-                    title: 'Why You Should Re-Read Your Favorite Books',
-                    author: 'Prathish Kumar',
-                    date: 'August 21, 2025',
-                    excerpt: 'In a world of endless new releases, re-reading a beloved book can be a uniquely rewarding experience. We explore the magic of returning to familiar pages.',
-                    image: 'https://images.pexels.com/photos/1370298/pexels-photo-1370298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                    content: `
-        <p>With our to-be-read piles growing ever taller, the idea of re-reading a book can feel like a luxury we can't afford. But returning to a favorite book is not a step backward; it's a way to deepen our relationship with a story and with ourselves.</p>
-        <h3>1. You Notice New Things</h3>
-        <p>The first time you read a book, you're swept up in the plot. The second time, you can pay more attention to the details: the subtle foreshadowing, the beautiful prose, the intricate character development. You'll be amazed at what you missed.</p>
-        <h3>2. The Book Hasn't Changed, But You Have</h3>
-        <p>Re-reading a book at different stages of your life is like having a conversation with your past self. A story you read as a teenager will hit you differently as an adult. Your life experiences change your perspective, allowing you to find new meaning in the same words.</p>
-        <a href="https://www.amazon.com/s?k=your+favorite+classic+book" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Re-Discover a Classic</a>
-        <h3>3. It's a Comforting and Nostalgic Experience</h3>
-        <p>In uncertain times, returning to a familiar world with characters you love can be incredibly comforting. It's like visiting an old friend. The nostalgia and comfort of a re-read can be a powerful form of self-care.</p>
-        <h3>4. It Helps You Understand What You Love</h3>
-        <p>By analyzing why a particular book resonates with you so deeply, you can learn more about your own tastes and values. What is it about this story or these characters that speaks to you? This understanding can help you choose your next new read more wisely.</p>
-        <p>So next time you're wondering what to read, consider looking not at your TBR pile, but at the books you already know and love. You might be surprised by what you find.</p>
-        `,
-                    aos: 'fade-up'
-                },
-                {
-                    id: 18,
-                    category: 'Fitness',
-                    title: 'Mindful Movement: The Benefits of Yoga and Meditation',
-                    author: 'Prathish Kumar',
-                    date: 'August 20, 2025',
-                    excerpt: 'Fitness isn\'t just about physical strength. Discover how practices like yoga and meditation can improve your mental and emotional well-being.',
-                    image: 'https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                    content: `
-        <p>In our fast-paced world, it's more important than ever to take time for our mental health. Mindful movement practices like yoga and meditation offer a powerful way to connect your mind and body, reducing stress and improving overall well-being.</p>
-        <h3>The Physical Benefits of Yoga</h3>
-        <p>Yoga is a fantastic way to improve flexibility, balance, and strength. It's a low-impact form of exercise that can be adapted for all fitness levels. Regular practice can help reduce back pain, improve posture, and increase your range of motion.</p>
-        <a href="https://www.amazon.com/s?k=yoga+for+beginners+dvd" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Start Your Yoga Journey</a>
-        <h3>The Mental Benefits of Meditation</h3>
-        <p>Meditation is a practice of focused concentration that helps you achieve a state of calm and mental clarity. Even just a few minutes a day can have a significant impact. Studies have shown that meditation can reduce anxiety, improve focus, and promote emotional health.</p>
-        <a href="https://www.amazon.com/s?k=meditation+for+beginners+book" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Learn About Meditation</a>
-        <h3>The Mind-Body Connection</h3>
-        <p>The true power of these practices lies in the connection they foster between your mind and body. By focusing on your breath and physical sensations, you can anchor yourself in the present moment, quieting the endless chatter of your mind. This can lead to a profound sense of peace and self-awareness.</p>
-        <h3>How to Get Started</h3>
-        <p>Starting is easy. There are countless free resources on YouTube for guided meditations and beginner yoga classes. All you need is a quiet space and a willingness to try. Even five minutes a day can make a difference.</p>
-        `,
-                    aos: 'fade-up'
+                    title: 'Secure Portfolio',
+                    description: 'This portfolio, built with React, showcases my skills in both development and design. It is a lightweight, fast, and secure single-page application.',
+                    image: 'https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                    tags: ['React', 'SPA', 'Performance', 'Security'],
+                    liveUrl: 'www.prathihades.me',
+                    repoUrl: 'www.github.com/prathish0558e/prathish0558e.github.io/index.html'
                 }
             ];
 
-            if (currentPage === 'post') {
-                return <BlogPostPage 
-                            post={selectedPost} 
-                            onBack={handleGoHome} 
-                            onSelectCategory={handleSelectCategory} 
-                            onShowAbout={handleShowAbout} 
-                            onGoHome={handleGoHome} 
-                        />;
-            }
-            
-            if (currentPage === 'about') {
-                return <AboutPage 
-                            onBack={handleGoHome} 
-                            onSelectCategory={handleSelectCategory} 
-                            onShowAbout={handleShowAbout} 
-                            onGoHome={handleGoHome} 
-                        />;
-            }
+            const skillsData = [
+                { name: 'HTML5', icon: 'fab fa-html5' },
+                { name: 'CSS3', icon: 'fab fa-css3-alt' },
+                { name: 'JavaScript', icon: 'fab fa-js-square' },
+                { name: 'React', icon: 'fab fa-react' },
+                { name: 'Node.js', icon: 'fab fa-node-js' },
+                { name: 'Python', icon: 'fab fa-python' },
+                { name: 'Pen Testing', icon: 'fas fa-shield-alt' },
+                { name: 'Metasploit', icon: 'fas fa-terminal' },
+                { name: 'Nmap', icon: 'fas fa-search-location' },
+                { name: 'Wireshark', icon: 'fas fa-bug' },
+                { name: 'Git', icon: 'fab fa-git-alt' },
+                { name: 'Figma', icon: 'fab fa-figma' }
+            ];
 
-            return <BlogListPage 
-                        posts={posts} 
-                        onSelectPost={handleSelectPost} 
-                        currentCategory={currentCategory}
-                        onSelectCategory={handleSelectCategory}
-                        onShowAbout={handleShowAbout}
-                        onGoHome={handleGoHome}
-                    />;
+            const educationData = [
+                {
+                    degree: 'B.Tech in Information Technology',
+                    institution: 'PSN College of Engineering and Technology, Tirunelveli',
+                    period: '2022 - 2026 (Ongoing)',
+                    description: 'Currently in the final year, focusing on full-stack development, cloud computing, and AI.'
+                },
+                {
+                    degree: 'Higher Secondary Certificate (HSC)',
+                    institution: 'Government Higher Secondary School, Vasudevanallur',
+                    period: '2020 - 2022',
+                    description: 'Completed higher secondary with a major in Computer Science.'
+                },
+                {
+                    degree: 'Secondary Education (6th - 12th)',
+                    institution: 'Government Higher Secondary School, Vasudevanallur',
+                    period: '2015 - 2020',
+                    description: 'Built a strong academic foundation with a focus on science and mathematics.'
+                }
+            ];
+
+            const certificationsData = [
+                {
+                    title: 'AWS – Solutions Architecture Job Simulation',
+                    issuer: 'Forage',
+                    date: 'Jul 2025',
+                    credentialId: '2Ctx4iRjpf334sL2v',
+                    icon: 'fab fa-aws',
+                    url: '#'
+                },
+                {
+                    title: 'Tata – Data Visualisation: Empowering Business with Effective Insights',
+                    issuer: 'Forage',
+                    date: 'Jul 2025',
+                    credentialId: 'GNPHbbqCMg5wS9gr3',
+                    icon: 'fas fa-chart-bar',
+                    url: '#'
+                },
+                {
+                    title: 'Web Fundamentals: Web Development with HTML',
+                    issuer: 'Skillsoft',
+                    date: 'Jul 2025',
+                    credentialId: '153859358',
+                    icon: 'fab fa-html5',
+                    url: '#'
+                },
+                {
+                    title: '1 Month Internship as a Frontend Developer',
+                    issuer: 'Alfido Tech',
+                    date: 'Jun 2025',
+                    credentialId: 'BS/REG/106363',
+                    icon: 'fas fa-code',
+                    url: 'https://raw.githubusercontent.com/prathish0558e/prathish0558e.github.io/main/images/Prathish%20Kumar%20PK.pdf'
+                },
+                {
+                    title: 'TCS iON Career Edge - Young Professional',
+                    issuer: 'TCS iON',
+                    date: 'Apr 2024',
+                    credentialId: 'N/A',
+                    icon: 'fas fa-briefcase',
+                    url: 'https://raw.githubusercontent.com/prathish0558e/prathish0558e.github.io/main/images/Prathish_Kumar_4904055.pdf'
+                }
+            ];
+
+            const handleScroll = () => {
+                if (window.pageYOffset > 300) {
+                    setShowScroll(true);
+                } else {
+                    setShowScroll(false);
+                }
+            };
+
+            const scrollToTop = () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            const handleLinkClick = (sectionId) => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                }
+            };
+
+            React.useEffect(() => {
+                const preloader = document.querySelector('.preloader');
+                if (preloader) {
+                    setTimeout(() => {
+                        preloader.classList.add('hidden');
+                    }, 200);
+                }
+                
+                AOS.init({
+                    duration: 1000,
+                    once: true,
+                    offset: 50
+                });
+
+                const sections = document.querySelectorAll('.section, .hero');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            setActiveSection(entry.target.id);
+                        }
+                    });
+                }, { rootMargin: '-30% 0px -70% 0px' });
+
+                sections.forEach(section => observer.observe(section));
+
+                window.addEventListener('scroll', handleScroll);
+                return () => {
+                    window.removeEventListener('scroll', handleScroll);
+                    sections.forEach(section => observer.unobserve(section));
+                };
+            }, []);
+
+            return (
+                <div>
+                    <Header onLinkClick={handleLinkClick} activeSection={activeSection} theme={theme} toggleTheme={toggleTheme} />
+                    <main className="main-content">
+                        <Hero />
+                        <Projects projects={projectsData} />
+                        <Skills skills={skillsData} />
+                        <About />
+                        <Education education={educationData} />
+                        <Certifications certifications={certificationsData} />
+                        <Contact />
+                    </main>
+                    <Footer />
+                    <button className={`scroll-to-top ${showScroll ? 'visible' : ''}`} onClick={scrollToTop}>
+                        <i className="fas fa-arrow-up"></i>
+                    </button>
+                </div>
+            );
         };
 
-        ReactDOM.render(<App />, document.getElementById('root'));
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
     </script>
 </body>
 </html>
