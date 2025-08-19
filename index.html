@@ -880,6 +880,11 @@
             transform: translateY(-5px);
         }
 
+        /* Prevent horizontal overflow */
+        .main-content, .footer {
+            overflow-x: hidden;
+        }
+
         /* Responsive Design */
         .menu-toggle {
             display: none;
@@ -907,7 +912,7 @@
 
         @media (max-width: 768px) {
             body {
-                overflow-x: hidden; 
+                overflow-x: hidden; /* Prevent horizontal scroll */
             }
 
             .header-content {
