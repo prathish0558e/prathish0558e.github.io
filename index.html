@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prathish Kumar S | Professional Portfolio</title>
-    <link rel="icon" type="image/png" href="images/pakistan.png">
+    <link rel="icon" type="image/x-icon" href="images/pakistan.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <style>
@@ -202,8 +202,9 @@
         }
 
         .logo {
+            font-family: 'Chakra Petch', sans-serif;
             font-size: 2rem;
-            font-weight: 900;
+            font-weight: 700;
             background: linear-gradient(45deg, var(--accent-color), var(--text-primary));
             -webkit-background-clip: text;
             background-clip: text;
@@ -312,31 +313,72 @@
         }
 
         .hero h1 {
+            font-family: 'Chakra Petch', sans-serif;
             font-size: 4.5rem;
             margin-bottom: 20px;
-            font-weight: 900;
-            letter-spacing: -1px;
+            font-weight: 700;
+            letter-spacing: 1px;
             text-shadow: 0 0 20px rgba(0,0,0,0.5);
-            animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+            position: relative;
+            perspective: 800px;
         }
 
-        .hero p {
+        .hero h1 .char {
+            display: inline-block;
+            opacity: 0;
+            transform-origin: center;
+            transform: translateY(-100px) rotateX(-90deg) scale(0.8);
+            animation: text-fall-in-3d 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation-delay: var(--char-index);
+        }
+
+        .hero .hero-subtitle {
             font-size: 1.4rem;
             color: var(--text-secondary);
             max-width: 750px;
             margin: 0 auto;
-            animation: text-focus-in 1.2s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+            line-height: 1.5;
+        }
+
+        .hero-subtitle .subtitle-part-wrapper {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: bottom;
+        }
+
+        .hero-subtitle .subtitle-part {
+            display: inline-block;
+            transform: translateY(110%);
+            opacity: 0;
+            animation: subtitle-slide-in 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        .hero-subtitle .separator {
+            display: inline-block;
+            opacity: 0;
+            margin: 0 0.5em;
+            animation: separator-fade-in 0.4s ease forwards;
         }
         
-        @keyframes text-focus-in {
-          0% {
-            filter: blur(12px);
-            opacity: 0;
-          }
-          100% {
-            filter: blur(0px);
-            opacity: 1;
-          }
+        @keyframes subtitle-slide-in {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes separator-fade-in {
+            to {
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes text-fall-in-3d {
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0) scale(1);
+                text-shadow: 0 0 20px var(--glow-color);
+            }
         }
 
         /* Main Content */
@@ -353,8 +395,9 @@
             border-bottom: none;
         }
         .section-title {
+            font-family: 'Chakra Petch', sans-serif;
             font-size: 3rem;
-            font-weight: 900;
+            font-weight: 700;
             text-align: center;
             margin-bottom: 4rem;
             text-transform: uppercase;
@@ -863,6 +906,10 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                overflow-x: hidden; 
+            }
+
             .header-content {
                 position: relative;
             }
@@ -927,7 +974,7 @@
             }
 
             .hero h1 {
-                font-size: 2.8rem;
+                font-size: 2.5rem;
             }
 
             .hero p {
@@ -935,29 +982,39 @@
             }
 
             .section-title {
-                font-size: 2.5rem;
+                font-size: 2rem;
+            }
+
+            .timeline-title {
+                font-size: 1.2rem;
+            }
+            .certification-title {
+                font-size: 1.1rem;
             }
 
             /* Responsive Timeline */
             .timeline::after {
-                left: 10px;
+                left: 20px;
             }
             .timeline-item {
                 width: 100%;
-                padding-left: 40px;
-                padding-right: 15px;
+                padding: 1rem 15px 1rem 50px;
             }
             .timeline-item:nth-child(odd),
             .timeline-item:nth-child(even) {
                 left: 0;
+                padding: 1rem 15px 1rem 50px;
                 text-align: left;
             }
             .timeline-dot {
-                left: 0;
+                left: 10px;
             }
             .timeline-item:nth-child(odd) .timeline-dot,
             .timeline-item:nth-child(even) .timeline-dot {
-                left: 0;
+                left: 10px;
+            }
+            .timeline-content {
+                text-align: left;
             }
 
             .projects-grid {
@@ -1020,18 +1077,58 @@
             );
         };
 
-        const Hero = () => (
-            <section className="hero" id="hero">
-                <video className="hero-video" autoPlay loop muted playsInline>
-                    <source src="https://cdn.pixabay.com/video/2020/02/29/33333-385446711_large.mp4" type="video/mp4" />
-                </video>
-                <div className="hero-overlay"></div>
-                <div className="container" data-aos="zoom-in">
-                    <h1>Prathish Kumar S</h1>
-                    <p>Full Stack Developer | Ethical Hacker | Cybersecurity Enthusiast</p>
-                </div>
-            </section>
-        );
+        const Hero = () => {
+            const nameText = "Prathish Kumar S";
+            const subtitles = [
+                "Full Stack Developer",
+                "Ethical Hacker",
+                "Cybersecurity Enthusiast"
+            ];
+
+            return (
+                <section className="hero" id="hero">
+                    <video className="hero-video" autoPlay loop muted playsInline>
+                        <source src="https://cdn.pixabay.com/video/2020/02/29/33333-385446711_large.mp4" type="video/mp4" />
+                    </video>
+                    <div className="hero-overlay"></div>
+                    <div className="container" data-aos="zoom-in">
+                        <h1>
+                            {nameText.split('').map((char, index) => (
+                                <span
+                                    key={index}
+                                    className="char"
+                                    style={{ animationDelay: `${index * 0.05}s` }}
+                                >
+                                    {char === ' ' ? '\u00A0' : char}
+                                </span>
+                            ))}
+                        </h1>
+                        <p className="hero-subtitle">
+                            {subtitles.map((part, partIndex) => (
+                                <React.Fragment key={partIndex}>
+                                    <span className="subtitle-part-wrapper">
+                                        <span 
+                                            className="subtitle-part" 
+                                            style={{ animationDelay: `${1.5 + partIndex * 0.2}s` }}
+                                        >
+                                            {part}
+                                        </span>
+                                    </span>
+                                    {partIndex < subtitles.length - 1 && (
+                                        <span 
+                                            className="separator" 
+                                            style={{ animationDelay: `${1.6 + partIndex * 0.2}s` }}
+                                        >
+                                            |
+                                        </span>
+                                    )}
+                                </React.Fragment>
+                            ))}
+                        </p>
+                    </div>
+                </section>
+            );
+        };
 
         const Projects = ({ projects }) => {
             React.useEffect(() => {
@@ -1106,13 +1203,13 @@
             </section>
         );
 
-        const Education = ({ education }) => (
+        const Education = ({ education, isMobile }) => (
             <section className="section" id="education">
                 <div className="container">
                     <h2 className="section-title" data-aos="fade-up">Education</h2>
                     <div className="timeline" data-aos="fade-up" data-aos-delay="100">
                         {education.map((edu, index) => (
-                            <div className="timeline-item" key={index}>
+                            <div className="timeline-item" key={index} data-aos={isMobile ? "fade-right" : ""}>
                                 <div className="timeline-dot"></div>
                                 <div className="timeline-content">
                                     <h3 className="timeline-title">{edu.degree}</h3>
@@ -1127,13 +1224,13 @@
             </section>
         );
 
-        const Certifications = ({ certifications }) => (
+        const Certifications = ({ certifications, isMobile }) => (
             <section className="section" id="certifications">
                 <div className="container">
                     <h2 className="section-title" data-aos="fade-up">Certifications</h2>
                     <div className="certifications-grid">
                         {certifications.map((cert, index) => (
-                            <div className="certification-card" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+                            <div className="certification-card" key={index} data-aos={isMobile ? "fade-left" : "fade-up"} data-aos-delay={index * 100}>
                                 <div className="certification-icon"><i className={cert.icon}></i></div>
                                 <div className="certification-content">
                                     <h3 className="certification-title">{cert.title}</h3>
@@ -1159,7 +1256,7 @@
                             <h3>Contact Information</h3>
                             <div className="contact-info-item">
                                 <i className="fas fa-map-marker-alt"></i>
-                                <p>2/171, Pallivasal Street, Athuvazhi, Sivagiri, Tenkasi, Tamil Nadu, India-627758</p>
+                                <p>2/171, Pallivasal Street, Athuvazhi-627760, Sivagiri, Tenkasi, Tamil Nadu, India</p>
                             </div>
                             <div className="contact-info-item">
                                 <i className="fas fa-phone"></i>
@@ -1214,6 +1311,14 @@
             const [showScroll, setShowScroll] = React.useState(false);
             const [activeSection, setActiveSection] = React.useState('hero');
             const [theme, setTheme] = React.useState('dark');
+            const [isMobile, setIsMobile] = React.useState(false);
+
+            React.useEffect(() => {
+                const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+                checkMobile();
+                window.addEventListener('resize', checkMobile);
+                return () => window.removeEventListener('resize', checkMobile);
+            }, []);
 
             const toggleTheme = () => {
                 const newTheme = theme === 'dark' ? 'light' : 'dark';
@@ -1270,7 +1375,7 @@
             const educationData = [
                 {
                     degree: 'B.Tech in Information Technology',
-                    institution: 'PSN Engineering college , Tirunelveli',
+                    institution: 'PSN Engineering College, Tirunelveli',
                     period: '2022 - 2026 (Ongoing)',
                     description: 'Currently in the final year, focusing on full-stack development, cloud computing, and AI.'
                 },
@@ -1390,8 +1495,8 @@
                         <Projects projects={projectsData} />
                         <Skills skills={skillsData} />
                         <About />
-                        <Education education={educationData} />
-                        <Certifications certifications={certificationsData} />
+                        <Education education={educationData} isMobile={isMobile} />
+                        <Certifications certifications={certificationsData} isMobile={isMobile} />
                         <Contact />
                     </main>
                     <Footer />
