@@ -874,6 +874,10 @@
                 overflow-x: hidden; /* Prevent horizontal scroll */
             }
 
+            .hero {
+                padding: 100px 0;
+            }
+
             .header-content {
                 position: relative;
             }
@@ -881,7 +885,7 @@
             .header-controls {
                 display: flex;
                 align-items: center;
-                gap: 15px;
+                gap: 20px;
             }
 
             .nav-links {
@@ -927,7 +931,7 @@
             .nav-links.is-open li:nth-child(5) { transition-delay: 0.3s; }
 
             .nav-links a {
-                font-size: 1.4rem;
+                font-size: 1.2rem;
                 font-weight: 700;
             }
 
@@ -938,7 +942,7 @@
             }
 
             .hero h1 {
-                font-size: calc(2rem + 3vw);
+                font-size: calc(1.8rem + 3vw);
                 min-height: 0; /* Reset min-height for mobile */
             }
 
@@ -1005,9 +1009,10 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script type="text/babel">
-        const Header = ({ onLinkClick, activeSection, theme, toggleTheme }) => {
+        const Header = ({ onLinkClick, activeSection, theme, toggleTheme, isMobile }) => {
             const [isMenuOpen, setIsMenuOpen] = React.useState(false);
             const navLinks = ['Projects', 'Skills', 'About', 'Education', 'Certifications', 'Contact'];
+            const logoText = isMobile ? "PKS" : "Prathish Kumar S";
 
             const handleLinkClick = (e, section) => {
                 e.preventDefault();
@@ -1019,7 +1024,7 @@
                 <header className="header" data-aos="fade-down">
                     <div className="container header-content">
                         <a href="#" onClick={(e) => handleLinkClick(e, 'hero')} className="logo">
-                            Prathish Kumar S
+                            {logoText}
                         </a>
                         <div className="header-controls">
                              <button onClick={toggleTheme} className="theme-toggle-btn" aria-label="Toggle theme">
@@ -1509,7 +1514,7 @@
 
             return (
                 <div>
-                    <Header onLinkClick={handleLinkClick} activeSection={activeSection} theme={theme} toggleTheme={toggleTheme} />
+                    <Header onLinkClick={handleLinkClick} activeSection={activeSection} theme={theme} toggleTheme={toggleTheme} isMobile={isMobile} />
                     <main className="main-content">
                         <Hero />
                         <Projects projects={projectsData} />
