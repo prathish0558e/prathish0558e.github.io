@@ -1027,7 +1027,7 @@
         const Header = ({ onLinkClick, activeSection, theme, toggleTheme, isMobile }) => {
             const [isMenuOpen, setIsMenuOpen] = React.useState(false);
             const navLinks = ['Projects', 'Skills', 'About', 'Education', 'Certifications', 'Contact'];
-            const logoText = isMobile ? "PKS" : "Prathish Kumar S";
+            const logoText = isMobile ? "PK" : "Prathish Kumar S";
 
             const handleLinkClick = (e, section) => {
                 e.preventDefault();
@@ -1123,9 +1123,10 @@
             
             const nameText = "Prathish Kumar S";
             const subtitles = [
-                "Full Stack Developer",
+                "Laptop Hardware & Software",
                 "Ethical Hacker",
-                "Cybersecurity Enthusiast"
+                "Cybersecurity Enthusiast",
+                "Frendend devloper"
             ];
             const [subtitleIndex, setSubtitleIndex] = React.useState(0);
 
@@ -1198,7 +1199,7 @@
                                             {project.tags.map(tag => <span key={tag}>{tag}</span>)}
                                         </div>
                                         <div className="project-links">
-                                            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"><i className="fas fa-globe"></i> Live Demo</a>
+                                            <a href={project.liveUrl} target="www.prathihades.me" rel="noopener noreferrer"><i className="fas fa-globe"></i> Live Demo</a>
                                             <a href={project.repoUrl} target="_blank" rel="noopener noreferrer"><i className="fab fa-github"></i> View Code</a>
                                         </div>
                                     </div>
@@ -1233,7 +1234,7 @@
                     <div className="about-content" data-aos="fade-up" data-aos-delay="100">
                         <img src="images/IMG-20250626-WA0001.jpg" alt="Prathish Kumar S" className="about-image" />
                         <div className="about-text">
-                            <p>I'm a multifaceted tech professional, skilled as both a Full Stack Developer and an aspiring Ethical Hacker.</p>
+                            <p>I'm a multifaceted tech professional, skilled as both a Frendend Developer and an aspiring Ethical Hacker.</p>
                             <p>My passion lies in the dual challenge of creating robust, user-friendly web applications and securing them against digital threats. I thrive on the synergy between building and breaking, using my developer's insight to inform my security practices.</p>
                             <p>I am constantly learning, diving deep into penetration testing methodologies and defensive strategies. When I'm not coding or hunting for vulnerabilities, I'm exploring the latest tech trends and contributing to the open-source community.</p>
                         </div>
@@ -1401,7 +1402,6 @@
                 { name: 'HTML5', icon: 'fab fa-html5' },
                 { name: 'CSS3', icon: 'fab fa-css3-alt' },
                 { name: 'JavaScript', icon: 'fab fa-js-square' },
-                { name: 'React', icon: 'fab fa-react' },
                 { name: 'Node.js', icon: 'fab fa-node-js' },
                 { name: 'Python', icon: 'fab fa-python' },
                 { name: 'Pen Testing', icon: 'fas fa-shield-alt' },
@@ -1417,7 +1417,7 @@
                     degree: 'B.Tech in Information Technology',
                     institution: 'PSN Engineering College, Tirunelveli',
                     period: '2022 - 2026 (Ongoing)',
-                    description: 'Currently in the final year, focusing on full-stack development, cloud computing, and AI.'
+                    description: 'Currently in the final year, focusing on Frendend development, cloud computing, and AI.'
                 },
                 {
                     degree: 'Higher Secondary Certificate (HSC)',
