@@ -472,7 +472,6 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://unpkg.com/@formspree/react@latest/dist/formspree-react.min.js"></script>
     <script>
         // Background Constellation Effect
         const canvas = document.getElementById('background-canvas');
@@ -566,7 +565,6 @@
         animate();
     </script>
     <script type="text/babel">
-        const { useForm } = FormspreeReact;
         const Header = ({ onLinkClick, activeSection, theme, toggleTheme }) => {
             const [isMenuOpen, setIsMenuOpen] = React.useState(false);
             const navLinks = ['Projects', 'Skills', 'About', 'Education', 'Certifications', 'Contact'];
@@ -770,62 +768,46 @@
             </section>
         );
 
-        const Contact = () => {
-            const [state, handleSubmit] = useForm("mvoezgqy");
-            if (state.succeeded) {
-                return (
-                    <section className="section" id="contact">
-                        <div className="container">
-                            <h2 className="section-title" data-aos="fade-up">Thanks for your message!</h2>
-                            <p style={{textAlign: 'center'}}>I'll get back to you soon.</p>
-                        </div>
-                    </section>
-                );
-            }
-
-            return (
-                <section className="section" id="contact">
-                    <div className="container">
-                        <h2 className="section-title" data-aos="fade-up">Get In Touch</h2>
-                        <div className="contact-container" data-aos="fade-up" data-aos-delay="100">
-                            <div className="contact-info">
-                                <h3>Contact Information</h3>
-                                <div className="contact-info-item">
-                                    <i className="fas fa-map-marker-alt"></i>
-                                    <p>2/171, Pallivasal Street, Athuvazhi-627760, Sivagiri, Tenkasi, Tamil Nadu, India</p>
-                                </div>
-                                <div className="contact-info-item">
-                                    <i className="fas fa-phone"></i>
-                                    <p><a href="tel:+916383129892">+91 6383129892</a></p>
-                                </div>
-                                <div className="contact-info-item">
-                                    <i className="fab fa-whatsapp"></i>
-                                    <p><a href="https://wa.me/916383129892" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></p>
-                                </div>
-                                 <div className="contact-info-item">
-                                    <i className="fas fa-envelope"></i>
-                                    <p><a href="mailto:prathish0558e@gmail.com">prathish0558e@gmail.com</a></p>
-                                </div>
+        const Contact = () => (
+            <section className="section" id="contact">
+                <div className="container">
+                    <h2 className="section-title" data-aos="fade-up">Get In Touch</h2>
+                    <div className="contact-container" data-aos="fade-up" data-aos-delay="100">
+                        <div className="contact-info">
+                            <h3>Contact Information</h3>
+                            <div className="contact-info-item">
+                                <i className="fas fa-map-marker-alt"></i>
+                                <p>2/171, Pallivasal Street, Athuvazhi-627760, Sivagiri, Tenkasi, Tamil Nadu, India</p>
                             </div>
-                            <form className="contact-form" onSubmit={handleSubmit}>
-                                <div className="form-group">
-                                    <input id="name" type="text" name="name" placeholder="Your Name" required />
-                                </div>
-                                <div className="form-group">
-                                    <input id="email" type="email" name="email" placeholder="Your Email" required />
-                                </div>
-                                <div className="form-group">
-                                    <textarea id="message" name="message" rows="6" placeholder="Your Message" required></textarea>
-                                </div>
-                                <button type="submit" className="submit-btn" disabled={state.submitting}>
-                                    {state.submitting ? 'Sending...' : 'Send Message'}
-                                </button>
-                            </form>
+                            <div className="contact-info-item">
+                                <i className="fas fa-phone"></i>
+                                <p><a href="tel:+916383129892">+91 6383129892</a></p>
+                            </div>
+                            <div className="contact-info-item">
+                                <i className="fab fa-whatsapp"></i>
+                                <p><a href="https://wa.me/916383129892" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></p>
+                            </div>
+                             <div className="contact-info-item">
+                                <i className="fas fa-envelope"></i>
+                                <p><a href="mailto:prathish0558e@gmail.com">prathish0558e@gmail.com</a></p>
+                            </div>
                         </div>
+                        <form className="contact-form">
+                            <div className="form-group">
+                                <input type="text" name="name" placeholder="Your Name" required />
+                            </div>
+                            <div className="form-group">
+                                <input type="email" name="email" placeholder="Your Email" required />
+                            </div>
+                            <div className="form-group">
+                                <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="submit" className="submit-btn">Send Message</button>
+                        </form>
                     </div>
-                </section>
-            );
-        };
+                </div>
+            </section>
+        );
 
         const Footer = () => (
             <footer className="footer" data-aos="fade-up">
