@@ -156,6 +156,28 @@
             border-bottom: 1px solid var(--border);
             transition: background 0.3s ease, box-shadow 0.3s ease;
         }
+  @media (max-width: 768px) {
+  nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    transform: translateX(100%); /* hidden by default */
+    width: min(80vw, 320px);
+    height: 100vh;
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 1001; /* above header and canvas */
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    border-left: 1px solid var(--border);
+    box-shadow: -10px 0 50px rgba(0,0,0,0.3);
+  }
+  nav.is-open { transform: translateX(0); } 
+  html, body { overflow-x: hidden; }
+  nav ul { flex-direction: column; padding: 6rem 2rem 2rem; align-items: flex-start; gap: 1rem; }
+  nav ul li { width: 100%; }
+  nav a { font-size: 1.1rem; font-weight: 600; width: 100%; padding: 14px 20px; display:block; }
+}
 
         .nav-bar {
             display: flex;
