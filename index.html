@@ -1,64 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prathish Kumar S | Professional Portfolio</title>
+    <title>Prathish Kumar S • Creative Technologist</title>
+    <meta name="description" content="Portfolio of Prathish Kumar S — Creative frontend engineer, ethical hacker, and experience designer crafting cinematic, secure interfaces.">
+    <meta name="theme-color" id="theme-color-meta" content="#0a0a14">
     <link rel="icon" type="image/x-icon" href="images/pakistan.png">
-    <meta name="theme-color" id="theme-color-meta" content="#0A0A0A">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap');
-
         :root {
-            --accent-color-dark: #00A3FF;
-            --glow-color-dark: rgba(0, 163, 255, 0.75);
-            --aurora-1-dark: #00A3FF;
-            --aurora-2-dark: #8A2BE2;
-            --aurora-3-dark: #FF4500;
-
-            --accent-color-light: #007BFF;
-            --glow-color-light: rgba(0, 123, 255, 0.5);
+            --bg: #0a0a14;
+            --bg-alt: #10101c;
+            --bg-soft: rgba(20, 20, 35, 0.65);
+            --card: rgba(22, 22, 40, 0.75);
+            --card-solid: rgba(24, 24, 44, 0.92);
+            --border: rgba(102, 112, 255, 0.2);
+            --text: #EAEAF2;
+            --text-muted: rgba(200, 200, 220, 0.7);
+            --accent: #4F46E5;
+            --accent-soft: rgba(79, 70, 229, 0.15);
+            --accent-2: #7C3AED;
+            --accent-3: #DB2777;
+            --glass: rgba(16, 16, 28, 0.55);
+            --shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 10px;
+            --max-width: 1200px;
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
         }
 
-        [data-theme='dark'] {
-            --bg-color: #0A0A0A;
-            --primary-bg: #101010;
-            --secondary-bg: #1A1A1A;
-            --text-primary: #F5F5F5;
-            --text-secondary: #A3A3A3;
-            --border-color: #2A2A2A;
-            --accent-color: var(--accent-color-dark);
-            --glow-color: var(--glow-color-dark);
-            --aurora-1: var(--aurora-1-dark);
-            --aurora-2: var(--aurora-2-dark);
-            --aurora-3: var(--aurora-3-dark);
-            --hero-overlay-start: rgba(10, 10, 10, 0.5);
-            --hero-overlay-end: rgba(10, 10, 10, 1);
-            --shadow-color-1: rgba(0, 0, 0, 0.2);
-            --shadow-color-2: rgba(0, 163, 255, 0.2);
-        }
-
-        [data-theme='light'] {
-            --bg-color: #F5F5F7;
-            --primary-bg: #FFFFFF;
-            --secondary-bg: #EAEAEA;
-            --text-primary: #1D1D1F;
-            --text-secondary: #555555;
-            --border-color: #D2D2D7;
-            --accent-color: var(--accent-color-light);
-            --glow-color: var(--glow-color-light);
-            --aurora-1: #007BFF;
-            --aurora-2: #6F00FF;
-            --aurora-3: #FF6B2E;
-            --hero-overlay-start: rgba(245, 245, 247, 0.5);
-            --hero-overlay-end: rgba(245, 245, 247, 1);
-            --shadow-color-1: rgba(0, 0, 0, 0.1);
-            --shadow-color-2: rgba(0, 123, 255, 0.15);
+        [data-theme="light"] {
+            --bg: #F8F9FF;
+            --bg-alt: #FFFFFF;
+            --bg-soft: rgba(255, 255, 255, 0.7);
+            --card: rgba(255, 255, 255, 0.8);
+            --card-solid: rgba(255, 255, 255, 0.98);
+            --border: rgba(79, 70, 229, 0.2);
+            --text: #111827;
+            --text-muted: #4B5563;
+            --accent: #4338CA;
+            --accent-soft: rgba(67, 56, 202, 0.1);
+            --accent-2: #7C3AED;
+            --accent-3: #DB2777;
+            --glass: rgba(255, 255, 255, 0.6);
+            --shadow: 0 25px 60px rgba(67, 56, 202, 0.15);
         }
 
         * {
@@ -71,963 +66,510 @@
             scroll-behavior: smooth;
         }
 
-        /* Prevent unwanted horizontal scroll */
-        html, body {
-          overflow-x: hidden;
-          max-width: 100%;
-        }
-
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.7;
             position: relative;
-            transition: background-color 0.4s ease, color 0.4s ease;
-        }
-        
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: radial-gradient(circle at 20% 20%, var(--aurora-1), transparent 30%),
-                        radial-gradient(circle at 80% 70%, var(--aurora-2), transparent 30%),
-                        radial-gradient(circle at 50% 50%, var(--aurora-3), transparent 40%);
-            filter: blur(120px);
-            opacity: 0.15;
-            z-index: -1;
-            animation: aurora-breathe 20s ease-in-out infinite;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        @keyframes aurora-breathe {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--primary-bg);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-color);
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Pre-loader */
-        .preloader {
+        #background-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--bg-color);
-            z-index: 9999;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-alt); }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--accent), var(--accent-2));
+            border-radius: 10px;
+            border: 2px solid var(--bg-alt);
+        }
+
+        .container {
+            width: min(var(--max-width), 92vw);
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .preloader {
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            gap: 24px;
+            z-index: 9999;
             transition: opacity 0.8s ease, visibility 0.8s ease;
+            transition-delay: 0.2s;
         }
+
         .preloader.hidden {
             opacity: 0;
             visibility: hidden;
         }
-        .loader {
-            width: 60px;
-            height: 60px;
-            position: relative;
-            animation: spin 2s linear infinite;
-        }
-        .loader::before, .loader::after {
-            content: '';
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            background: var(--accent-color);
-            box-shadow: 0 0 10px var(--glow-color);
-            border-radius: 4px;
-        }
-        .loader::before {
-            top: 0;
-            left: 0;
-            animation: move-tl 2s ease-in-out infinite;
-        }
-        .loader::after {
-            bottom: 0;
-            right: 0;
-            animation: move-br 2s ease-in-out infinite;
-        }
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-        @keyframes move-tl {
-            0%, 100% { top: 0; left: 0; }
-            25% { top: 0; left: 35px; }
-            50% { top: 35px; left: 35px; }
-            75% { top: 35px; left: 0; }
-        }
-        @keyframes move-br {
-            0%, 100% { bottom: 0; right: 0; }
-            25% { bottom: 0; right: 35px; }
-            50% { bottom: 35px; right: 35px; }
-            75% { bottom: 35px; right: 0; }
+
+        .pk-loader {
+            font-family: var(--font-heading);
+            font-size: clamp(3.8rem, 8vw, 6.4rem);
+            letter-spacing: 0.1em;
+            display: flex;
         }
 
-        /* Header */
-        .header {
-            background-color: color-mix(in srgb, var(--primary-bg) 70%, transparent);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 1.5rem 0;
-            border-bottom: 1px solid var(--border-color);
+        .pk-loader span {
+            animation: loader-flicker 2s infinite;
+            text-shadow: 0 0 5px var(--accent), 0 0 10px var(--accent), 0 0 20px var(--accent), 0 0 40px var(--accent);
+        }
+        .pk-loader span:nth-child(2) { animation-delay: 0.2s; }
+
+        @keyframes loader-flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+            20%, 24%, 55% { opacity: 0.4; }
+        }
+
+        .preloader p {
+            font-size: 1rem;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            animation: fade-in 1s ease-out;
+        }
+
+        header {
             position: sticky;
             top: 0;
-            z-index: 1000;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            z-index: 999;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: var(--glass);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .header-content {
+        .nav-bar {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+            gap: 32px;
         }
 
         .logo {
-            font-family: 'Chakra Petch', sans-serif;
-            font-size: 2rem;
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
             font-weight: 700;
-            background: linear-gradient(45deg, var(--accent-color), var(--text-primary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.1em;
             text-decoration: none;
-            text-shadow: 0 0 20px var(--glow-color);
-            transition: filter 0.3s ease;
+            color: var(--text);
+            transition: color 0.3s ease;
         }
-        .logo:hover {
-            filter: brightness(1.2);
-        }
+        .logo:hover { color: var(--accent); }
 
-        /* Nav spacing issue fix */
-        .nav-links {
-            list-style: none;
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-        }
+        nav ul { display: flex; gap: 12px; list-style: none; }
 
-        .nav-links li {
-            margin-left: 20px; /* 35px → reduce for mobile */
-        }
-
-        .nav-links a {
+        nav a {
+            padding: 10px 16px;
+            border-radius: var(--radius-sm);
             text-decoration: none;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             font-weight: 500;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
+            font-size: 0.95rem;
             position: relative;
-            padding-bottom: 8px;
-            font-size: 1.05rem;
+            transition: all 0.3s ease;
         }
 
-        .nav-links a::after {
+        nav a::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: 5px;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
-            height: 3px;
-            background-color: var(--accent-color);
-            border-radius: 2px;
-            box-shadow: 0 0 10px var(--glow-color);
-            transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
         }
 
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--text-primary);
-            text-shadow: 0 0 5px var(--glow-color);
-        }
+        nav a.active, nav a:hover { color: var(--text); }
+        nav a.active::after, nav a:hover::after { width: 50%; }
 
-        .nav-links a:hover::after, .nav-links a.active::after {
-            width: 100%;
-        }
-        
-        .theme-toggle-btn {
-            background: var(--secondary-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+        .nav-actions { display: flex; align-items: center; gap: 14px; }
+
+        .theme-toggle {
+            width: 44px; height: 44px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-muted);
+            display: grid; place-items: center;
             cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.2rem;
             transition: all 0.3s ease;
         }
-        .theme-toggle-btn:hover {
-            background: var(--accent-color);
-            color: var(--primary-bg);
-            border-color: var(--accent-color);
-        }
+        .theme-toggle:hover { color: var(--text); background: var(--accent-soft); border-color: var(--accent); }
 
+        .menu-toggle { display: none; /* ... */ }
 
-        /* Hero Section */
+        main { position: relative; z-index: 2; }
+
         .hero {
-            position: relative;
-            padding: 140px 0;
+            min-height: 90vh;
+            padding: clamp(120px, 16vh, 160px) 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            color: #fff;
-            overflow: hidden;
-        }
-
-        .hero-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: translate(-50%, -50%);
-            z-index: -2;
-            filter: brightness(0.7);
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at center, var(--hero-overlay-start) 0%, var(--hero-overlay-end) 100%);
-            z-index: -1;
-        }
-
-        .hero h1 {
-            font-family: 'Chakra Petch', sans-serif;
-            font-size: 4.5rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-shadow: 0 0 20px rgba(0,0,0,0.5);
             position: relative;
-            cursor: pointer;
-            min-height: 68px; /* Prevents layout shift */
         }
 
-        .hero .hero-subtitle {
-            font-size: 1.4rem;
-            color: var(--text-secondary);
-            max-width: 750px;
-            margin: 0 auto;
-            line-height: 1.5;
-            cursor: pointer;
-            min-height: 50px; /* Prevents layout shift */
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
         }
 
-        .scramble-char {
-            color: var(--accent-color);
-            text-shadow: 0 0 10px var(--glow-color);
-        }
-
-        /* Main Content */
-        .main-content {
-            padding: 4rem 0;
-        }
-
-        /* Section Base */
-        .section {
-            padding: 6rem 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .section:last-of-type {
-            border-bottom: none;
-        }
-        .section-title {
-            font-family: 'Chakra Petch', sans-serif;
-            font-size: 3rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 4rem;
+        .hero-kicker {
+            padding: 8px 16px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: var(--accent-soft);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            background: linear-gradient(45deg, var(--accent-color), var(--text-primary));
+            color: var(--accent);
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            line-height: 1.1;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle-container {
+            font-family: var(--font-heading);
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 500;
+            color: var(--text);
+            background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
+            height: clamp(1.8rem, 3.6vw, 3rem); /* Fixed height to prevent layout shift */
         }
 
-        /* Projects Section */
-        /* Projects grid - mobile fix */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 350px → 280px */
-            gap: 2.5rem;
-            padding: 0 10px; /* small side padding */
+        .hero-subtitle-container .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1em;
+            background: var(--accent-2);
+            animation: blink 0.7s infinite;
+            vertical-align: middle;
         }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .hero-description {
+            font-size: clamp(1rem, 1.8vw, 1.1rem);
+            color: var(--text-muted);
+            max-width: 60ch;
+        }
+
+        .hero-actions { display: flex; gap: 16px; margin-top: 16px; }
+
+        .cta-button {
+            padding: 14px 32px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--accent);
+            background: var(--accent);
+            color: #fff;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4);
+        }
+
+        .section { padding: 6rem 0; }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4rem;
+            letter-spacing: -0.01em;
+        }
+
         .project-card {
-            background-color: var(--primary-bg);
-            border-radius: 16px;
+            background: var(--card);
+            backdrop-filter: blur(12px);
+            border-radius: var(--radius-md);
             overflow: hidden;
-            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            display: flex;
-            flex-direction: column;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
             position: relative;
-            border: 1px solid var(--border-color);
-        }
-        .project-card::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(0, 163, 255, 0.1), transparent 40%);
-            border-radius: inherit;
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-        .project-card:hover::before {
-            opacity: 1;
         }
         .project-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 40px var(--shadow-color-1), 0 0 30px var(--glow-color);
-            border-color: rgba(0, 163, 255, 0.3);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent);
         }
 
-        /* Images & cards fit */
-        .project-card, .project-image, img {
-          max-width: 100%;
-          height: auto;
-        }
-        .project-image {
-            width: 100%;
-            /* height: 250px; */
-            object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-        .project-card:hover .project-image {
-            transform: scale(1.08);
-        }
-        .project-content {
-            padding: 2rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        .project-title {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-        .project-description {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-        .project-tags {
-            margin-bottom: 1.5rem;
-        }
-        .project-tags span {
-            background-color: var(--secondary-bg);
-            color: var(--accent-color);
-            padding: 5px 12px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            margin-right: 8px;
-            display: inline-block;
-            margin-bottom: 5px;
-        }
-        .project-links a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 600;
-            margin-right: 20px;
-            transition: color 0.3s ease, transform 0.3s ease;
-            display: inline-block;
-        }
-        .project-links a:hover {
-            color: var(--text-primary);
-            transform: translateY(-2px);
-        }
-        .project-links i {
-            margin-right: 8px;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
         .skill-card {
-            background-color: var(--primary-bg);
+            background: var(--card);
             padding: 2rem 1rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
         .skill-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 10px 20px var(--shadow-color-1), 0 0 15px var(--glow-color);
-            border-color: var(--accent-color);
+            box-shadow: 0 0 30px var(--accent-soft);
+            border-color: var(--accent);
         }
         .skill-icon {
             font-size: 3rem;
-            color: var(--accent-color);
+            color: var(--accent);
             margin-bottom: 1rem;
+            transition: transform 0.3s ease;
         }
-        .skill-name {
-            font-weight: 500;
-            color: var(--text-secondary);
-        }
+        .skill-card:hover .skill-icon { transform: scale(1.1); }
 
-        /* About Section */
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-        }
-        .about-image {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--accent-color);
-            box-shadow: 0 0 30px var(--glow-color);
-        }
-        .about-text p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-secondary);
-        }
-        .about-text p:first-child {
-            font-size: 1.3rem;
-            color: var(--text-primary);
-            font-weight: 500;
-        }
-
-        /* Education Section - Timeline */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 4px;
-            background-color: var(--border-color);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -2px;
-            border-radius: 2px;
-        }
-        .timeline-item {
-            padding: 1rem 3rem;
-            position: relative;
-            width: 50%;
-        }
-        .timeline-item:nth-child(odd) {
-            left: 0;
-            padding-left: 0;
-            padding-right: 4rem;
-            text-align: right;
-        }
-        .timeline-item:nth-child(even) {
-            left: 50%;
-            padding-right: 0;
-            padding-left: 4rem;
-        }
-        .timeline-dot {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: var(--bg-color);
-            border: 4px solid var(--accent-color);
-            top: 24px;
-            border-radius: 50%;
-            z-index: 1;
-            box-shadow: 0 0 10px var(--glow-color);
-        }
-        .timeline-item:nth-child(odd) .timeline-dot {
-            right: -10px;
-        }
-        .timeline-item:nth-child(even) .timeline-dot {
-            left: -10px;
-        }
-        .timeline-content {
-            padding: 1.5rem;
-            background-color: var(--primary-bg);
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-        }
-        .timeline-item:hover .timeline-content {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px var(--shadow-color-1);
-            border-color: var(--accent-color);
-        }
-        .timeline-date {
-            font-weight: 600;
-            color: var(--accent-color);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-        .timeline-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-        .timeline-institution {
-            font-style: italic;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-        .timeline-description {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        /* Certifications Section */
-        .certifications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-        }
-        .certification-card {
-            background-color: var(--primary-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-        }
-        .certification-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 20px var(--shadow-color-1), 0 0 15px var(--glow-color);
-            border-color: var(--accent-color);
-        }
-        .certification-icon {
-            font-size: 3rem;
-            color: var(--accent-color);
-            flex-shrink: 0;
-        }
-        .certification-content {
-            flex-grow: 1;
-        }
-        .certification-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-        }
-        .certification-issuer {
-            color: var(--text-secondary);
-            margin-bottom: 0.25rem;
-            font-weight: 500;
-        }
-        .certification-credential {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-        .certification-link {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-        .certification-link:hover {
-            color: var(--text-primary);
-        }
-        .certification-link i {
-            margin-left: 5px;
-            font-size: 0.8em;
-        }
-
-        /* Contact Section */
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: flex-start;
-        }
-        .contact-info {
-            background-color: var(--primary-bg);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
-        .contact-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-            color: var(--text-primary);
-        }
-        .contact-info-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
-            color: var(--text-secondary);
-        }
-        .contact-info-item i {
-            font-size: 1.5rem;
-            color: var(--accent-color);
-            margin-right: 1.5rem;
-            margin-top: 5px;
-            width: 25px;
-            text-align: center;
-        }
-        .contact-info-item p {
-            margin: 0;
-            line-height: 1.6;
-        }
-        .contact-info-item a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .contact-info-item a:hover {
-            color: var(--accent-color);
-        }
-
-        .contact-form {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        .form-group {
-            margin-bottom: 2rem;
-        }
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            background-color: var(--primary-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-primary);
-            font-size: 1rem;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 10px var(--glow-color);
-        }
-        .submit-btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-            border: none;
-            cursor: pointer;
-            background-color: var(--accent-color);
-            color: var(--bg-color);
-            font-size: 1.1rem;
-            width: 100%;
-        }
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px var(--shadow-color-2);
-        }
-
-        /* Footer */
         .footer {
-            background-color: var(--primary-bg);
+            background: var(--bg-alt);
             text-align: center;
             padding: 4rem 0;
             margin-top: 4rem;
-            border-top: 1px solid var(--border-color);
-            position: relative;
-            overflow: hidden;
-        }
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
-            animation: footer-line 5s linear infinite;
-        }
-        @keyframes footer-line {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .footer p {
-            color: var(--text-secondary);
-            margin-top: 1.5rem;
-        }
-
-        .domain-links {
-            margin-top: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .domain-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 1rem;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
-        }
-
-        .domain-links a:hover {
-            color: var(--accent-color);
-            text-shadow: 0 0 10px var(--glow-color);
+            border-top: 1px solid var(--border);
         }
 
         .social-links a {
-            color: var(--text-secondary);
-            font-size: 2rem;
-            margin: 0 20px;
-            transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+            color: var(--text-muted);
+            font-size: 1.8rem;
+            margin: 0 15px;
+            transition: color 0.3s ease, transform 0.3s ease;
             display: inline-block;
         }
+        .social-links a:hover { color: var(--accent); transform: translateY(-5px); }
 
-        .social-links a:hover {
-            color: var(--accent-color);
-            transform: translateY(-5px) scale(1.1);
-            text-shadow: 0 0 15px var(--glow-color);
-        }
-
-        /* Scroll-to-top button */
         .scroll-to-top {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background-color: var(--accent-color);
-            color: var(--bg-color);
+            bottom: 30px; right: 30px;
+            width: 48px; height: 48px;
+            background: var(--accent);
+            color: #fff;
             border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
+            border: none; cursor: pointer;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 1.2rem;
             z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
+            opacity: 0; visibility: hidden;
             transform: translateY(20px);
-            transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
-            box-shadow: 0 5px 15px var(--shadow-color-2);
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
         }
-        .scroll-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .scroll-to-top:hover {
-            box-shadow: 0 10px 25px rgba(0, 163, 255, 0.5);
-            transform: translateY(-5px);
-        }
+        .scroll-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+        .scroll-to-top:hover { box-shadow: 0 10px 25px rgba(79, 70, 229, 0.5); transform: translateY(-5px); }
 
-        /* Prevent horizontal overflow */
-        .main-content, .footer {
-            overflow-x: hidden;
-        }
-
-        /* Responsive Design */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 2rem;
-            cursor: pointer;
-            z-index: 1003;
-            transition: transform 0.3s ease;
-        }
-        .menu-toggle:hover {
-            transform: scale(1.2);
-        }
-
-        @media (max-width: 992px) {
-            .about-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            body {
-                overflow-x: hidden; /* Prevent horizontal scroll */
-            }
-
-            .hero {
-                padding: 100px 0;
-            }
-
-            .header-content {
-                position: relative;
-            }
-
-            .header-controls {
-                display: flex;
-                align-items: center;
-                gap: 20px;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                max-width: 320px;
-                height: 100%;
-                background-color: color-mix(in srgb, var(--primary-bg) 90%, transparent);
-                backdrop-filter: blur(20px);
-                -webkit-backdrop-filter: blur(20px);
-                flex-direction: column;
-                padding: 6rem 2rem 2rem;
-                z-index: 1002;
-                transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-                display: flex;
-                border-left: 1px solid var(--border-color);
-                box-shadow: -10px 0 50px rgba(0,0,0,0.3);
-            }
-
-            .nav-links.is-open {
-                right: 0;
-            }
-
-            .nav-links li {
-                margin: 1.2rem 0;
-                transform: translateX(40px);
-                opacity: 0;
-                transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-                width: 100%;
-            }
-            
-            .nav-links.is-open li {
-                transform: translateX(0);
-                opacity: 1;
-            }
-
-            .nav-links.is-open li:nth-child(1) { transition-delay: 0.1s; }
-            .nav-links.is-open li:nth-child(2) { transition-delay: 0.15s; }
-            .nav-links.is-open li:nth-child(3) { transition-delay: 0.2s; }
-            .nav-links.is-open li:nth-child(4) { transition-delay: 0.25s; }
-            .nav-links.is-open li:nth-child(5) { transition-delay: 0.3s; }
-
-            .nav-links a {
-                font-size: 1.2rem;
-                font-weight: 700;
-            }
-
-            .menu-toggle {
-                display: block;
-                z-index: 1003;
-                order: 2; /* Ensure it's after the theme toggle */
-            }
-
-            .hero h1 {
-                font-size: calc(1.8rem + 3vw);
-                min-height: 0; /* Reset min-height for mobile */
-            }
-
-            .hero .hero-subtitle {
-                font-size: 1.1rem;
-                min-height: 0; /* Reset min-height for mobile */
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .timeline-title {
-                font-size: 1.2rem;
-            }
-            .certification-title {
-                font-size: 1.1rem;
-            }
-
-            /* Responsive Timeline */
-            .timeline::after {
-                left: 20px;
-            }
-            .timeline-item {
-                width: 100%;
-                padding: 1rem 15px 1rem 50px;
-            }
-            .timeline-item:nth-child(odd),
-            .timeline-item:nth-child(even) {
-                left: 0;
-                padding: 1rem 15px 1rem 50px;
-                text-align: left;
-            }
-            .timeline-dot {
-                left: 10px;
-            }
-            .timeline-item:nth-child(odd) .timeline-dot,
-            .timeline-item:nth-child(even) .timeline-dot {
-                left: 10px;
-            }
-            .timeline-content {
-                text-align: left;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .social-links a {
-                margin: 0 10px;
-            }
-        }
+        /* Keep other styles like grid, timeline, contact, etc. as they are well-structured */
+        /* ... (rest of your original CSS) ... */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
+        .project-image { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+        .project-content { padding: 1.5rem; }
+        .project-title { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 600; margin-bottom: 0.75rem; }
+        .project-description { color: var(--text-muted); margin-bottom: 1rem; font-size: 0.95rem; }
+        .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem; }
+        .project-tags span { background: var(--accent-soft); color: var(--accent); padding: 5px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 500; }
+        .project-links a { color: var(--text-muted); text-decoration: none; font-weight: 600; margin-right: 20px; transition: color 0.3s ease; }
+        .project-links a:hover { color: var(--accent); }
+        .project-links i { margin-right: 8px; }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 2rem; text-align: center; }
+        .skill-name { font-weight: 500; color: var(--text-muted); }
+        .about-content { display: grid; grid-template-columns: 1fr 2fr; align-items: center; gap: 4rem; }
+        .about-image { width: 100%; max-width: 350px; border-radius: var(--radius-lg); object-fit: cover; border: 2px solid var(--border); box-shadow: var(--shadow); justify-self: center; }
+        .about-text p { font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--text-muted); }
+        .about-text p:first-child { font-size: 1.3rem; color: var(--text); font-weight: 500; }
+        .timeline { position: relative; max-width: 800px; margin: 0 auto; }
+        .timeline::after { content: ''; position: absolute; width: 4px; background-color: var(--border); top: 0; bottom: 0; left: 50%; margin-left: -2px; border-radius: 2px; }
+        .timeline-item { padding: 1rem 3rem; position: relative; width: 50%; }
+        .timeline-item:nth-child(odd) { left: 0; padding-left: 0; padding-right: 4rem; text-align: right; }
+        .timeline-item:nth-child(even) { left: 50%; padding-right: 0; padding-left: 4rem; }
+        .timeline-dot { content: ''; position: absolute; width: 20px; height: 20px; background-color: var(--bg); border: 4px solid var(--accent); top: 24px; border-radius: 50%; z-index: 1; box-shadow: 0 0 10px var(--accent-soft); }
+        .timeline-item:nth-child(odd) .timeline-dot { right: -10px; }
+        .timeline-item:nth-child(even) .timeline-dot { left: -10px; }
+        .timeline-content { padding: 1.5rem; background: var(--card); border-radius: var(--radius-md); border: 1px solid var(--border); transition: all 0.3s ease; }
+        .timeline-item:hover .timeline-content { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--accent); }
+        .timeline-date { font-weight: 600; color: var(--accent); font-size: 0.9rem; margin-bottom: 0.5rem; display: block; }
+        .timeline-title { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .timeline-institution { font-style: italic; color: var(--text-muted); margin-bottom: 1rem; }
+        .timeline-description { color: var(--text-muted); font-size: 0.95rem; }
+        .certifications-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
+        .certification-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 2rem; display: flex; align-items: center; gap: 1.5rem; transition: all 0.3s ease; }
+        .certification-card:hover { transform: translateY(-8px); box-shadow: var(--shadow); border-color: var(--accent); }
+        .certification-icon { font-size: 3rem; color: var(--accent); flex-shrink: 0; }
+        .certification-content { flex-grow: 1; }
+        .certification-title { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .certification-issuer { color: var(--text-muted); margin-bottom: 0.25rem; font-weight: 500; }
+        .certification-credential { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
+        .certification-link { color: var(--accent); text-decoration: none; font-weight: 600; transition: color 0.3s ease; }
+        .certification-link:hover { color: var(--text); }
+        .certification-link i { margin-left: 5px; font-size: 0.8em; }
+        .contact-container { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: flex-start; }
+        .contact-info { background: var(--card-solid); padding: 2rem; border-radius: var(--radius-md); border: 1px solid var(--border); }
+        .contact-info h3 { font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 2rem; color: var(--text); }
+        .contact-info-item { display: flex; align-items: flex-start; margin-bottom: 1.5rem; color: var(--text-muted); }
+        .contact-info-item i { font-size: 1.5rem; color: var(--accent); margin-right: 1.5rem; margin-top: 5px; width: 25px; text-align: center; }
+        .contact-info-item p { margin: 0; line-height: 1.6; }
+        .contact-info-item a { color: var(--text-muted); text-decoration: none; transition: color 0.3s ease; }
+        .contact-info-item a:hover { color: var(--accent); }
+        .contact-form { max-width: 700px; margin: 0 auto; }
+        .form-group { margin-bottom: 2rem; }
+        .form-group input, .form-group textarea { width: 100%; padding: 1rem; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); font-size: 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 10px var(--accent-soft); }
+        .submit-btn { display: inline-block; padding: 1rem 2.5rem; border-radius: var(--radius-sm); text-decoration: none; font-weight: 700; transition: transform 0.3s ease, box-shadow 0.3s ease; border: none; cursor: pointer; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; font-size: 1.1rem; width: 100%; box-shadow: 0 15px 30px rgba(79, 70, 229, 0.25); }
+        .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(124, 58, 237, 0.3); }
+        .footer p { color: var(--text-muted); margin-top: 1.5rem; }
+        .domain-links { margin-top: 1.5rem; margin-bottom: 1.5rem; }
+        .domain-links a { color: var(--text-muted); text-decoration: none; margin: 0 15px; font-size: 1rem; transition: color 0.3s ease; }
+        .domain-links a:hover { color: var(--accent); }
+        @media (max-width: 992px) { .about-content { grid-template-columns: 1fr; text-align: center; } .contact-container { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { .nav-bar { padding: 14px 0; } nav { position: fixed; top: 0; right: -100%; width: min(80vw, 320px); height: 100vh; background: var(--glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 1000; transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1); border-left: 1px solid var(--border); box-shadow: -10px 0 50px rgba(0,0,0,0.3); } nav.is-open { right: 0; } nav ul { flex-direction: column; padding: 6rem 2rem 2rem; align-items: flex-start; gap: 1rem; } nav ul li { width: 100%; } nav a { font-size: 1.2rem; font-weight: 600; width: 100%; padding: 14px 20px; } .menu-toggle { display: flex; } .hero h1 { font-size: calc(1.8rem + 3vw); } .hero .hero-subtitle { font-size: 1.1rem; } .section-title { font-size: 2rem; } .timeline::after { left: 20px; } .timeline-item { width: 100%; padding: 1rem 15px 1rem 50px; } .timeline-item:nth-child(odd), .timeline-item:nth-child(even) { left: 0; padding: 1rem 15px 1rem 50px; text-align: left; } .timeline-dot, .timeline-item:nth-child(odd) .timeline-dot, .timeline-item:nth-child(even) .timeline-dot { left: 10px; } .timeline-content { text-align: left; } .projects-grid { grid-template-columns: 1fr; } .social-links a { margin: 0 10px; } }
     </style>
 </head>
 <body>
     <div class="preloader">
-        <div class="loader"></div>
+        <div class="pk-loader">
+            <span data-letter="P">P</span>
+            <span data-letter="K">K</span>
+        </div>
+        <p>Welcome To Portfolio</p>
     </div>
+
+    <canvas id="background-canvas"></canvas>
     <div id="root"></div>
-    <button class="scroll-to-top"><i class="fas fa-arrow-up"></i></button>
 
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/@formspree/react@latest/dist/formspree-react.min.js"></script>
+    <script>
+        // Background Constellation Effect
+        const canvas = document.getElementById('background-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray;
+
+        const mouse = { x: null, y: null, radius: (canvas.height/120) * (canvas.width/120) };
+
+        window.addEventListener('mousemove', e => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+        window.addEventListener('mouseout', () => {
+            mouse.x = undefined;
+            mouse.y = undefined;
+        });
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            mouse.radius = (canvas.height/120) * (canvas.width/120);
+            init();
+        });
+
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) {
+                this.x = x; this.y = y;
+                this.directionX = directionX; this.directionY = directionY;
+                this.size = size; this.color = color;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = document.documentElement.getAttribute('data-theme') === 'dark' ? 'rgba(234, 234, 242, 0.3)' : 'rgba(75, 85, 99, 0.3)';
+                ctx.fill();
+            }
+            update() {
+                if (this.x > canvas.width || this.x < 0) this.directionX = -this.directionX;
+                if (this.y > canvas.height || this.y < 0) this.directionY = -this.directionY;
+                this.x += this.directionX;
+                this.y += this.directionY;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * .4) - .2;
+                let directionY = (Math.random() * .4) - .2;
+                particlesArray.push(new Particle(x, y, directionX, directionY, size));
+            }
+        }
+
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
+                                 + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                    if (distance < (canvas.width/7) * (canvas.height/7)) {
+                        opacityValue = 1 - (distance/20000);
+                        let color = document.documentElement.getAttribute('data-theme') === 'dark' ? `rgba(79, 70, 229, ${opacityValue})` : `rgba(67, 56, 202, ${opacityValue})`;
+                        ctx.strokeStyle = color;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0,0,innerWidth, innerHeight);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+            connect();
+        }
+
+        init();
+        animate();
+    </script>
     <script type="text/babel">
-        const Header = ({ onLinkClick, activeSection, theme, toggleTheme, isMobile }) => {
+        const { useForm } = FormspreeReact;
+        const Header = ({ onLinkClick, activeSection, theme, toggleTheme }) => {
             const [isMenuOpen, setIsMenuOpen] = React.useState(false);
             const navLinks = ['Projects', 'Skills', 'About', 'Education', 'Certifications', 'Contact'];
-            const logoText = isMobile ? "PK" : "Prathish Kumar S";
 
             const handleLinkClick = (e, section) => {
                 e.preventDefault();
@@ -1035,181 +577,121 @@
                 setIsMenuOpen(false);
             };
 
+            React.useEffect(() => {
+                document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+            }, [isMenuOpen]);
+
             return (
-                <header className="header" data-aos="fade-down">
-                    <div className="container header-content">
+                <header className="header">
+                    <div className="container nav-bar">
                         <a href="#" onClick={(e) => handleLinkClick(e, 'hero')} className="logo">
-                            {logoText}
+                           PK
                         </a>
-                        <div className="header-controls">
-                             <button onClick={toggleTheme} className="theme-toggle-btn" aria-label="Toggle theme">
-                                <i className={`fas ${theme === 'dark' ? 'fa-sun' : 'fa-moon'}`}></i>
-                            </button>
-                            <button className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                                <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
-                            </button>
-                        </div>
-                        <nav>
-                            <ul className={`nav-links ${isMenuOpen ? 'is-open' : ''}`}>
+                        <nav className={isMenuOpen ? 'is-open' : ''}>
+                            <ul>
                                 {navLinks.map(link => (
-                                    <li key={link}><a href={`#${link.toLowerCase()}`} 
-                                        className={activeSection === link.toLowerCase() ? 'active' : ''}
-                                        onClick={(e) => handleLinkClick(e, link.toLowerCase())}>{link}</a></li>
+                                    <li key={link}>
+                                        <a href={`#${link.toLowerCase()}`} 
+                                           className={activeSection === link.toLowerCase() ? 'active' : ''}
+                                           onClick={(e) => handleLinkClick(e, link.toLowerCase())}>
+                                            {link}
+                                        </a>
+                                    </li>
                                 ))}
                             </ul>
                         </nav>
+                        <div className="nav-actions">
+                            <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle theme">
+                                <i className={`fas ${theme === 'dark' ? 'fa-sun' : 'fa-moon'}`}></i>
+                            </button>
+                            <button className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
+                                <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
+                            </button>
+                        </div>
                     </div>
                 </header>
             );
         };
 
-        class TextScramble {
-            constructor(el) {
-                this.el = el;
-                this.chars = '!<>-_\\/[]{}—=+*^?#________';
-                this.update = this.update.bind(this);
-            }
-            setText(newText) {
-                const oldText = this.el.innerText;
-                const length = Math.max(oldText.length, newText.length);
-                const promise = new Promise(resolve => (this.resolve = resolve));
-                this.queue = [];
-                for (let i = 0; i < length; i++) {
-                    const from = oldText[i] || '';
-                    const to = newText[i] || '';
-                    const start = Math.floor(Math.random() * 40);
-                    const end = start + Math.floor(Math.random() * 40);
-                    this.queue.push({ from, to, start, end });
-                }
-                cancelAnimationFrame(this.frameRequest);
-                this.frame = 0;
-                this.update();
-                return promise;
-            }
-            update() {
-                let output = '';
-                let complete = 0;
-                for (let i = 0, n = this.queue.length; i < n; i++) {
-                    let { from, to, start, end, char } = this.queue[i];
-                    if (this.frame >= end) {
-                        complete++;
-                        output += to;
-                    } else if (this.frame >= start) {
-                        if (!char || Math.random() < 0.28) {
-                            char = this.randomChar();
-                            this.queue[i].char = char;
-                        }
-                        output += `<span class="scramble-char">${char}</span>`;
-                    } else {
-                        output += from;
-                    }
-                }
-                this.el.innerHTML = output;
-                if (complete === this.queue.length) {
-                    this.resolve();
-                } else {
-                    this.frameRequest = requestAnimationFrame(this.update);
-                    this.frame++;
-                }
-            }
-            randomChar() {
-                return this.chars[Math.floor(Math.random() * this.chars.length)];
-            }
-        }
-
         const Hero = () => {
-            const nameRef = React.useRef();
-            const subtitleRef = React.useRef();
-            
-            const nameText = "Prathish Kumar S";
-            const subtitles = [
+            const subtitles = React.useMemo(() => [
                 "Laptop Hardware & Software",
                 "Ethical Hacker",
                 "Cybersecurity Enthusiast",
-                "Frendend devloper"
-            ];
+                "Frontend Developer"
+            ], []);
+            const [currentSubtitle, setCurrentSubtitle] = React.useState('');
             const [subtitleIndex, setSubtitleIndex] = React.useState(0);
-
-            const restartAnimation = () => {
-                const nameScrambler = new TextScramble(nameRef.current);
-                const subtitleScrambler = new TextScramble(subtitleRef.current);
-                
-                nameScrambler.setText(nameText).then(() => {
-                    setTimeout(() => {
-                        subtitleScrambler.setText(subtitles[subtitleIndex]);
-                    }, 500);
-                });
-            };
+            const [isDeleting, setIsDeleting] = React.useState(false);
 
             React.useEffect(() => {
-                restartAnimation();
-                
-                const interval = setInterval(() => {
-                    setSubtitleIndex(prevIndex => (prevIndex + 1) % subtitles.length);
-                }, 5000);
+                const handleTyping = () => {
+                    const fullText = subtitles[subtitleIndex];
+                    setCurrentSubtitle(current => 
+                        isDeleting 
+                        ? fullText.substring(0, current.length - 1)
+                        : fullText.substring(0, current.length + 1)
+                    );
 
-                return () => clearInterval(interval);
-            }, []);
-
-            React.useEffect(() => {
-                const subtitleScrambler = new TextScramble(subtitleRef.current);
-                subtitleScrambler.setText(subtitles[subtitleIndex]);
-            }, [subtitleIndex]);
+                    if (!isDeleting && currentSubtitle === fullText) {
+                        setTimeout(() => setIsDeleting(true), 2000);
+                    } else if (isDeleting && currentSubtitle === '') {
+                        setIsDeleting(false);
+                        setSubtitleIndex((prev) => (prev + 1) % subtitles.length);
+                    }
+                };
+                const typingSpeed = isDeleting ? 50 : 120;
+                const timer = setTimeout(handleTyping, typingSpeed);
+                return () => clearTimeout(timer);
+            }, [currentSubtitle, isDeleting, subtitleIndex, subtitles]);
 
             return (
                 <section className="hero" id="hero">
-                    <video className="hero-video" autoPlay loop muted playsInline>
-                        <source src="https://cdn.pixabay.com/video/2020/02/29/33333-385446711_large.mp4" type="video/mp4" />
-                    </video>
-                    <div className="hero-overlay"></div>
-                    <div className="container" data-aos="zoom-in">
-                        <h1 ref={nameRef} onClick={restartAnimation}></h1>
-                        <p className="hero-subtitle" ref={subtitleRef} onClick={restartAnimation}></p>
-                    </div>
-                </section>
-            );
-        };
-
-        const Projects = ({ projects }) => {
-            React.useEffect(() => {
-                const cards = document.querySelectorAll('.project-card');
-                cards.forEach(card => {
-                    card.addEventListener('mousemove', e => {
-                        const rect = card.getBoundingClientRect();
-                        const x = e.clientX - rect.left;
-                        const y = e.clientY - rect.top;
-                        card.style.setProperty('--mouse-x', `${x}px`);
-                        card.style.setProperty('--mouse-y', `${y}px`);
-                    });
-                });
-            }, [projects]);
-
-            return (
-                <section className="section" id="projects">
-                    <div className="container">
-                        <h2 className="section-title" data-aos="fade-up">Projects</h2>
-                        <div className="projects-grid">
-                            {projects.map((project, index) => (
-                                <div className="project-card" key={project.id} data-aos="fade-up" data-aos-delay={index * 100}>
-                                    <img src={project.image} alt={project.title} className="project-image" />
-                                    <div className="project-content">
-                                        <h3 className="project-title">{project.title}</h3>
-                                        <p className="project-description">{project.description}</p>
-                                        <div className="project-tags">
-                                            {project.tags.map(tag => <span key={tag}>{tag}</span>)}
-                                        </div>
-                                        <div className="project-links">
-                                            <a href={project.liveUrl} target="www.prathihades.me" rel="noopener noreferrer"><i className="fas fa-globe"></i> Live Demo</a>
-                                            <a href={project.repoUrl} target="_blank" rel="noopener noreferrer"><i className="fab fa-github"></i> View Code</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
+                    <div className="container hero-content" data-aos="fade-in" data-aos-duration="1000">
+                        <div className="hero-kicker">Welcome To My Portfilio</div>
+                        <h1 className="hero-title">
+                            Prathish Kumar S
+                        </h1>
+                        <div className="hero-subtitle-container">
+                            <span>{currentSubtitle}</span>
+                            <span className="typing-cursor"></span>
+                        </div>
+                        <p className="hero-description">
+                            Crafting secure, cinematic web experiences. I merge frontend development with ethical hacking to build and protect the digital world.
+                        </p>
+                        <div className="hero-actions">
+                            <a href="https://drive.google.com/file/d/1yeRX2uAWedQAnHMZ_JnYIX5az06B65_l/view?usp=sharing" className="cta-button">Download Resume</a>
                         </div>
                     </div>
                 </section>
             );
         };
+
+        const Projects = ({ projects }) => (
+            <section className="section" id="projects">
+                <div className="container">
+                    <h2 className="section-title" data-aos="fade-up">Projects</h2>
+                    <div className="projects-grid">
+                        {projects.map((project, index) => (
+                            <div className="project-card" key={project.id} data-aos="fade-up" data-aos-delay={index * 100}>
+                                <img src={project.image} alt={project.title} className="project-image" />
+                                <div className="project-content">
+                                    <h3 className="project-title">{project.title}</h3>
+                                    <p className="project-description">{project.description}</p>
+                                    <div className="project-tags">
+                                        {project.tags.map(tag => <span key={tag}>{tag}</span>)}
+                                    </div>
+                                    <div className="project-links">
+                                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"><i className="fas fa-globe"></i> Live Demo</a>
+                                        <a href={project.repoUrl} target="_blank" rel="noopener noreferrer"><i className="fab fa-github"></i> View Code</a>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        );
 
         const Skills = ({ skills }) => (
             <section className="section" id="skills">
@@ -1234,7 +716,8 @@
                     <div className="about-content" data-aos="fade-up" data-aos-delay="100">
                         <img src="images/IMG-20250626-WA0001.jpg" alt="Prathish Kumar S" className="about-image" />
                         <div className="about-text">
-                            <p>I'm a multifaceted tech professional, skilled as both a Frendend Developer and an aspiring Ethical Hacker.</p>
+                            <p><b>Hi,Iam Prathish Kumar</b></p>
+                            <p>I'm a multifaceted tech professional, skilled as both a Frontend Developer and an aspiring Ethical Hacker.</p>
                             <p>My passion lies in the dual challenge of creating robust, user-friendly web applications and securing them against digital threats. I thrive on the synergy between building and breaking, using my developer's insight to inform my security practices.</p>
                             <p>I am constantly learning, diving deep into penetration testing methodologies and defensive strategies. When I'm not coding or hunting for vulnerabilities, I'm exploring the latest tech trends and contributing to the open-source community.</p>
                         </div>
@@ -1243,13 +726,13 @@
             </section>
         );
 
-        const Education = ({ education, isMobile }) => (
+        const Education = ({ education }) => (
             <section className="section" id="education">
                 <div className="container">
                     <h2 className="section-title" data-aos="fade-up">Education</h2>
                     <div className="timeline" data-aos="fade-up" data-aos-delay="100">
                         {education.map((edu, index) => (
-                            <div className="timeline-item" key={index} data-aos={isMobile ? "fade-right" : ""}>
+                            <div className="timeline-item" key={index}>
                                 <div className="timeline-dot"></div>
                                 <div className="timeline-content">
                                     <h3 className="timeline-title">{edu.degree}</h3>
@@ -1264,13 +747,13 @@
             </section>
         );
 
-        const Certifications = ({ certifications, isMobile }) => (
+        const Certifications = ({ certifications }) => (
             <section className="section" id="certifications">
                 <div className="container">
                     <h2 className="section-title" data-aos="fade-up">Certifications</h2>
                     <div className="certifications-grid">
                         {certifications.map((cert, index) => (
-                            <div className="certification-card" key={index} data-aos={isMobile ? "fade-left" : "fade-up"} data-aos-delay={index * 100}>
+                            <div className="certification-card" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
                                 <div className="certification-icon"><i className={cert.icon}></i></div>
                                 <div className="certification-content">
                                     <h3 className="certification-title">{cert.title}</h3>
@@ -1287,46 +770,62 @@
             </section>
         );
 
-        const Contact = () => (
-            <section className="section" id="contact">
-                <div className="container">
-                    <h2 className="section-title" data-aos="fade-up">Get In Touch</h2>
-                    <div className="contact-container" data-aos="fade-up" data-aos-delay="100">
-                        <div className="contact-info">
-                            <h3>Contact Information</h3>
-                            <div className="contact-info-item">
-                                <i className="fas fa-map-marker-alt"></i>
-                                <p>2/171, Pallivasal Street, Athuvazhi-627760, Sivagiri, Tenkasi, Tamil Nadu, India</p>
-                            </div>
-                            <div className="contact-info-item">
-                                <i className="fas fa-phone"></i>
-                                <p><a href="tel:+916383129892">+91 6383129892</a></p>
-                            </div>
-                            <div className="contact-info-item">
-                                <i className="fab fa-whatsapp"></i>
-                                <p><a href="https://wa.me/916383129892" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></p>
-                            </div>
-                             <div className="contact-info-item">
-                                <i className="fas fa-envelope"></i>
-                                <p><a href="mailto:prathish0558e@gmail.com">prathish0558e@gmail.com</a></p>
-                            </div>
+        const Contact = () => {
+            const [state, handleSubmit] = useForm("mvoezgqy");
+            if (state.succeeded) {
+                return (
+                    <section className="section" id="contact">
+                        <div className="container">
+                            <h2 className="section-title" data-aos="fade-up">Thanks for your message!</h2>
+                            <p style={{textAlign: 'center'}}>I'll get back to you soon.</p>
                         </div>
-                        <form className="contact-form">
-                            <div className="form-group">
-                                <input type="text" name="name" placeholder="Your Name" required />
+                    </section>
+                );
+            }
+
+            return (
+                <section className="section" id="contact">
+                    <div className="container">
+                        <h2 className="section-title" data-aos="fade-up">Get In Touch</h2>
+                        <div className="contact-container" data-aos="fade-up" data-aos-delay="100">
+                            <div className="contact-info">
+                                <h3>Contact Information</h3>
+                                <div className="contact-info-item">
+                                    <i className="fas fa-map-marker-alt"></i>
+                                    <p>2/171, Pallivasal Street, Athuvazhi-627760, Sivagiri, Tenkasi, Tamil Nadu, India</p>
+                                </div>
+                                <div className="contact-info-item">
+                                    <i className="fas fa-phone"></i>
+                                    <p><a href="tel:+916383129892">+91 6383129892</a></p>
+                                </div>
+                                <div className="contact-info-item">
+                                    <i className="fab fa-whatsapp"></i>
+                                    <p><a href="https://wa.me/916383129892" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></p>
+                                </div>
+                                 <div className="contact-info-item">
+                                    <i className="fas fa-envelope"></i>
+                                    <p><a href="mailto:prathish0558e@gmail.com">prathish0558e@gmail.com</a></p>
+                                </div>
                             </div>
-                            <div className="form-group">
-                                <input type="email" name="email" placeholder="Your Email" required />
-                            </div>
-                            <div className="form-group">
-                                <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
-                            </div>
-                            <button type="submit" className="submit-btn">Send Message</button>
-                        </form>
+                            <form className="contact-form" onSubmit={handleSubmit}>
+                                <div className="form-group">
+                                    <input id="name" type="text" name="name" placeholder="Your Name" required />
+                                </div>
+                                <div className="form-group">
+                                    <input id="email" type="email" name="email" placeholder="Your Email" required />
+                                </div>
+                                <div className="form-group">
+                                    <textarea id="message" name="message" rows="6" placeholder="Your Message" required></textarea>
+                                </div>
+                                <button type="submit" className="submit-btn" disabled={state.submitting}>
+                                    {state.submitting ? 'Sending...' : 'Send Message'}
+                                </button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-            </section>
-        );
+                </section>
+            );
+        };
 
         const Footer = () => (
             <footer className="footer" data-aos="fade-up">
@@ -1339,10 +838,10 @@
                         <a href="tel:+916383129892" aria-label="Call"><i className="fas fa-phone"></i></a>
                     </div>
                     <div className="domain-links">
-                        <a href="http://www.prathi.tech" target="_blank" rel="noopener noreferrer">www.prathi.tech</a>
-                        <a href="http://www.prathihades.me" target="_blank" rel="noopener noreferrer">www.prathihades.me</a>
+                        <a href="https://www.prathi.tech" target="_blank" rel="noopener noreferrer">www.prathi.tech</a>
+                        <a href="https://www.prathihades.me" target="_blank" rel="noopener noreferrer">www.prathihades.me</a>
                     </div>
-                    <p>&copy; 2025 Prathish Kumar S. All Rights Reserved.</p>
+                    <p>&copy; {new Date().getFullYear()} Prathish Kumar S. All Rights Reserved.</p>
                 </div>
             </footer>
         );
@@ -1351,14 +850,6 @@
             const [showScroll, setShowScroll] = React.useState(false);
             const [activeSection, setActiveSection] = React.useState('hero');
             const [theme, setTheme] = React.useState('dark');
-            const [isMobile, setIsMobile] = React.useState(false);
-
-            React.useEffect(() => {
-                const checkMobile = () => setIsMobile(window.innerWidth <= 768);
-                checkMobile();
-                window.addEventListener('resize', checkMobile);
-                return () => window.removeEventListener('resize', checkMobile);
-            }, []);
 
             const toggleTheme = () => {
                 const newTheme = theme === 'dark' ? 'light' : 'dark';
@@ -1373,28 +864,28 @@
 
             React.useEffect(() => {
                 document.documentElement.setAttribute('data-theme', theme);
-                document.querySelector('meta[name="theme-color"]').setAttribute('content', theme === 'dark' ? '#0A0A0A' : '#F5F5F7');
+                const themeColor = theme === 'dark' ? '#0a0a14' : '#F8F9FF';
+                document.querySelector('meta[name="theme-color"]').setAttribute('content', themeColor);
             }, [theme]);
 
             const projectsData = [
-
                 {
                     id: 1,
-                    title: 'Project Management Tool',
-                    description: 'A collaborative tool for teams to manage tasks. Built with a focus on secure user authentication and data integrity.',
-                    image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                    tags: ['Vue.js', 'Firebase', 'Auth', 'Data Integrity'],
-                    liveUrl: 'www.prathi.tech',
-                    repoUrl: 'www.github.com/prathish0558e/prathi.tech/index.html'
+                    title: 'Free Tools Hub (prathi.tech)',
+                    description: 'This Site is Fully Tools and Internship are Available. Built with Vue.js and Firebase, it offers a suite of free online tools with secure user authentication and data integrity features.',
+                    image: 'images/pk1.png',
+                    tags: ['Json', 'Firebase', 'Frontend Development'],
+                    liveUrl: 'https://www.prathi.tech',
+                    repoUrl: 'https://github.com/prathish0558e/prathi.tech'
                 },
                 {
                     id: 2,
-                    title: 'Secure Portfolio',
+                    title: 'My Portfolio Website (prathihades.me)',
                     description: 'This portfolio, built with React, showcases my skills in both development and design. It is a lightweight, fast, and secure single-page application.',
-                    image: 'https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                    tags: ['React', 'SPA', 'Performance', 'Security'],
-                    liveUrl: 'www.prathihades.me',
-                    repoUrl: 'www.github.com/prathish0558e/prathish0558e.github.io/index.html'
+                    image: 'images/pk2.png',              
+                    tags: ['React', 'Frontend Development', 'UI/UX Design'],
+                    liveUrl: 'https://www.prathihades.me',
+                    repoUrl: 'https://github.com/prathish0558e/prathish0558e.github.io'
                 }
             ];
 
@@ -1404,12 +895,15 @@
                 { name: 'JavaScript', icon: 'fab fa-js-square' },
                 { name: 'Node.js', icon: 'fab fa-node-js' },
                 { name: 'Python', icon: 'fab fa-python' },
-                { name: 'Pen Testing', icon: 'fas fa-shield-alt' },
+                { name: 'Pen Testing', icon: 'fas fa-shield-halved' },
                 { name: 'Metasploit', icon: 'fas fa-terminal' },
-                { name: 'Nmap', icon: 'fas fa-search-location' },
+                { name: 'Nmap', icon: 'fas fa-magnifying-glass-location' },
                 { name: 'Wireshark', icon: 'fas fa-bug' },
                 { name: 'Git', icon: 'fab fa-git-alt' },
-                { name: 'Figma', icon: 'fab fa-figma' }
+                { name: 'Figma', icon: 'fab fa-figma' },
+                { name: 'VS Code', icon: 'fas fa-code' },
+                { name: 'Linux', icon: 'fab fa-linux' },
+                { name: 'AWS', icon: 'fab fa-aws' }
             ];
 
             const educationData = [
@@ -1417,7 +911,7 @@
                     degree: 'B.Tech in Information Technology',
                     institution: 'PSN Engineering College, Tirunelveli',
                     period: '2022 - 2026 (Ongoing)',
-                    description: 'Currently in the final year, focusing on Frendend development, cloud computing, and AI.'
+                    description: 'Currently in the final year, focusing on Frontend development, cloud computing, and AI.'
                 },
                 {
                     degree: 'Higher Secondary Certificate (HSC)',
@@ -1440,7 +934,7 @@
                     date: 'Jul 2025',
                     credentialId: '2Ctx4iRjpf334sL2v',
                     icon: 'fab fa-aws',
-                    url: '#'
+                    url: 'https://raw.githubusercontent.com/prathish0558e/prathish0558e.github.io/main/images/kkE9HyeNcw6rwCRGw_pmnMSL4QiQ9JCgE3W_4PLqGQ6WFtKmZcWuR_1751401987568_completion_certificate.pdf'
                 },
                 {
                     title: 'Tata – Data Visualisation: Empowering Business with Effective Insights',
@@ -1448,7 +942,7 @@
                     date: 'Jul 2025',
                     credentialId: 'GNPHbbqCMg5wS9gr3',
                     icon: 'fas fa-chart-bar',
-                    url: '#'
+                    url: 'https://raw.githubusercontent.com/prathish0558e/prathish0558e.github.io/main/images/MyXvBcppsW2FkNYCX_ifobHAoMjQs9s6bKS_4PLqGQ6WFtKmZcWuR_1751443770899_completion_certificate.pdf'
                 },
                 {
                     title: 'Web Fundamentals: Web Development with HTML',
@@ -1456,7 +950,7 @@
                     date: 'Jul 2025',
                     credentialId: '153859358',
                     icon: 'fab fa-html5',
-                    url: '#'
+                    url: 'https://skillsoft.digitalbadges.skillsoft.com/d79f02e3-c9f5-435e-8e88-4e3c31af630b#acc.7L4yfRNF'
                 },
                 {
                     title: '1 Month Internship as a Frontend Developer',
@@ -1469,19 +963,31 @@
                 {
                     title: 'TCS iON Career Edge - Young Professional',
                     issuer: 'TCS iON',
-                    date: 'Apr 2024',
-                    credentialId: 'N/A',
+                    date: 'Jul 2025',
+                    credentialId: '240640-28581337-1016',
                     icon: 'fas fa-briefcase',
                     url: 'https://raw.githubusercontent.com/prathish0558e/prathish0558e.github.io/main/images/Prathish_Kumar_4904055.pdf'
+                },
+                {
+                    title: 'Program in Cyber Awareness AI Basic',
+                    issuer: 'NIIT Foundation',
+                    date: 'Aug 2025',
+                    credentialId: '26F0721590010197618',
+                    icon: 'fas fa-shield-alt',
+                    url: 'https://raw.githubusercontent.com/prathish0558e/prathish0558e.github.io/main/images/PRATHISH%20KUMAR%20S.pdf',
+                },
+                {
+                    title: 'Program in Cyber Awareness AI Basic',
+                    issuer: 'NIIT Foundation',
+                    date: 'Aug 2025',
+                    credentialId: '26F0721590010197618',
+                    icon: 'fas fa-certificate',
+                    url: 'https://raw.githubusercontent.com/prathish0558e/prathish0558e.github.io/main/images/_PRATHISH%20KUMAR%20S.pdf',
                 }
             ];
 
             const handleScroll = () => {
-                if (window.pageYOffset > 300) {
-                    setShowScroll(true);
-                } else {
-                    setShowScroll(false);
-                }
+                setShowScroll(window.pageYOffset > 300);
             };
 
             const scrollToTop = () => {
@@ -1500,11 +1006,11 @@
                 if (preloader) {
                     setTimeout(() => {
                         preloader.classList.add('hidden');
-                    }, 200);
+                    }, 1800);
                 }
                 
                 AOS.init({
-                    duration: 1000,
+                    duration: 800,
                     once: true,
                     offset: 50
                 });
@@ -1528,22 +1034,22 @@
             }, []);
 
             return (
-                <div>
-                    <Header onLinkClick={handleLinkClick} activeSection={activeSection} theme={theme} toggleTheme={toggleTheme} isMobile={isMobile} />
+                <React.Fragment>
+                    <Header onLinkClick={handleLinkClick} activeSection={activeSection} theme={theme} toggleTheme={toggleTheme} />
                     <main className="main-content">
                         <Hero />
                         <Projects projects={projectsData} />
                         <Skills skills={skillsData} />
                         <About />
-                        <Education education={educationData} isMobile={isMobile} />
-                        <Certifications certifications={certificationsData} isMobile={isMobile} />
+                        <Education education={educationData} />
+                        <Certifications certifications={certificationsData} />
                         <Contact />
                     </main>
                     <Footer />
-                    <button className={`scroll-to-top ${showScroll ? 'visible' : ''}`} onClick={scrollToTop}>
+                    <button className={`scroll-to-top ${showScroll ? 'visible' : ''}`} onClick={scrollToTop} aria-label="Scroll to top">
                         <i className="fas fa-arrow-up"></i>
                     </button>
-                </div>
+                </React.Fragment>
             );
         };
 
