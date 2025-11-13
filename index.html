@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prathish Kumar S • Portfolio</title>
+    <title>Prathish Kumar S • Creative Technologist</title>
     <meta name="description" content="Portfolio of Prathish Kumar S — Creative frontend engineer, ethical hacker, and experience designer crafting cinematic, secure interfaces.">
     <meta name="theme-color" id="theme-color-meta" content="#0a0a14">
     <link rel="icon" type="image/x-icon" href="images/pakistan.png">
@@ -12,8 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <link rel="stylesheet" href="assets/css/animations.css">
 
     <style>
@@ -155,37 +154,8 @@
             -webkit-backdrop-filter: blur(16px);
             background: var(--glass);
             border-bottom: 1px solid var(--border);
-            transition: transform 0.4s cubic-bezier(0.2, 0, 0, 1), background 0.3s ease, box-shadow 0.3s ease;
-            transform: translateY(0);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
         }
-
-        header.header-hidden {
-            transform: translateY(-100%);
-        }
-       
-        @media (max-width: 768px) {
-        nav {
-            position: fixed;
-            top: 0;
-            right: 0;
-            transform: translateX(100%);
-            width: min(80vw, 320px);
-            height: 100vh;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-           -webkit-backdrop-filter: blur(20px);
-            z-index: 1001; 
-           transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-           border-left: 1px solid var(--border);
-           box-shadow: -10px 0 50px rgba(0,0,0,0.3);
-        }
-       nav.is-open { transform: translateX(0); }
-       html, body { overflow-x: hidden; }
-       nav ul { flex-direction: column; padding: 6rem 2rem 2rem; align-items: flex-start; gap: 1rem; }
-       nav ul li { width: 100%; }
-       nav a { font-size: 1.1rem; font-weight: 600; width: 100%; padding: 14px 20px; display:block; }
-       }
-
 
         .nav-bar {
             display: flex;
@@ -356,34 +326,13 @@
             border-radius: var(--radius-md);
             overflow: hidden;
             border: 1px solid var(--border);
-            transition: transform 0.4s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
             position: relative;
-        }
-        .project-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: var(--radius-md);
-            border: 2px solid transparent;
-            background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(79, 70, 229, 0.4), transparent 40%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: 0;
-        }
-        .project-card:hover::before {
-            opacity: 1;
         }
         .project-card:hover {
-            transform: translateY(-10px) scale(1.02);
+            transform: translateY(-10px);
             box-shadow: var(--shadow);
-            border-color: rgba(79, 70, 229, 0.5);
-        }
-        .project-card > * {
-            position: relative;
-            z-index: 1;
+            border-color: var(--accent);
         }
 
         .skill-card {
@@ -567,19 +516,19 @@
             <span data-letter="P">P</span>
             <span data-letter="K">K</span>
         </div>
-        <p>Welcome To My Portfolio</p>
+        <p>Welcome To Portfolio</p>
     </div>
 
     <canvas id="background-canvas"></canvas>
     <div id="root"></div>
 
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@formspree/react@latest/dist/formspree-react.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-      
+        // Background Constellation Effect
         const canvas = document.getElementById('background-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -671,7 +620,7 @@
         animate();
     </script>
     <script type="text/babel">
-        const Header = ({ onLinkClick, activeSection, theme, toggleTheme, isHeaderVisible }) => {
+        const Header = ({ onLinkClick, activeSection, theme, toggleTheme }) => {
             const [isMenuOpen, setIsMenuOpen] = React.useState(false);
             const navLinks = ['Projects', 'Skills', 'About', 'Education', 'Certifications', 'Contact'];
 
@@ -686,7 +635,7 @@
             }, [isMenuOpen]);
 
             return (
-                <header className={`header ${isHeaderVisible ? '' : 'header-hidden'}`}>
+                <header className="header">
                     <div className="container nav-bar">
                         <a href="#" onClick={(e) => handleLinkClick(e, 'hero')} className="logo">
                            PK
@@ -752,7 +701,7 @@
             return (
                 <section className="hero" id="hero">
                     <div className="container hero-content" data-aos="fade-in" data-aos-duration="1000">
-                        <div className="hero-kicker">Welcome To My Portfolio</div>
+                        <div className="hero-kicker">Welcome To My Portfilio</div>
                         <h1 className="hero-title">
                             Prathish Kumar S
                         </h1>
@@ -771,50 +720,26 @@
             );
         };
 
-        const ProjectCard = ({ project, index }) => {
-            const cardRef = React.useRef(null);
-
-            React.useEffect(() => {
-                const card = cardRef.current;
-                if (!card) return;
-
-                const handleMouseMove = (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    card.style.setProperty('--mouse-x', `${x}px`);
-                    card.style.setProperty('--mouse-y', `${y}px`);
-                };
-
-                card.addEventListener('mousemove', handleMouseMove);
-                return () => card.removeEventListener('mousemove', handleMouseMove);
-            }, []);
-
-            return (
-                <div ref={cardRef} className="project-card" data-aos="fade-up" data-aos-delay={index * 100}>
-                    <img src={project.image} alt={project.title} className="project-image" />
-                    <div className="project-content">
-                        <h3 className="project-title">{project.title}</h3>
-                        <p className="project-description">{project.description}</p>
-                        <div className="project-tags">
-                            {project.tags.map(tag => <span key={tag}>{tag}</span>)}
-                        </div>
-                        <div className="project-links">
-                            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"><i className="fas fa-globe"></i> Live Demo</a>
-                            <a href={project.repoUrl} target="_blank" rel="noopener noreferrer"><i className="fab fa-github"></i> View Code</a>
-                        </div>
-                    </div>
-                </div>
-            );
-        };
-
         const Projects = ({ projects }) => (
             <section className="section" id="projects">
                 <div className="container">
                     <h2 className="section-title" data-aos="fade-up">Projects</h2>
                     <div className="projects-grid">
                         {projects.map((project, index) => (
-                           <ProjectCard project={project} index={index} key={project.id} />
+                            <div className="project-card" key={project.id} data-aos="fade-up" data-aos-delay={index * 100}>
+                                <img src={project.image} alt={project.title} className="project-image" />
+                                <div className="project-content">
+                                    <h3 className="project-title">{project.title}</h3>
+                                    <p className="project-description">{project.description}</p>
+                                    <div className="project-tags">
+                                        {project.tags.map(tag => <span key={tag}>{tag}</span>)}
+                                    </div>
+                                    <div className="project-links">
+                                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"><i className="fas fa-globe"></i> Live Demo</a>
+                                        <a href={project.repoUrl} target="_blank" rel="noopener noreferrer"><i className="fab fa-github"></i> View Code</a>
+                                    </div>
+                                </div>
+                            </div>
                         ))}
                     </div>
                 </div>
@@ -846,7 +771,7 @@
                             <img src="images/IMG-20250626-WA0001.jpg" alt="Prathish Kumar S" className="about-image" />
                         </div>
                         <div className="about-text">
-                            <p><b>Hi,I'am Prathish Kumar</b></p>
+                            <p><b>Hi,Iam Prathish Kumar</b></p>
                             <p>I'm a multifaceted tech professional, skilled as both a Frontend Developer and an aspiring Ethical Hacker.</p>
                             <p>My passion lies in the dual challenge of creating robust, user-friendly web applications and securing them against digital threats. I thrive on the synergy between building and breaking, using my developer's insight to inform my security practices.</p>
                             <p>I am constantly learning, diving deep into penetration testing methodologies and defensive strategies. When I'm not coding or hunting for vulnerabilities, I'm exploring the latest tech trends and contributing to the open-source community.</p>
@@ -901,71 +826,90 @@
         );
 
         const Contact = () => {
-            const [formData, setFormData] = React.useState({ name: '', email: '', message: '' });
-            const [status, setStatus] = React.useState('');
+          const [formData, setFormData] = React.useState({ name: '', email: '', message: '' });
+          const [status, setStatus] = React.useState('');
+          const [isSending, setIsSending] = React.useState(false);
 
-            const handleChange = (e) => {
-                setFormData({ ...formData, [e.target.name]: e.target.value });
-            };
+          const handleChange = (e) => setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
 
-            const handleEmailSubmit = (e) => {
-                e.preventDefault();
-                if (!formData.name || !formData.email || !formData.message) {
-                    setStatus('Please fill out all fields.');
-                    return;
-                }
-                setStatus('Redirecting to your email client...');
-                const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
-                const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
-                window.location.href = `mailto:prathish0558e@gmail.com?subject=${subject}&body=${body}`;
-                
-                setTimeout(() => {
-                    setStatus('');
-                    setFormData({ name: '', email: '', message: '' });
-                }, 3000);
-            };
+          const handleEmailSubmit = async (e) => {
+            e.preventDefault();
+            if (!formData.name || !formData.email || !formData.message) {
+              setStatus('Please fill out all fields.');
+              return;
+            }
 
-            return (
+            setIsSending(true);
+            setStatus('Sending...');
+
+            try {
+              const res = await fetch('http://localhost:3000/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(formData)
+              });
+
+              const data = await res.json();
+
+              if (res.ok) {
+                setStatus('Message sent — thanks!');
+                setFormData({ name: '', email: '', message: '' });
+              } else {
+                setStatus(data && data.error ? data.error : 'Send failed. Try again.');
+              }
+            } catch (err) {
+              console.error('Network error', err);
+              setStatus('Network error — please try again.');
+            } finally {
+              setIsSending(false);
+              setTimeout(() => setStatus(''), 5000);
+            }
+          };
+
+          return (
             <section className="section" id="contact">
-                <div className="container">
-                    <h2 className="section-title" data-aos="fade-up">Get In Touch</h2>
-                    <div className="contact-container" data-aos="fade-up" data-aos-delay="100">
-                        <div className="contact-info">
-                            <h3>Contact Information</h3>
-                            <div className="contact-info-item">
-                                <i className="fas fa-map-marker-alt"></i>
-                                <p>2/171, Pallivasal Street, Athuvazhi-627760, Sivagiri, Tenkasi, Tamil Nadu, India</p>
-                            </div>
-                            <div className="contact-info-item">
-                                <i className="fas fa-phone"></i>
-                                <p><a href="tel:+916383129892">+91 6383129892</a></p>
-                            </div>
-                            <div className="contact-info-item">
-                                <i className="fab fa-whatsapp"></i>
-                                <p><a href="https://wa.me/916383129892" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></p>
-                            </div>
-                             <div className="contact-info-item">
-                                <i className="fas fa-envelope"></i>
-                                <p><a href="mailto:prathish0558e@gmail.com">prathish0558e@gmail.com</a></p>
-                            </div>
-                        </div>
-                        <form className="contact-form" onSubmit={handleEmailSubmit}>
-                            <div className="form-group">
-                                <input type="text" name="name" placeholder="Your Name" required value={formData.name} onChange={handleChange} />
-                            </div>
-                            <div className="form-group">
-                                <input type="email" name="email" placeholder="Your Email" required value={formData.email} onChange={handleChange} />
-                            </div>
-                            <div className="form-group">
-                                <textarea name="message" rows="6" placeholder="Your Message" required value={formData.message} onChange={handleChange}></textarea>
-                            </div>
-                            <button type="submit" className="submit-btn">Send Message</button>
-                            {status && <p style={{ marginTop: '1rem', textAlign: 'center' }}>{status}</p>}
-                        </form>
+              <div className="container">
+                <h2 className="section-title" data-aos="fade-up">Get In Touch</h2>
+                <div className="contact-container" data-aos="fade-up" data-aos-delay="100">
+                  <div className="contact-info">
+                    <h3>Contact Information</h3>
+                    <div className="contact-info-item">
+                        <i className="fas fa-map-marker-alt"></i>
+                        <p>2/171, Pallivasal Street, Athuvazhi-627760, Sivagiri, Tenkasi, Tamil Nadu, India</p>
                     </div>
+                    <div className="contact-info-item">
+                        <i className="fas fa-phone"></i>
+                        <p><a href="tel:+916383129892">+91 6383129892</a></p>
+                    </div>
+                    <div className="contact-info-item">
+                        <i className="fab fa-whatsapp"></i>
+                        <p><a href="https://wa.me/916383129892" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></p>
+                    </div>
+                     <div className="contact-info-item">
+                        <i className="fas fa-envelope"></i>
+                        <p><a href="mailto:prathish0558e@gmail.com">prathish0558e@gmail.com</a></p>
+                    </div>
+                  </div>
+
+                  <form className="contact-form" onSubmit={handleEmailSubmit}>
+                    <div className="form-group">
+                      <input type="text" name="name" placeholder="Your Name" required value={formData.name} onChange={handleChange} />
+                    </div>
+                    <div className="form-group">
+                      <input type="email" name="email" placeholder="Your Email" required value={formData.email} onChange={handleChange} />
+                    </div>
+                    <div className="form-group">
+                      <textarea name="message" rows="6" placeholder="Your Message" required value={formData.message} onChange={handleChange}></textarea>
+                    </div>
+                    <button type="submit" className="submit-btn" disabled={isSending}>
+                      {isSending ? 'Sending…' : 'Send Message'}
+                    </button>
+                    {status && <p style={{ marginTop: '1rem', textAlign: 'center' }}>{status}</p>}
+                  </form>
                 </div>
+              </div>
             </section>
-            );
+          );
         };
 
         const Footer = () => (
@@ -1017,7 +961,7 @@
                     image: 'images/pk1.png',
                     tags: ['Json', 'Firebase', 'Frontend Development'],
                     liveUrl: 'https://www.prathi.tech',
-                    repoUrl: 'https://github.com/prathish0558e/prathi.tech/index.html'
+                    repoUrl: 'https://github.com/prathish0558e/prathi.tech'
                 },
                 {
                     id: 2,
@@ -1026,7 +970,7 @@
                     image: 'images/pk2.png',              
                     tags: ['React', 'Frontend Development', 'UI/UX Design'],
                     liveUrl: 'https://www.prathihades.me',
-                    repoUrl: 'https://github.com/prathish0558e/prathish0558e.github.io/index.html'
+                    repoUrl: 'https://github.com/prathish0558e/prathish0558e.github.io'
                 }
             ];
 
@@ -1124,16 +1068,7 @@
                     credentialId: '26F0721590010197618',
                     icon: 'fas fa-certificate',
                     url: 'https://raw.githubusercontent.com/prathish0558e/prathish0558e.github.io/main/images/_PRATHISH%20KUMAR%20S.pdf',
-                },
-                {
-                    title: 'Participation Certificate',
-                    issuer: 'CIT',
-                    date: 'July 2025',
-                    credentialId: 'CIT-P-1980354',
-                    icon: 'fas fa-award',
-                    url: 'https://raw.githubusercontent.com/prathish0558e/prathish0558e.github.io/main/images/ParticipationCertificate.pdf',
                 }
-                
             ];
 
             const handleScroll = () => {
@@ -1180,7 +1115,7 @@
                 return () => {
                     window.removeEventListener('scroll', handleScroll);
                     sections.forEach(section => observer.unobserve(section));
-                }; 
+                };
             }, []);
 
             return (
