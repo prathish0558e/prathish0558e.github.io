@@ -1,0 +1,47 @@
+/* Lightweight animation helpers — respectful of prefers-reduced-motion */
+:root {
+  --accent: #00a3ff;
+  --accent-2: #8a2be2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up, .fade-in, .slide-up, .float, .pulse {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 700ms ease both;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  animation: fadeUp 900ms cubic-bezier(.22,.9,.25,1) both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-up {
+  animation: slideUp 700ms cubic-bezier(.22,.9,.25,1) both;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.float { animation: floatY 6s ease-in-out infinite; }
+@keyframes floatY { 0% { transform: translateY(0); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0); } }
+
+.pulse { animation: pulse 1500ms ease-in-out infinite; }
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
+
+.accent-glow { box-shadow: 0 8px 24px rgba(0,163,255,0.12), 0 0 30px rgba(138,43,226,0.05); }
+
+/* small utility */
+.sr-only { position: absolute !important; width: 1px; height: 1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
