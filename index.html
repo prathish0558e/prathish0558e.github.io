@@ -887,7 +887,7 @@
                                 <div className="certification-icon"><i className={cert.icon}></i></div>
                                 <div className="certification-content">
                                     <h3 className="certification-title">{cert.title}</h3>
-                                    <p className="certification-issuer">{cert.issuer} • Issued {cert.date}</p>
+                                    <p className="certification-issuer">{cert.issuer} &bull; Issued {cert.date}</p>
                                     <p className="certification-credential">Credential ID: {cert.credentialId}</p>
                                     <a href={cert.url} target="_blank" rel="noopener noreferrer" className="certification-link">
                                         Show Credential <i className="fas fa-external-link-alt"></i>
@@ -904,49 +904,25 @@
             const [formData, setFormData] = React.useState({ name: '', email: '', message: '' });
             const [status, setStatus] = React.useState('');
 
-            const FORM_ENDPOINT = 'https://formspree.io/f/yourFormId'; // <-- REPLACE with your Formspree form ID
-
             const handleChange = (e) => {
                 setFormData({ ...formData, [e.target.name]: e.target.value });
             };
 
-            const handleEmailSubmit = async (e) => {
+            const handleEmailSubmit = (e) => {
                 e.preventDefault();
                 if (!formData.name || !formData.email || !formData.message) {
                     setStatus('Please fill out all fields.');
                     return;
                 }
-
-                setStatus('Sending...');
-                try {
-                    const res = await fetch(FORM_ENDPOINT, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            name: formData.name,
-                            email: formData.email,
-                            message: formData.message
-                        })
-                    });
-
-                    if (res.ok) {
-                        setStatus('Message sent — thanks!');
-                        setFormData({ name: '', email: '', message: '' });
-                    } else {
-                        let errText = 'Send failed. Please try again.';
-                        try { const errJson = await res.json(); if (errJson && errJson.error) errText = errJson.error; } catch (e) {}
-                        setStatus(errText);
-                    }
-                } catch (err) {
-                    console.error('Send error', err);
-                    setStatus('Network error — check your connection.');
-                }
-
-                // clear status after a while
-                setTimeout(() => setStatus(''), 5000);
+                setStatus('Redirecting to your email client...');
+                const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
+                const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
+                window.location.href = `mailto:prathish0558e@gmail.com?subject=${subject}&body=${body}`;
+                
+                setTimeout(() => {
+                    setStatus('');
+                    setFormData({ name: '', email: '', message: '' });
+                }, 3000);
             };
 
             return (
