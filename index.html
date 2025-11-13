@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prathish Kumar S • Creative Technologist</title>
+    <title>Prathish Kumar S • Portfolio</title>
     <meta name="description" content="Portfolio of Prathish Kumar S — Creative frontend engineer, ethical hacker, and experience designer crafting cinematic, secure interfaces.">
     <meta name="theme-color" id="theme-color-meta" content="#0a0a14">
     <link rel="icon" type="image/x-icon" href="images/pakistan.png">
@@ -156,6 +156,29 @@
             border-bottom: 1px solid var(--border);
             transition: background 0.3s ease, box-shadow 0.3s ease;
         }
+            
+@media (max-width: 768px) {
+  nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    transform: translateX(100%); 
+    width: min(80vw, 320px);
+    height: 100vh;
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 1001; 
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    border-left: 1px solid var(--border);
+    box-shadow: -10px 0 50px rgba(0,0,0,0.3);
+  }
+  nav.is-open { transform: translateX(0); } 
+  html, body { overflow-x: hidden; }
+  nav ul { flex-direction: column; padding: 6rem 2rem 2rem; align-items: flex-start; gap: 1rem; }
+  nav ul li { width: 100%; }
+  nav a { font-size: 1.1rem; font-weight: 600; width: 100%; padding: 14px 20px; display:block; }
+}
 
         .nav-bar {
             display: flex;
@@ -516,7 +539,7 @@
             <span data-letter="P">P</span>
             <span data-letter="K">K</span>
         </div>
-        <p>Welcome To Portfolio</p>
+        <p>Welcome To My Portfolio</p>
     </div>
 
     <canvas id="background-canvas"></canvas>
@@ -701,7 +724,7 @@
             return (
                 <section className="hero" id="hero">
                     <div className="container hero-content" data-aos="fade-in" data-aos-duration="1000">
-                        <div className="hero-kicker">Welcome To My Portfilio</div>
+                        <div className="hero-kicker">Welcome To My Portfolio</div>
                         <h1 className="hero-title">
                             Prathish Kumar S
                         </h1>
@@ -826,45 +849,63 @@
         );
 
         const Contact = () => {
-          const [formData, setFormData] = React.useState({ name: '', email: '', message: '' });
-          const [status, setStatus] = React.useState('');
-          const [isSending, setIsSending] = React.useState(false);
+            // put near top of Contact component
+            const FORM_ENDPOINT = 'https://formspree.io/f/xyzpanwq';
 
-          const handleChange = (e) => setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+            const [formData, setFormData] = React.useState({
+              name: '',
+              email: '',
+              subject: '',
+              message: ''
+            });
+            const [status, setStatus] = React.useState('');
+            const [loading, setLoading] = React.useState(false);
 
-          const handleEmailSubmit = async (e) => {
-            e.preventDefault();
-            if (!formData.name || !formData.email || !formData.message) {
-              setStatus('Please fill out all fields.');
-              return;
-            }
+            const handleChange = (e) => {
+              setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+            };
 
-            setIsSending(true);
-            setStatus('Sending...');
-
-            try {
-              const res = await fetch('http://localhost:3000/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                body: JSON.stringify(formData)
-              });
-
-              const data = await res.json();
-
-              if (res.ok) {
-                setStatus('Message sent — thanks!');
-                setFormData({ name: '', email: '', message: '' });
-              } else {
-                setStatus(data && data.error ? data.error : 'Send failed. Try again.');
+            const handleEmailSubmit = async (e) => {
+              e.preventDefault();
+              if (!formData.name || !formData.email || !formData.message) {
+                setStatus('Please fill all required fields.');
+                return;
               }
-            } catch (err) {
-              console.error('Network error', err);
-              setStatus('Network error — please try again.');
-            } finally {
-              setIsSending(false);
-              setTimeout(() => setStatus(''), 5000);
-            }
-          };
+
+              setLoading(true);
+              setStatus('Sending...');
+
+              try {
+                const res = await fetch(FORM_ENDPOINT, {
+                  method: 'POST',
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    subject: formData.subject,
+                    message: formData.message,
+                    _replyto: formData.email
+                  })
+                });
+
+                if (res.ok) {
+                  setStatus('Message sent — thanks!');
+                  setFormData({ name: '', email: '', subject: '', message: '' });
+                } else {
+                  const err = await res.json().catch(() => ({}));
+                  setStatus(err?.error || 'Send failed — try again.');
+                }
+              } catch (err) {
+                console.error(err);
+                setStatus('Network error — please try again.');
+              } finally {
+                setLoading(false);
+                setTimeout(() => setStatus(''), 5000);
+              }
+            };
 
           return (
             <section className="section" id="contact">
@@ -873,38 +914,41 @@
                 <div className="contact-container" data-aos="fade-up" data-aos-delay="100">
                   <div className="contact-info">
                     <h3>Contact Information</h3>
-                    <div className="contact-info-item">
+                    <div className="contact-info-item" data-aos="fade-up" data-aos-delay="200">
                         <i className="fas fa-map-marker-alt"></i>
                         <p>2/171, Pallivasal Street, Athuvazhi-627760, Sivagiri, Tenkasi, Tamil Nadu, India</p>
                     </div>
-                    <div className="contact-info-item">
+                    <div className="contact-info-item" data-aos="fade-up" data-aos-delay="300">
                         <i className="fas fa-phone"></i>
                         <p><a href="tel:+916383129892">+91 6383129892</a></p>
                     </div>
-                    <div className="contact-info-item">
+                    <div className="contact-info-item" data-aos="fade-up" data-aos-delay="400">
                         <i className="fab fa-whatsapp"></i>
                         <p><a href="https://wa.me/916383129892" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></p>
                     </div>
-                     <div className="contact-info-item">
+                     <div className="contact-info-item" data-aos="fade-up" data-aos-delay="500">
                         <i className="fas fa-envelope"></i>
                         <p><a href="mailto:prathish0558e@gmail.com">prathish0558e@gmail.com</a></p>
                     </div>
                   </div>
 
                   <form className="contact-form" onSubmit={handleEmailSubmit}>
-                    <div className="form-group">
+                    <div className="form-group" data-aos="fade-up" data-aos-delay="200">
                       <input type="text" name="name" placeholder="Your Name" required value={formData.name} onChange={handleChange} />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group" data-aos="fade-up" data-aos-delay="300">
                       <input type="email" name="email" placeholder="Your Email" required value={formData.email} onChange={handleChange} />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group" data-aos="fade-up" data-aos-delay="400">
+                      <input type="text" name="subject" placeholder="Subject" required value={formData.subject} onChange={handleChange} />
+                    </div>
+                    <div className="form-group" data-aos="fade-up" data-aos-delay="500">
                       <textarea name="message" rows="6" placeholder="Your Message" required value={formData.message} onChange={handleChange}></textarea>
                     </div>
-                    <button type="submit" className="submit-btn" disabled={isSending}>
-                      {isSending ? 'Sending…' : 'Send Message'}
+                    <button type="submit" className="submit-btn" disabled={loading} data-aos="fade-up" data-aos-delay="600">
+                      {loading ? 'Sending…' : 'Send Message'}
                     </button>
-                    {status && <p style={{ marginTop: '1rem', textAlign: 'center' }}>{status}</p>}
+                    {status && <p style={{ marginTop: '1rem', textAlign: 'center' }} className="animate__animated animate__fadeIn">{status}</p>}
                   </form>
                 </div>
               </div>
@@ -1068,7 +1112,16 @@
                     credentialId: '26F0721590010197618',
                     icon: 'fas fa-certificate',
                     url: 'https://raw.githubusercontent.com/prathish0558e/prathish0558e.github.io/main/images/_PRATHISH%20KUMAR%20S.pdf',
-                }
+                },
+                {
+                    title: 'Participation Certificate',
+                    issuer: 'CIT',
+                    date: 'July 2025',
+                    credentialId: 'CIT-P-1980354',
+                    icon: 'fas fa-award',
+                    url: 'https://raw.githubusercontent.com/prathish0558e/prathish0558e.github.io/main/images/ParticipationCertificate.pdf',
+},
+
             ];
 
             const handleScroll = () => {
